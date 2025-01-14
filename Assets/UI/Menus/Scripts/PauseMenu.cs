@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
       // Hide other menus to start
       options.SetActive(false);
       controls.SetActive(false);
+      
+      Toggle();
    }
 
    private void Toggle()

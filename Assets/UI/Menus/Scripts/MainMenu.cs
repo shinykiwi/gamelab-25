@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
     // Main menu config
     [Header("Settings")] 
     [Tooltip("Scene to load upon play, if any. Will hide the menu instead if no scene asset.")]
-    [SerializeField] private GameObject scene;
+    [SerializeField] private string scene;
 
     private MenuAudio audio;
     
@@ -76,9 +76,9 @@ public class MainMenu : MonoBehaviour
     public void OnPlayButton()
     {
         audio.PlayClickSound();
-        if (scene)
+        if (scene != null)
         {
-            SceneManager.LoadScene(scene.name);
+            SceneManager.LoadScene(scene);
         }
         else
         {

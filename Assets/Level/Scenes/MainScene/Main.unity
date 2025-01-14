@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 43141938}
   - component: {fileID: 43141937}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: Post Processing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,6 +631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55485e761f994f4988aadaa18b80607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 1334727091292820290, guid: 82531d6b012a842a2a67e8fbcf3aad32, type: 3}
+  pauseMenu: {fileID: 1742372470182325219, guid: 5f856c03ecdeb470ba7363289074664c, type: 3}
 --- !u!4 &1897602663
 Transform:
   m_ObjectHideFlags: 0
