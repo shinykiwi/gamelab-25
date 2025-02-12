@@ -2368,6 +2368,10 @@ PrefabInstance:
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 2067061335}
+    - target: {fileID: 1465917704580768104, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
+      propertyPath: speedOnExit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2084591912937325821, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2772,6 +2776,10 @@ PrefabInstance:
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 267160750}
+    - target: {fileID: 1465917704580768104, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
+      propertyPath: speedOnExit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3833377614798517898, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
       propertyPath: m_Actions
       value: 

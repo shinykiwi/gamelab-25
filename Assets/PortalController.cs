@@ -7,9 +7,17 @@ public class PortalController : MonoBehaviour
     [SerializeField] private GameObject entryPortal;
     [SerializeField] private GameObject exitPortal;
 
-    [Header("Settings")] [SerializeField] private float speedOnExit = 700f;
+    [Header("Settings")] 
+    
+    //[Range(1, 10)]
+    private float speedOnExit = 1f;
 
-    private void TransferProjectile(Projectile projectile)
+    
+    /// <summary>
+    /// Teleports the projectile from one portal to the other.
+    /// </summary>
+    /// <param name="projectile"></param>
+    private void TeleportProjectile(Projectile projectile)
     {
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         
@@ -17,9 +25,14 @@ public class PortalController : MonoBehaviour
         projectile.gameObject.transform.SetParent(exitPortal.transform);
         projectile.gameObject.transform.localPosition = Vector3.zero;
         projectile.gameObject.transform.localRotation = Quaternion.Euler(0,0,0);
+
+        // Get the magnitude so that it can maintain the same speed
+        float magnitude = projectileRigidbody.linearVelocity.magnitude;
+        Debug.Log(magnitude);
         
         // Direction
-        Vector3 direction = projectile.transform.forward * 10;
+        // Gets the normal * the speed for exiting the portal * the initial speed of the projectile
+        Vector3 direction = magnitude * projectile.transform.forward * speedOnExit;
         
         // Draw a red line for debugging
         Debug.DrawRay(projectile.transform.position, direction, Color.red, 10);
@@ -28,6 +41,10 @@ public class PortalController : MonoBehaviour
         projectileRigidbody.linearVelocity = direction;
     }
 
+    /// <summary>
+    /// Is called when a projectile collides with a portal.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         Projectile projectile = other.gameObject.GetComponentInParent<Projectile>();
@@ -37,6 +54,6 @@ public class PortalController : MonoBehaviour
             Debug.Log("No projectile object found on collider!" + name);
         }
         
-        TransferProjectile(projectile);
+        TeleportProjectile(projectile);
     }
 }

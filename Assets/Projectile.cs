@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
 {
     
     private Rigidbody rb;
-    [SerializeField] private float force = 700f;
+    private float force = 7;
 
     private void OnEnable()
     {
@@ -18,6 +18,11 @@ public class Projectile : MonoBehaviour
 
     public void Fire()
     {
-        rb.AddRelativeForce(new Vector3(0, 0, -force));
+        rb.AddRelativeForce(new Vector3(0, 0, (-100 * force)));
+    }
+
+    public float GetForce()
+    {
+        return force;
     }
 }
