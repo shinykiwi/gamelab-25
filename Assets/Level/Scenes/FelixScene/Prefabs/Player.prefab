@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entryPortal: {fileID: 6837740004479151933}
   exitPortal: {fileID: 0}
-  speedOnExit: 700
+  speedOnExit: 10
 --- !u!1 &6468832080821303363
 GameObject:
   m_ObjectHideFlags: 0
