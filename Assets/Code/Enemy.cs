@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Humanoid
 {
     
     [SerializeField] private GameObject projectilePrefab;

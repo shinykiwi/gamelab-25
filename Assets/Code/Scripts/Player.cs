@@ -1,10 +1,6 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Humanoid
 {
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
 }
