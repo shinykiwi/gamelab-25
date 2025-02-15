@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PortalController : MonoBehaviour
 {
-    [Header("Dependencies")]
-    [SerializeField] private GameObject entryPortal;
-    [SerializeField] private GameObject exitPortal;
+    [Header("Dependencies")] [SerializeField]
+    private GameObject exitPortal;
 
     [Header("Settings")] 
     
@@ -21,24 +22,36 @@ public class PortalController : MonoBehaviour
     {
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         
+        projectile.AllowPortalTravel();
+        
         // Set the position of the projectile to be where the portal is
-        projectile.gameObject.transform.SetParent(exitPortal.transform);
-        projectile.gameObject.transform.localPosition = Vector3.zero;
-        projectile.gameObject.transform.localRotation = Quaternion.Euler(0,0,0);
-
+        projectile.gameObject.transform.position = exitPortal.transform.position;
+        // projectile.gameObject.transform.localPosition = Vector3.zero;
+        // projectile.gameObject.transform.localRotation = Quaternion.Euler(0,0,0);
+        
         // Get the magnitude so that it can maintain the same speed
         float magnitude = projectileRigidbody.linearVelocity.magnitude;
-        Debug.Log(magnitude);
         
         // Direction
         // Gets the normal * the speed for exiting the portal * the initial speed of the projectile
-        Vector3 direction = magnitude * projectile.transform.forward * speedOnExit;
+        Vector3 direction = magnitude * exitPortal.transform.forward * speedOnExit;
         
         // Draw a red line for debugging
-        Debug.DrawRay(projectile.transform.position, direction, Color.red, 10);
-
+        Debug.DrawRay(projectile.gameObject.transform.position, direction, Color.red, 10);
+        
         // Sets the new direction of the projectile
         projectileRigidbody.linearVelocity = direction;
+        
+        // De-parents the projectile so it can be free
+        projectile.gameObject.transform.SetParent(null);
+
+        StartCoroutine(ProjectileExits(projectile));
+    }
+
+    IEnumerator ProjectileExits(Projectile projectile)
+    {
+        yield return new WaitForSeconds(1f);
+        projectile.DisablePortalTravel();
     }
 
     /// <summary>
@@ -53,7 +66,9 @@ public class PortalController : MonoBehaviour
         {
             Debug.Log("No projectile object found on collider!" + name);
         }
-        
-        TeleportProjectile(projectile);
+        else
+        {
+            TeleportProjectile(projectile);
+        }
     }
 }

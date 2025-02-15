@@ -25,4 +25,14 @@ public class Projectile : MonoBehaviour
     {
         return force;
     }
+
+    public void AllowPortalTravel()
+    {
+        rb.excludeLayers = LayerMask.GetMask("Player");
+    }
+
+    public void DisablePortalTravel()
+    {
+        rb.excludeLayers = new LayerMask();
+    }
 }

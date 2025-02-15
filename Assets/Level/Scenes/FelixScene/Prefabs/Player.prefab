@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: -8937750697899474622}
   - component: {fileID: 3833377614798517898}
   - component: {fileID: 4114627695868288031}
-  - component: {fileID: 1465917704580768104}
-  m_Layer: 0
+  - component: {fileID: 8297322384478181244}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7165073411123294788}
+  - {fileID: 708458402701994949}
   - {fileID: 1766062529032904436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,7 +125,7 @@ Rigidbody:
   m_GameObject: {fileID: 5633269817973127401}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!114 &1465917704580768104
+--- !u!114 &8297322384478181244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,12 +283,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5633269817973127401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eabed5775ed5442feb895d88d7ab23d3, type: 3}
+  m_Script: {fileID: 11500000, guid: b98081796388548459d5e23a498892db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entryPortal: {fileID: 6837740004479151933}
-  exitPortal: {fileID: 0}
-  speedOnExit: 10
 --- !u!1 &6468832080821303363
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,8 +298,9 @@ GameObject:
   - component: {fileID: 1244706819899520777}
   - component: {fileID: 2845712739513219265}
   - component: {fileID: 7685625766291919881}
-  m_Layer: 0
-  m_Name: Cube
+  - component: {fileID: 2335497183717251228}
+  m_Layer: 3
+  m_Name: Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,13 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6468832080821303363}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 1.7, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.029999971, y: 0.08700001, z: 0.5419998}
+  m_LocalScale: {x: 0.73, y: 1.6999999, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7165073411123294788}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_Father: {fileID: 257262736102141173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1244706819899520777
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -389,7 +387,7 @@ BoxCollider:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -397,38 +395,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6837740004479151933
-GameObject:
+--- !u!114 &2335497183717251228
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7165073411123294788}
-  m_Layer: 0
-  m_Name: PortalArm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7165073411123294788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837740004479151933}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.087, z: 0.542}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 708458402701994949}
-  m_Father: {fileID: 257262736102141173}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 6468832080821303363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eabed5775ed5442feb895d88d7ab23d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitPortal: {fileID: 0}
+  speedOnExit: 1
 --- !u!1 &6857975609653721370
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +420,7 @@ GameObject:
   - component: {fileID: 5306370322586402153}
   - component: {fileID: 1196852679937311499}
   - component: {fileID: 4464030082643807703}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +557,7 @@ GameObject:
   - component: {fileID: 4741549580974713217}
   - component: {fileID: 5794509936238206225}
   - component: {fileID: 4027550854791262517}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
 
     private void ShootProjectile()
     {
-        //Debug.Log("Shooting projectile from Enemy!");
         Projectile projectile = Instantiate(projectilePrefab).GetComponent<Projectile>();
         projectile.Fire();
     }
