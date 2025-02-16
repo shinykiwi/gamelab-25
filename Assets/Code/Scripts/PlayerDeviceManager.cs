@@ -30,17 +30,24 @@ public class PlayerDeviceManager : MonoBehaviour
     public void AssignKeyboard(PlayerInput playerInput)
     {
         PlayerInput otherPlayerInput = playerInput == playerInput1 ? playerInput2 : playerInput1;
+
         if(otherPlayerInput.currentControlScheme != "Keyboard&Mouse")
         {
             playerInput.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
         }
         else
         {
+            // Reassign both players to Keyboard only
+            ResetAndDisableInputs();
+            otherPlayerInput.enabled = true;
+            otherPlayerInput.SwitchCurrentControlScheme("Keyboard1", Keyboard.current, Mouse.current);
+            playerInput.enabled = true;
             playerInput.SwitchCurrentControlScheme("Keyboard2", Keyboard.current, Mouse.current);
         }
     }
 
-    void AssignInitialDevices()
+
+    void ResetAndDisableInputs()
     {
         PlayerInput[] inputs = { playerInput1, playerInput2 };
 
@@ -48,13 +55,20 @@ public class PlayerDeviceManager : MonoBehaviour
         foreach(var input in inputs)
         {
             // temporarily disable input to prevent devices from being automatically assigned
-            input.enabled = false; 
+            input.enabled = false;
             input.SwitchCurrentControlScheme();
             if(input.user.valid)
             {
                 input.user.UnpairDevices();
             }
         }
+    }
+
+    void AssignInitialDevices()
+    {
+        PlayerInput[] inputs = { playerInput1, playerInput2 };
+
+        ResetAndDisableInputs();
 
         // Assign devices
         foreach(PlayerInput input in inputs)

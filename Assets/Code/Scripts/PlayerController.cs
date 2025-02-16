@@ -34,7 +34,15 @@ public class PlayerController : MonoBehaviour
 
         Vector2 lookInputValue = lookAction.ReadValue<Vector2>();
         Vector3 look = new Vector3(lookInputValue.x, 0, lookInputValue.y);
-        Look(look);
+        // Get look direction for mouse controls
+        if(playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            float distToCamera = (Camera.main.transform.position - transform.position).magnitude;
+            Vector3 lookTarget = Camera.main.ScreenToWorldPoint(new Vector3(lookInputValue.x, lookInputValue.y, distToCamera));
+            Vector3 lookDir = lookTarget - transform.position;
+            look = new Vector3(lookDir.x, 0.0f, lookDir.z);
+        }
+        FaceTowards(look);
     }
     
     void Move(Vector3 move)
@@ -43,13 +51,13 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + displacement);
     }
 
-    void Look(Vector3 look)
+    void FaceTowards(Vector3 dir)
     {
-        if(look.magnitude < 0.1f)
+        if(dir.magnitude < 0.1f)
         {
             return;
         }
-        Vector3 lookDir = look.normalized;
+        Vector3 lookDir = dir.normalized;
         Vector3 camera_dir = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
         Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_dir.normalized) * lookDir);
         Quaternion curRotation = Quaternion.RotateTowards(rb.rotation, target_rotation, rotationSpeedDegrees * Time.deltaTime);
