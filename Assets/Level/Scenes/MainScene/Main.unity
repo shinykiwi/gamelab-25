@@ -3355,6 +3355,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4114627695868288031, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
+      propertyPath: portalRotationSpeedDegrees
+      value: 720
+      objectReference: {fileID: 0}
     - target: {fileID: 4205920580847021230, guid: 558d8d7ea46cec348bcac9e7de1cb57a, type: 3}
       propertyPath: m_Name
       value: PortalArmP1
