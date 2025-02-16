@@ -11,46 +11,62 @@ public class PlayerDeviceManager : MonoBehaviour
 
     private void Start()
     {
-        playerInput1.enabled = false;
-        playerInput2.enabled = false;
-
-        // Assign devices to players
-        playerInput2.SwitchCurrentControlScheme();
-        playerInput1.SwitchCurrentControlScheme();
-        if(playerInput2.user.valid)
-        {
-            playerInput2.user.UnpairDevices();
-        }
-        if(playerInput1.user.valid)
-        {
-            playerInput1.user.UnpairDevices();
-        }
-
-        AssignDevice(playerInput1, playerInput2);
-        AssignDevice(playerInput2, playerInput1);
-
+        AssignInitialDevices();
     }
 
-    void AssignDevice(PlayerInput playerInput, PlayerInput otherPlayerInput)
+    public void AssignGamepad(PlayerInput playerInput)
     {
-        playerInput.enabled = true;
+        PlayerInput otherPlayerInput = playerInput == playerInput1 ? playerInput2 : playerInput1;
 
         var devices = InputSystem.devices;
-
-        // Prioritize Gamepads
-        Gamepad gamepad = devices.FirstOrDefault(d => d is Gamepad 
-            && (!otherPlayerInput.user.valid || !otherPlayerInput.devices.Contains(d))) as Gamepad;
+        Gamepad gamepad = devices.FirstOrDefault(d => d is Gamepad
+            && (!playerInput1.user.valid || !playerInput1.devices.Contains(d))) as Gamepad;
         if(gamepad != null)
         {
             playerInput.SwitchCurrentControlScheme(gamepad);
         }
-        else if(otherPlayerInput.currentControlScheme != "Keyboard&Mouse") // Fallback to keyboard1
+    }
+
+    public void AssignKeyboard(PlayerInput playerInput)
+    {
+        PlayerInput otherPlayerInput = playerInput == playerInput1 ? playerInput2 : playerInput1;
+        if(otherPlayerInput.currentControlScheme != "Keyboard&Mouse")
         {
             playerInput.SwitchCurrentControlScheme("Keyboard&Mouse", Keyboard.current, Mouse.current);
         }
-        else // Fallback to keyboard2
+        else
         {
             playerInput.SwitchCurrentControlScheme("Keyboard2", Keyboard.current, Mouse.current);
+        }
+    }
+
+    void AssignInitialDevices()
+    {
+        PlayerInput[] inputs = { playerInput1, playerInput2 };
+
+        // Reset inputs
+        foreach(var input in inputs)
+        {
+            // temporarily disable input to prevent devices from being automatically assigned
+            input.enabled = false; 
+            input.SwitchCurrentControlScheme();
+            if(input.user.valid)
+            {
+                input.user.UnpairDevices();
+            }
+        }
+
+        // Assign devices
+        foreach(PlayerInput input in inputs)
+        {
+            input.enabled = true;
+            if(!input.user.valid)
+                continue;
+            AssignGamepad(input); // Prefer Gamepads
+            if(input.currentControlScheme != "Gamepad")
+            {
+                AssignKeyboard(input);
+            }
         }
     }
 }

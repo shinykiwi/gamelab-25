@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class TestScript : MonoBehaviour
 {
     [SerializeField]
-    GameObject obj;
+    PlayerInput obj;
 
     private void Start()
     {
@@ -13,10 +13,13 @@ public class TestScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.B))
         {
-            Vector3 randomSpawnPoint = transform.position + 15.0f * new Vector3(Random.value, 0.0f, Random.value);
-            Instantiate(obj, randomSpawnPoint, Quaternion.identity);
+            FindFirstObjectByType<PlayerDeviceManager>().AssignGamepad(obj);
+        }
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            FindFirstObjectByType<PlayerDeviceManager>().AssignKeyboard(obj);
         }
     }
 }
