@@ -4,20 +4,24 @@ namespace Code.Scripts
 {
     public class Enemy : Humanoid
     {
-    
-        [SerializeField] private GameObject projectilePrefab;
+        ProjectileSpawner projectileSpawner;
+        
+        protected override void Start()
+        {
+            base.Start();
+            projectileSpawner = GetComponent<ProjectileSpawner>();
+            if(projectileSpawner == null)
+            {
+                Debug.LogError("No ProjectileSpawner found on this object");
+            }
+        }
+        
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                ShootProjectile();
+                projectileSpawner.SpawnProjectile();
             }
-        }
-
-        private void ShootProjectile()
-        {
-            Projectile projectile = Instantiate(projectilePrefab).GetComponent<Projectile>();
-            projectile.Fire();
         }
     }
 }

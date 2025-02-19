@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    
     private Rigidbody rb;
-    private float force = 7;
 
     private void OnEnable()
     {
@@ -16,14 +14,9 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void Fire()
+    public void Fire(Vector3 forceWorldSpace)
     {
-        rb.AddRelativeForce(new Vector3(0, 0, (-100 * force)));
-    }
-
-    public float GetForce()
-    {
-        return force;
+        rb.AddForce(forceWorldSpace, ForceMode.Impulse);
     }
 
     public void AllowPortalTravel()

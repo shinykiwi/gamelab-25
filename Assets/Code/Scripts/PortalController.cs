@@ -51,7 +51,11 @@ public class PortalController : MonoBehaviour
     IEnumerator ProjectileExits(Projectile projectile)
     {
         yield return new WaitForSeconds(1f);
-        projectile.DisablePortalTravel();
+
+        if(projectile != null)
+        {
+            projectile.DisablePortalTravel();
+        }
     }
 
     /// <summary>
