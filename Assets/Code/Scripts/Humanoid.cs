@@ -99,6 +99,7 @@ namespace Code.Scripts
             }
             else
             {
+                Debug.Log("No level manager found");
                 Spawn(Vector3.zero);
             }
         }
