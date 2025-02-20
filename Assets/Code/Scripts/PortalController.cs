@@ -37,7 +37,7 @@ public class PortalController : MonoBehaviour
         Vector3 direction = magnitude * exitPortal.transform.forward * speedOnExit;
         
         // Draw a red line for debugging
-        Debug.DrawRay(projectile.gameObject.transform.position, direction, Color.red, 10);
+        Debug.DrawRay(projectile.gameObject.transform.position, direction, Color.red, 1);
         
         // Sets the new direction of the projectile
         projectileRigidbody.linearVelocity = direction;

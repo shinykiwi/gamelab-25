@@ -15,6 +15,8 @@ namespace Code.Scripts
         private MeshRenderer meshRenderer;
         private Collider collider;
 
+        public bool IsAlive => health > 0f;
+
         protected virtual void Start()
         {
             meshRenderer = gameObject.GetComponent<MeshRenderer>();

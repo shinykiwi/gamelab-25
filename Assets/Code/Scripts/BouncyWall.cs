@@ -26,9 +26,9 @@ namespace Code.Scripts
                 }
                 projectileRb.linearVelocity = speedModifier * newSpeed;
 
-                Debug.DrawRay(other.transform.position, other.relativeVelocity, Color.green, 5f);
-                Debug.DrawRay(transform.position, wallNormal, Color.red, 5f);
-                Debug.DrawRay(other.transform.position, newSpeed, Color.blue, 5f);
+                Debug.DrawRay(other.transform.position, other.relativeVelocity, Color.green, 1f);
+                Debug.DrawRay(transform.position, wallNormal, Color.red, 1f);
+                Debug.DrawRay(other.transform.position, newSpeed, Color.blue, 1f);
             }
         }
     }
