@@ -47,8 +47,6 @@ namespace Code.Scripts
             sequence.AppendCallback(ToggleVisibility);
 
             sequence.Play();
-
-            StartCoroutine(DelaySpawn(5));
         }
 
         protected virtual void Respawn()
@@ -89,22 +87,10 @@ namespace Code.Scripts
         /// </summary>
         private void Spawn()
         {
-            // Try to find the level manager since no transform was given
-            LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-        
-            // If there is a level manager in the scene, use the designated spawn point
-            if (levelManager)
-            {
-                Spawn(levelManager.GetSpawnPoint());
-            }
-            else
-            {
-                Debug.Log("No level manager found");
-                Spawn(Vector3.zero);
-            }
+            Spawn(Level.SpawnPoint);
         }
 
-        private IEnumerator DelaySpawn(float delay)
+        protected IEnumerator DelaySpawn(float delay)
         {
             Debug.Log("Delay spawn!");
             yield return new WaitForSeconds(delay);

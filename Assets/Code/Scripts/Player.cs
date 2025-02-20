@@ -19,6 +19,8 @@ namespace Code.Scripts
         protected override void Death()
         {
             base.Death();
+
+            StartCoroutine(DelaySpawn(Level.RespawnDelay));
             
             // Deactivates portal
             portalObject.SetActive(false);
