@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerAnimation : MonoBehaviour
 {
+   [SerializeField]
    private Animator animator;
    private Vector3 v3_movement;
    private Vector3 v3_aim;
@@ -16,7 +17,6 @@ public class PlayerControllerAnimation : MonoBehaviour
 
    private void Start()
    {
-      animator = GetComponent<Animator>();
       characterController = GetComponent<CharacterController>();
    }
 
