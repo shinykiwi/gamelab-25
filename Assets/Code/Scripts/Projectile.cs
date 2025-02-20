@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField]
+    ParticleSystem explodeVFX;
+
+    public GameObject Owner { get; set; }
+
     private Rigidbody rb;
 
     private void OnEnable()
@@ -27,5 +32,15 @@ public class Projectile : MonoBehaviour
     public void DisablePortalTravel()
     {
         rb.excludeLayers = new LayerMask();
+    }
+
+    public void Kill()
+    {
+        if(explodeVFX)
+        {
+            GameObject vfx = Instantiate(explodeVFX, transform.position, Quaternion.identity).gameObject;
+            Destroy(vfx, 15.0f);
+        }
+        Destroy(gameObject);
     }
 }

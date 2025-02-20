@@ -30,8 +30,6 @@ namespace Code.Scripts
                 Debug.LogError("No Rigidbody Component on this object.", this);
             }
 
-            Debug.Log(GetComponent<Humanoid>());
-
             players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
         }
         

@@ -45,6 +45,9 @@ public class PortalController : MonoBehaviour
         // De-parents the projectile so it can be free
         projectile.gameObject.transform.SetParent(null);
 
+        // Sets the shieldOwner of the projectile to be this gameObject
+        projectile.Owner = gameObject;
+
         StartCoroutine(ProjectileExits(projectile));
     }
 

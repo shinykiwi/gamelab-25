@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,9 +40,19 @@ public class ProjectileSpawner : MonoBehaviour
         Projectile spawnedProjectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.Euler(transform.forward));
         Vector3 worldForce = projectileSpawnVelocity * (transform.rotation * spawnVelocityDirection);
         spawnedProjectile.Fire(worldForce);
+        spawnedProjectile.Owner = gameObject;
 
         projectilesSpawned.Add(spawnedProjectile);
-        Destroy(spawnedProjectile.gameObject, projectileMaxLifetime);
+        StartCoroutine(DestroyProjectile(spawnedProjectile));
+    }
+
+    private IEnumerator DestroyProjectile(Projectile projectile)
+    {
+        yield return new WaitForSeconds(projectileMaxLifetime);
+        if(projectile)
+        {
+            projectile.Kill();
+        }
     }
 
 
