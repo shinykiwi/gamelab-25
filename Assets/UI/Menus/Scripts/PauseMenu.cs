@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
       pause.SetActive(false);
       controls.SetActive(false);
       options.SetActive(false);
+      parent.SetActive(false);
    }
 
    private void Toggle()
