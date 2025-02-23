@@ -20,7 +20,7 @@ public class PlayerDeviceManager : MonoBehaviour
 
         var devices = InputSystem.devices;
         Gamepad gamepad = devices.FirstOrDefault(d => d is Gamepad
-            && (!playerInput1.user.valid || !playerInput1.devices.Contains(d))) as Gamepad;
+            && (!otherPlayerInput.user.valid || !otherPlayerInput.devices.Contains(d))) as Gamepad;
         if(gamepad != null)
         {
             playerInput.SwitchCurrentControlScheme(gamepad);
