@@ -9,7 +9,8 @@ namespace Code.Scripts
 
         [Header("Parameters")]
         [Tooltip("The default place to spawn when starting the Instance and also when respawning.")] 
-        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private Transform spawnPointP1;
+        [SerializeField] private Transform spawnPointP2;
 
         [Tooltip("The amount of time a player has to wait before respawning.")] 
         [SerializeField] private float respawnDelay = 5f;
@@ -18,7 +19,8 @@ namespace Code.Scripts
         [SerializeField]
         private Canvas endLevelCanvas;
 
-        public static Transform SpawnPoint => Instance?.spawnPoint;
+        public static Transform SpawnPointP1 => Instance?.spawnPointP1;
+        public static Transform SpawnPointP2 => Instance?.spawnPointP2;
 
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 

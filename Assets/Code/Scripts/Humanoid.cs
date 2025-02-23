@@ -6,6 +6,7 @@ namespace Code.Scripts
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(MeshRenderer))]
+    
     public class Humanoid : MonoBehaviour
     {
         // Not sure if this will be needed but it's just an example of where we can put common vars like this
@@ -84,19 +85,11 @@ namespace Code.Scripts
             Respawn();
         }
 
-        /// <summary>
-        /// Spawns self at the spawn point given by the LevelManager.
-        /// </summary>
-        private void Spawn()
-        {
-            Spawn(Level.SpawnPoint);
-        }
-
-        protected IEnumerator DelaySpawn(float delay)
+        protected IEnumerator DelaySpawn(float delay, Transform location)
         {
             Debug.Log("Delay spawn!");
             yield return new WaitForSeconds(delay);
-            Spawn();
+            Spawn(location);
         }
 
         /// <summary>
