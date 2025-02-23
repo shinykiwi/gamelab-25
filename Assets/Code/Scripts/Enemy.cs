@@ -45,6 +45,9 @@ namespace Code.Scripts
 
         protected override void Death()
         {
+            if(!IsAlive)
+                return;
+
             base.Death();
             Level.Instance.EnemyHasBeenDefeated(this);
         }

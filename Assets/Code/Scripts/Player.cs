@@ -26,6 +26,9 @@ namespace Code.Scripts
         
         protected override void Death()
         {
+            if(!IsAlive)
+                return;
+
             base.Death();
 
             StartCoroutine(DelaySpawn(Level.RespawnDelay, spawnPoint));

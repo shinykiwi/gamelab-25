@@ -36,6 +36,9 @@ namespace Code.Scripts
 
         protected virtual void Death()
         {
+            if(!IsAlive)
+                return;
+
             health = 0f;
 
             // Damage visual sequence
