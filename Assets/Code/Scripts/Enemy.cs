@@ -7,14 +7,25 @@ namespace Code.Scripts
 {
     public class Enemy : Humanoid
     {
+        [Header("Enemy Settings")]
         [SerializeField]
         float rotationSpeedDegrees = 90.0f;
 
+        [SerializeField, Min(0.01f), Tooltip("Time the enemy has to have a Line of Sight on a player before spawning a projectile")]
+        float timeToSeePlayerToSpawnProjectile = 2.0f;
+
+        [Header("Setup")]
+        [SerializeField]
+        LayerMask ignoredMasksForPlayerLOS;
+
         ProjectileSpawner projectileSpawner;
         Rigidbody rb;
+        RaycastHit[] raycastHits = new RaycastHit[1];
 
-        List<Player> players;
+        Player[] players;
         Tween rotationTween;
+        Player targetPlayer;
+        float curTimeSeeingTargetPlayer = 0.0f;
 
         protected override void Start()
         {
@@ -30,16 +41,21 @@ namespace Code.Scripts
                 Debug.LogError("No Rigidbody Component on this object.", this);
             }
 
-            players = FindObjectsByType<Player>(FindObjectsSortMode.None).ToList();
+            players = FindObjectsByType<Player>(FindObjectsSortMode.None);
         }
         
         void Update()
         {
             FaceNearestPlayer();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if(!IsAlive)
+                return;
+
+            if(curTimeSeeingTargetPlayer >= timeToSeePlayerToSpawnProjectile
+                && IsFacingTargetPlayer())
             {
                 projectileSpawner.SpawnProjectile();
+                curTimeSeeingTargetPlayer -= timeToSeePlayerToSpawnProjectile;
             }
         }
 
@@ -54,6 +70,32 @@ namespace Code.Scripts
 
         void FaceNearestPlayer()
         {
+            Player closestPlayer = GetClosestSeenPlayer();
+
+            if(closestPlayer != null)
+            {
+                // Rotate towards player
+                Vector3 lookDir = closestPlayer.transform.position - transform.position;
+                lookDir = new Vector3(lookDir.x, 0, lookDir.z).normalized;
+                Vector3 angles = Quaternion.LookRotation(lookDir).eulerAngles;
+                float timeRotation = Mathf.Abs(Vector3.Angle(transform.forward, lookDir)) / rotationSpeedDegrees;
+
+                rotationTween.Kill();
+                rotationTween = rb.DORotate(angles, timeRotation);
+
+                // Increment time seeing a player
+                targetPlayer = closestPlayer;
+                curTimeSeeingTargetPlayer += Time.deltaTime;
+            }
+            else
+            {
+                targetPlayer = null;
+                curTimeSeeingTargetPlayer = 0.0f;
+            }
+        }
+
+        private Player GetClosestSeenPlayer()
+        {
             Player closestPlayer = null;
             float closestDistance = float.MaxValue;
             foreach(Player player in players)
@@ -64,25 +106,44 @@ namespace Code.Scripts
                     continue;
                 }
 
-                float distance = Vector3.Distance(transform.position, player.transform.position);
-                if(distance < closestDistance)
+                if(HasLineOfSightToPlayer(player, out float distanceToPlayer) && distanceToPlayer < closestDistance)
                 {
                     closestPlayer = player;
-                    closestDistance = distance;
+                    closestDistance = distanceToPlayer;
                 }
             }
 
-            if(closestPlayer != null)
+            return closestPlayer;
+        }
+
+        private bool HasLineOfSightToPlayer(Player player, out float distanceToPlayer)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            Ray rayTowardsPlayer = new Ray(transform.position, (player.transform.position - transform.position).normalized);
+
+            int noProjectileMask = int.MaxValue - ignoredMasksForPlayerLOS;
+            Physics.RaycastNonAlloc(rayTowardsPlayer, raycastHits, distance, noProjectileMask, QueryTriggerInteraction.Ignore);
+            distanceToPlayer = raycastHits[0].distance;
+            return raycastHits[0].collider != null && raycastHits[0].collider.gameObject.layer == LayerMask.NameToLayer("Player");
+        }
+
+        private bool IsFacingTargetPlayer()
+        {
+            if(targetPlayer == null)
             {
-                Vector3 lookDir = closestPlayer.transform.position - transform.position;
-                lookDir = new Vector3(lookDir.x, 0, lookDir.z).normalized;
-                Vector3 angles = Quaternion.LookRotation(lookDir).eulerAngles;
-                float timeRotation = Mathf.Abs(Vector3.Angle(transform.forward, lookDir)) / rotationSpeedDegrees;
+                return false;
+            }
+            Vector3 lookDir = targetPlayer.transform.position - transform.position;
+            lookDir = new Vector3(lookDir.x, 0, lookDir.z).normalized;
+            return Vector3.Dot(new Vector3(transform.forward.x, 0.0f, transform.forward.z), lookDir) > 0.995f;
+        }
 
-                rotationTween.Kill();
-                rotationTween = rb.DORotate(angles, timeRotation);
-
-                Debug.DrawLine(transform.position, closestPlayer.transform.position, Color.red);
+        private void OnDrawGizmosSelected()
+        {
+            if(targetPlayer != null)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(transform.position, targetPlayer.transform.position);
             }
         }
     }
