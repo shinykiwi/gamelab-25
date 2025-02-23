@@ -1,31 +1,29 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-   private Canvas canvas;
    private MenuAudio audio;
 
    [SerializeField] private GameObject options;
    [SerializeField] private GameObject pause;
    [SerializeField] private GameObject controls;
+   [SerializeField] private GameObject parent;
 
-   private void Awake()
+   private void Start()
    {
-      canvas = GetComponent<Canvas>();
       audio = GetComponentInChildren<MenuAudio>();
       
-      // Hide other menus to start
-      options.SetActive(false);
+      pause.SetActive(false);
       controls.SetActive(false);
-      
-      Toggle();
+      options.SetActive(false);
    }
 
    private void Toggle()
    {
-      canvas.enabled = !canvas.enabled;
+      parent.SetActive(!parent.activeSelf);
    }
    
    public void OnResumeButtonClick()
@@ -71,6 +69,11 @@ public class PauseMenu : MonoBehaviour
       
    }
 
+   public void OnRestartButtonClick()
+   {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+   }
+
    public void OnQuitButtonClick()
    {
       audio.PlayBackSound();
@@ -87,7 +90,16 @@ public class PauseMenu : MonoBehaviour
          }
          else
          {
-            OnBackButtonClick();
+            if (!parent.activeSelf)
+            {
+               // Show the pause panel
+               Toggle();
+               pause.SetActive(true);
+            }
+            else
+            {
+               OnBackButtonClick();
+            }
          }
          
       }
