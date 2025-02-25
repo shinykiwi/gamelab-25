@@ -24,7 +24,7 @@ namespace Code.Scripts
 
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 
-        private List<Enemy> enemiesToBeat;
+        public List<Enemy> EnemiesToBeat { get; private set; }
         
         private void Awake() 
         { 
@@ -40,14 +40,14 @@ namespace Code.Scripts
             }
 
             // Require to beat all enenmies in the level
-            enemiesToBeat = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+            EnemiesToBeat = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
         }
 
         public void EnemyHasBeenDefeated(Enemy enemy)
         {
-            enemiesToBeat.Remove(enemy);
+            EnemiesToBeat.Remove(enemy);
 
-            if(enemiesToBeat.Count == 0)
+            if(EnemiesToBeat.Count == 0)
             {
                 LevelCompleted();
             }

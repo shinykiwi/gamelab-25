@@ -411,6 +411,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitPortal: {fileID: 0}
   speedOnExit: 1
+  isAutoAimEnabled: 1
+  degreesAutoAim: 25
+  autoAimDistanceMax: 30
+  ignoredMasksForLOS:
+    serializedVersion: 2
+    m_Bits: 68
 --- !u!1 &6857975609653721370
 GameObject:
   m_ObjectHideFlags: 0
