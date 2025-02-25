@@ -33,18 +33,7 @@ public class PlayerControllerAnimation : MonoBehaviour
 
       Vector3 camera_rotation = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
 
-      if (aim_amount > 0)
-      {
-         Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * v3_aim);
-         transform.rotation =
-            Quaternion.RotateTowards(transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
-
-         Vector3 walk_aim_direction = Quaternion.LookRotation(new Vector3(-v3_aim.x, 0f, v3_aim.z)) * v3_movement;
-         
-         animator.SetFloat("aim_x", walk_aim_direction.x, 0.15f, Time.deltaTime);
-         animator.SetFloat("aim_y", walk_aim_direction.z, 0.15f, Time.deltaTime);
-      }
-      else if (movement_amount > 0)
+      if (movement_amount > 0)
       {
          Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * v3_movement);
          transform.rotation =
@@ -53,7 +42,7 @@ public class PlayerControllerAnimation : MonoBehaviour
       }
       
       animator.SetFloat("movement_amount", movement_amount);
-      animator.SetBool("is_aiming", aim_amount > 0 ? true : false);
+      animator.SetBool("is_aiming", false);
 
       if (!animator.applyRootMotion)
       {
