@@ -257,7 +257,7 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -411,9 +411,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitPortal: {fileID: 0}
   speedOnExit: 1
-  isAutoAimEnabled: 1
-  degreesAutoAim: 25
-  autoAimDistanceMax: 30
+  isAimAssistEnabled: 1
+  degreesAimAssist: 30
+  aimAssistDistanceMax: 25
   ignoredMasksForLOS:
     serializedVersion: 2
     m_Bits: 68
