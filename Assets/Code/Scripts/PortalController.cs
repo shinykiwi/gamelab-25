@@ -15,13 +15,13 @@ public class PortalController : MonoBehaviour
     [SerializeField] private float speedOnExit = 1f;
 
     [SerializeField]
-    private bool isAutoAimEnabled = true;
+    private bool isAimAssistEnabled = true;
 
     [SerializeField, Range(0f, 360.0f)]
-    private float degreesAutoAim = 30.0f;
+    private float degreesAimAssist = 30.0f;
 
     [SerializeField, Min(0f)]
-    private float autoAimDistanceMax = 25.0f;
+    private float aimAssistDistanceMax = 25.0f;
 
     [SerializeField]
     private LayerMask ignoredMasksForLOS;
@@ -64,10 +64,10 @@ public class PortalController : MonoBehaviour
         
         // Draw Debug Rays for the velocity
         Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);
-        Quaternion rotateRight = Quaternion.Euler(0, degreesAutoAim / 2, 0);
-        Debug.DrawRay(projectile.transform.position, autoAimDistanceMax * (rotateRight * newVelocity.normalized), Color.green, 1);
-        Quaternion rotateLeft = Quaternion.Euler(0, -degreesAutoAim / 2, 0);
-        Debug.DrawRay(projectile.transform.position, autoAimDistanceMax * (rotateLeft * newVelocity.normalized), Color.green, 1);
+        Quaternion rotateRight = Quaternion.Euler(0, degreesAimAssist / 2, 0);
+        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateRight * newVelocity.normalized), Color.green, 1);
+        Quaternion rotateLeft = Quaternion.Euler(0, -degreesAimAssist / 2, 0);
+        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateLeft * newVelocity.normalized), Color.green, 1);
 
         projectileRigidbody.linearVelocity = GetAutoAimVelocity(projectile.transform.position, newVelocity);
         // De-parents the projectile so it can be free
@@ -90,7 +90,7 @@ public class PortalController : MonoBehaviour
 
     Vector3 GetAutoAimVelocity(Vector3 position, Vector3 velocity)
     {
-        if(!isAutoAimEnabled)
+        if(!isAimAssistEnabled)
             return velocity;
 
         float bestAngle = float.MaxValue;
@@ -103,11 +103,11 @@ public class PortalController : MonoBehaviour
             Vector3 enemyPosition = enemy.transform.position;
             Vector3 toEnemy = enemyPosition - position;
 
-            if(toEnemy.magnitude >= autoAimDistanceMax)
+            if(toEnemy.magnitude >= aimAssistDistanceMax)
                 continue;
 
             float angle = Vector3.Angle(velocity, toEnemy);
-            if(angle < degreesAutoAim / 2 && angle < bestAngle && HasLineOfSightToEnemy(enemy))
+            if(angle < degreesAimAssist / 2 && angle < bestAngle && HasLineOfSightToEnemy(enemy))
             {
                 bestVelocity = velocity.magnitude * toEnemy.normalized;
             }
@@ -131,10 +131,10 @@ public class PortalController : MonoBehaviour
         Gizmos.color = Color.green;
 
         Vector3 dir = transform.forward;
-        Quaternion rotateRight = Quaternion.Euler(0, degreesAutoAim / 2, 0);
-        Gizmos.DrawRay(transform.position, autoAimDistanceMax * (rotateRight * dir));
+        Quaternion rotateRight = Quaternion.Euler(0, degreesAimAssist / 2, 0);
+        Gizmos.DrawRay(transform.position, aimAssistDistanceMax * (rotateRight * dir));
 
-        Quaternion rotateLeft = Quaternion.Euler(0, -degreesAutoAim / 2, 0);
-        Debug.DrawRay(transform.position, autoAimDistanceMax * (rotateLeft * dir));
+        Quaternion rotateLeft = Quaternion.Euler(0, -degreesAimAssist / 2, 0);
+        Debug.DrawRay(transform.position, aimAssistDistanceMax * (rotateLeft * dir));
     }
 }
