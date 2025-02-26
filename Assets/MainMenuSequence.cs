@@ -8,6 +8,7 @@ public class MainMenuSequence : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera startCamera;
     [SerializeField] private CinemachineCamera endCamera;
+    [SerializeField] private FadeToBlack fadeToBlack;
 
     public void Play(string sceneName)
     {
@@ -18,8 +19,12 @@ public class MainMenuSequence : MonoBehaviour
 
     private IEnumerator LoadLevel(string sceneName)
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
+        fadeToBlack.DoFadeIn(2f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneName);
         
     }
+    
+    
 }
