@@ -15,7 +15,11 @@ public class LevelManager : MonoBehaviour
     {
         string sceneName = "Level_";
         sceneName += level.ToString();
+        
+        Debug.Log("Loading " + sceneName + "...");
+        
         SceneManager.LoadScene(sceneName);
+        
     }
 
     // Update is called once per frame
