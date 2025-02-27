@@ -1,46 +1,95 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+namespace Code.Scripts
 {
-    [SerializeField]
-    ParticleSystem explodeVFX;
-
-    public GameObject Owner { get; set; }
-
-    private Rigidbody rb;
-
-    private void OnEnable()
+    public class Projectile : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        if (rb == null)
+        [SerializeField]
+        ParticleSystem explodeVFX;
+
+        public GameObject Owner { get; set; }
+
+        private Rigidbody rb;
+
+        private bool queueDelete = true;
+
+        private void OnEnable()
         {
-            Debug.Log("Cannot find rigidbody");
+            rb = GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                Debug.Log("Cannot find rigidbody");
+            }
         }
-    }
 
-    public void Fire(Vector3 forceWorldSpace)
-    {
-        rb.AddForce(forceWorldSpace, ForceMode.Impulse);
-    }
-
-    public void AllowPortalTravel()
-    {
-        rb.excludeLayers = LayerMask.GetMask("Player");
-    }
-
-    public void DisablePortalTravel()
-    {
-        rb.excludeLayers = new LayerMask();
-    }
-
-    public void Kill()
-    {
-        if(explodeVFX)
+        public void Fire(Vector3 forceWorldSpace)
         {
-            GameObject vfx = Instantiate(explodeVFX, transform.position, Quaternion.identity).gameObject;
-            Destroy(vfx, 15.0f);
+            rb.AddForce(forceWorldSpace, ForceMode.Impulse);
         }
-        Destroy(gameObject);
+
+        public void AllowPortalTravel()
+        {
+            rb.excludeLayers = LayerMask.GetMask("Player");
+        }
+
+        public void DisablePortalTravel()
+        {
+            rb.excludeLayers = new LayerMask();
+        }
+
+        public void Kill()
+        {
+            if(explodeVFX)
+            {
+                GameObject vfx = Instantiate(explodeVFX, transform.position, Quaternion.identity).gameObject;
+                Destroy(vfx, 15.0f);
+            }
+            Destroy(gameObject);
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            queueDelete = true;
+            StartCoroutine(KillAfterSeconds());
+
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            // If projectile hits another projectile it explodes
+            if (other.collider.gameObject.GetComponent<Projectile>())
+            {
+                Kill();
+            }
+            else
+            {
+                queueDelete = false;
+            }
+            
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            queueDelete = false;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            queueDelete = true;
+            StartCoroutine(KillAfterSeconds());
+        }
+
+        private IEnumerator KillAfterSeconds(float seconds = 4f)
+        {
+            yield return new WaitForSeconds(seconds);
+            
+            // If it's still set to delete
+            if (queueDelete)
+            {
+                Kill();
+            }
+        }
     }
 }

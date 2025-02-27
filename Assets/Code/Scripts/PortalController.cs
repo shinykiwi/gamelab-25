@@ -34,7 +34,7 @@ public class PortalController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Projectile projectile = other.gameObject.GetComponentInParent<Projectile>();
+        Projectile projectile = other.gameObject.GetComponent<Projectile>();
 
         if(projectile == null)
         {
