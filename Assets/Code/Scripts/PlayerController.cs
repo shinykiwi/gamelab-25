@@ -16,6 +16,15 @@ public class PlayerController : MonoBehaviour
     InputAction moveAction;
     InputAction lookAction;
 
+
+    [SerializeField]
+    Animator player_animator;
+
+    [SerializeField]
+    Transform character_transform;
+
+    float rotation_speed = 1000f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,37 +39,25 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveInputValue = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInputValue.x, 0, moveInputValue.y);
-        Move(move);
-
-        Vector2 lookInputValue = lookAction.ReadValue<Vector2>();
-        Vector3 look = new Vector3(lookInputValue.x, 0, lookInputValue.y);
-        // Get look direction for mouse controls
-        if(playerInput.currentControlScheme == "Keyboard&Mouse")
-        {
-            float distToCamera = (Camera.main.transform.position - transform.position).magnitude;
-            Vector3 lookTarget = Camera.main.ScreenToWorldPoint(new Vector3(lookInputValue.x, lookInputValue.y, distToCamera));
-            Vector3 lookDir = lookTarget - transform.position;
-            look = new Vector3(lookDir.x, 0.0f, lookDir.z);
-        }
-        FaceTowards(look);
+        if(move.magnitude > 0)
+            Move(move);
     }
     
     void Move(Vector3 move)
     {
+        float movement_amount = Mathf.Abs(move.x) + Mathf.Abs(move.z);
+        player_animator.SetFloat("movement_amount", movement_amount);
+        player_animator.SetBool("is_aiming", false);
+
+        //Move the player transform
         Vector3 displacement = moveSpeed * Time.deltaTime * move;
         rb.MovePosition(rb.position + displacement);
-    }
 
-    void FaceTowards(Vector3 dir)
-    {
-        if(dir.magnitude < 0.1f)
-        {
-            return;
-        }
-        Vector3 lookDir = dir.normalized;
-        Vector3 camera_dir = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
-        Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_dir.normalized) * lookDir);
-        Quaternion curRotation = Quaternion.RotateTowards(rb.rotation, target_rotation, rotationSpeedDegrees * Time.deltaTime);
-        rb.rotation = curRotation;
+
+        //Adjust the character rotation (child)
+        Vector3 camera_rotation = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
+        Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * move);
+        character_transform.rotation =
+           Quaternion.RotateTowards(character_transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
     }
 }

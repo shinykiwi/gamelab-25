@@ -61,6 +61,7 @@ public class PortalController : MonoBehaviour
         float magnitude = projectileRigidbody.linearVelocity.magnitude;
         // The exit velocity is towards the normal of the exit portal
         Vector3 newVelocity = magnitude * exitPortal.transform.forward * speedOnExit;
+        Debug.DrawLine(exitPortal.transform.position, exitPortal.transform.position + exitPortal.transform.forward * 10, Color.cyan, 5);
         
         // Draw Debug Rays for the velocity
         Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);
