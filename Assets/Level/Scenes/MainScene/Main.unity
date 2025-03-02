@@ -4014,9 +4014,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4002941155084205528, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 04437ba7d8676454f8d944f5b2c7d6ad, type: 2}
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: PlayerAnim (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310769561845905862, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6330962231268960828, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: exitPortal
@@ -4024,6 +4032,22 @@ PrefabInstance:
       objectReference: {fileID: 662145459}
     - target: {fileID: 6636717889773820486, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: playerNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17978,6 +18002,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 710388534417128139, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002941155084205528, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 235ff79a8571b44a9949b4b5dccd1334, type: 2}
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: PlayerAnim
@@ -17986,6 +18018,22 @@ PrefabInstance:
       propertyPath: exitPortal
       value: 
       objectReference: {fileID: 1434363093}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

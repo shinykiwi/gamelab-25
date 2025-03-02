@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Code.Scripts
 {
     [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(MeshRenderer))]
     
     public class Humanoid : MonoBehaviour
     {
@@ -14,6 +13,7 @@ namespace Code.Scripts
     
         // Internal variables
         private MeshRenderer meshRenderer;
+        private SkinnedMeshRenderer skinnedMeshRenderer;
         private Collider collider;
 
         public bool IsAlive => health > 0f;
@@ -21,9 +21,9 @@ namespace Code.Scripts
         protected virtual void Start()
         {
             meshRenderer = gameObject.GetComponent<MeshRenderer>();
+            skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
             collider = gameObject.GetComponent<Collider>();
         }
-
 
         // For colliding with void
         private void OnCollisionEnter(Collision other)
@@ -36,13 +36,14 @@ namespace Code.Scripts
 
         protected virtual void Death()
         {
-            if(!IsAlive)
+            if (!IsAlive)
                 return;
 
+            Debug.Log(this.name + " has died.");
             health = 0f;
 
             // Damage visual sequence
-            Material material = meshRenderer.material;
+            Material material = skinnedMeshRenderer.material;
             Color originalColor = material.color;
             float duration = 0.2f;
         
@@ -59,7 +60,8 @@ namespace Code.Scripts
         {
             health = 100f;
         
-            Material material = meshRenderer.material;
+            Material material = skinnedMeshRenderer.material;
+           
             Color originalColor = material.color;
             originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); 
         
@@ -100,8 +102,8 @@ namespace Code.Scripts
         /// </summary>
         private void ToggleVisibility()
         {
-            bool visibility = !meshRenderer.enabled;
-            meshRenderer.enabled = visibility;
+            bool visibility = !skinnedMeshRenderer.enabled;
+            skinnedMeshRenderer.enabled = visibility;
             MeshRenderer[] renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (var r in renderers)
             {
