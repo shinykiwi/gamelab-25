@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 namespace Code.Scripts
@@ -10,7 +10,6 @@ namespace Code.Scripts
     }
     public class Player : Humanoid
     {
-
         private PortalController portalController;
         private GameObject portalObject;
         [SerializeField] private PlayerNum playerNum;

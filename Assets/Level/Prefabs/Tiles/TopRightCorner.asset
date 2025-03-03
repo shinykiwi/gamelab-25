@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5054c22f711d48489260461534713d8, type: 3}
+  m_Name: TopRightCorner
+  m_EditorClassIdentifier: 
+  m_Cells:
+  - m_GameObject: {fileID: 2058646150148851623, guid: a7f976ee2f7a970469d264f26194d56e, type: 3}
+    m_Offset: {x: -2, y: 0, z: -2}
+    m_Scale: {x: 4, y: 4, z: 4}
+    m_Orientation: {x: 0, y: 0, z: 0, w: 1}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Pivot: {x: 0, y: 0, z: 0}
+  m_CanChangeZPosition: 0
+  hiddenGridLayout:
+    cellSize: {x: 1, y: 1, z: 1}
+    cellGap: {x: 0, y: 0, z: 0}
+    cellLayout: 0
+    cellSwizzle: 0
+  hiddenGrid: {fileID: 0}
+  m_Anchor: {x: 1, y: 1, z: 0}

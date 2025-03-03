@@ -1,25 +1,64 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get; private set; }
     private int currentLevel = 1;
+    private FadeToBlack fadeToBlack;
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
     
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        }
+        
+        // Prevents Unity from deleting this object when a new scene is loaded.
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        fadeToBlack = FindFirstObjectByType<FadeToBlack>();
+    }
+
     public void LoadNextLevel()
     {
         currentLevel++;
         LoadLevel(currentLevel);
     }
 
-    public void LoadLevel(int level)
+    private void LoadLevel(int level)
     {
         string sceneName = "Level_";
         sceneName += level.ToString();
         
         Debug.Log("Loading " + sceneName + "...");
         
-        SceneManager.LoadScene(sceneName);
+        fadeToBlack.DoFadeIn();
         
+        try
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Could not load scene " + sceneName + " because it doesn't exist.");
+        }
+        
+    }
+
+    public void LoadDefault()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     // Update is called once per frame
