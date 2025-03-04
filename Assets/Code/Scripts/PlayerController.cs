@@ -50,8 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveInputValue = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInputValue.x, 0, moveInputValue.y);
-        if(move.magnitude > 0)
-            Move(move);
+        Move(move);
     }
 
     public void GetHitByProjectile(Vector3 direction)
@@ -86,9 +85,12 @@ public class PlayerController : MonoBehaviour
 
         //Adjust the character rotation (child)
         Vector3 camera_rotation = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
-        Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * move);
-        character_transform.rotation =
-           Quaternion.RotateTowards(character_transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
+        if(move.magnitude > 0)
+        {
+            Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * move);
+            character_transform.rotation =
+               Quaternion.RotateTowards(character_transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
+        }
     }
 
 
