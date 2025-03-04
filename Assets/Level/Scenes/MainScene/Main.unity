@@ -11021,10 +11021,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2034003194}
     - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
-      propertyPath: respawnDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
       propertyPath: spawnPointP1
       value: 
       objectReference: {fileID: 2034003194}

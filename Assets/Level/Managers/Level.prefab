@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32de3086499e5487097c69c4e9efd2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  respawnDelay: 5
+  spawnPointP1: {fileID: 0}
+  spawnPointP2: {fileID: 0}
+  respawnDelay: 1
+  endLevelCanvas: {fileID: 0}
