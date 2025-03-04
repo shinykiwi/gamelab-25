@@ -22,7 +22,9 @@ public class MainMenuSequence : MonoBehaviour
         yield return new WaitForSeconds(2f);
         fadeToBlack.DoFadeIn(2f);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(sceneName);
+        //SceneManager.LoadScene(sceneName);
+        
+        LevelManager.Instance.LoadLevel(1);
         
     }
     

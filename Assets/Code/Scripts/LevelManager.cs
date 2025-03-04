@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
-    private int currentLevel = 1;
+    private int currentLevel = 0;
     private FadeToBlack fadeToBlack;
 
     private void Awake()
@@ -36,8 +36,9 @@ public class LevelManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
-    private void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
+        currentLevel = level;
         string sceneName = "Level_";
         sceneName += level.ToString();
         
