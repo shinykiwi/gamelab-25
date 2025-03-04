@@ -48,7 +48,14 @@ public class PortalController : MonoBehaviour
         if(other.gameObject.GetComponent<Projectile>() is { } projectile
             && !incomingObjects.Contains(other.gameObject))
         {
-            TeleportProjectile(projectile);
+            if(Level.Instance.ArePlayersAlive())
+            {
+                TeleportProjectile(projectile);
+            }
+            else
+            {
+                projectile.Kill();
+            }
         }
     }
 

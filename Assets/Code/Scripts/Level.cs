@@ -25,6 +25,8 @@ namespace Code.Scripts
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 
         public List<Enemy> EnemiesToBeat { get; private set; }
+
+        public List<Player> Players { get; private set; }
         
         private void Awake() 
         { 
@@ -41,6 +43,7 @@ namespace Code.Scripts
 
             // Require to beat all enenmies in the level
             EnemiesToBeat = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+            Players = new List<Player>(FindObjectsByType<Player>(FindObjectsSortMode.None));
         }
 
         public void EnemyHasBeenDefeated(Enemy enemy)
@@ -51,8 +54,18 @@ namespace Code.Scripts
             {
                 LevelCompleted();
             }
-            
-            
+        }
+
+        public bool ArePlayersAlive()
+        {
+            foreach(var player in Players)
+            {
+                if(!player.IsAlive)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         void LevelCompleted()
