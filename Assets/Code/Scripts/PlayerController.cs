@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             return;
         // TODO add animation
 
-        playerInput.enabled = false;
+        playerInput.DeactivateInput();
         Vector3 velocity = distanceTravelledHitByProjectile / durationTimeHitByProjectile * direction;
         rb.useGravity = false;
         rb.linearVelocity = velocity;
@@ -98,6 +98,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         rb.linearVelocity = Vector3.zero;
         rb.useGravity = true;
-        playerInput.enabled = true;
+        playerInput.ActivateInput();
     }
 }
