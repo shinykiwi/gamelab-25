@@ -15,6 +15,9 @@ public class PortalController : MonoBehaviour
     [SerializeField] private float speedOnExit = 1f;
 
     [SerializeField]
+    private float timeProjectileCannotReEnterPortal = 1.0f;
+
+    [SerializeField]
     private bool isAimAssistEnabled = true;
 
     [SerializeField, Range(0f, 360.0f)]
@@ -23,7 +26,7 @@ public class PortalController : MonoBehaviour
     [SerializeField, Min(0f)]
     private float aimAssistDistanceMax = 25.0f;
 
-    [SerializeField]
+    [SerializeField, Tooltip("Ignored layers for the Line of Sight for the Aim Assist")]
     private LayerMask ignoredMasksForLOS;
 
     private RaycastHit[] raycastHits = new RaycastHit[1];
@@ -81,7 +84,7 @@ public class PortalController : MonoBehaviour
 
     IEnumerator ProjectileExits(Projectile projectile)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeProjectileCannotReEnterPortal);
 
         if(projectile != null)
         {

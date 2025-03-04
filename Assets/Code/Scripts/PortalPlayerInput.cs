@@ -27,10 +27,22 @@ public class PortalPlayerInput : MonoBehaviour
 
     void Update()
     {
-        Vector2 lookInputValue = LookAction.ReadValue<Vector2>().normalized;
+        Vector2 lookInputValue = LookAction.ReadValue<Vector2>();
+        Vector3 look = new Vector3(lookInputValue.x, 0, lookInputValue.y);
+        // Get look direction for mouse controls
+        if(playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            float distToCamera = (Camera.main.transform.position - transform.position).magnitude;
+            Vector3 lookTarget = Camera.main.ScreenToWorldPoint(new Vector3(lookInputValue.x, lookInputValue.y, distToCamera));
+            Vector3 lookDir = lookTarget - transform.position;
+            look = new Vector3(lookDir.x, 0.0f, lookDir.z);
+            lookInputValue = (new Vector2(lookDir.x, lookDir.z)).normalized;
+        }
+
+        Debug.DrawRay(transform.position, lookInputValue);
+        lookInputValue = lookInputValue.normalized;
         if(lookInputValue.magnitude > 0.3f)
         {
-
             // Step 1: Calculate the target angle based on joystick input
             float target_angle = Mathf.Atan2(lookInputValue.y, lookInputValue.x);
 

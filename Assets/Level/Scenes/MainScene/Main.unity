@@ -2320,14 +2320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAnim2
       objectReference: {fileID: 0}
-    - target: {fileID: 5138074261643368017, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
-    - target: {fileID: 5138074261643368017, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6310769561845905862, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -7824,18 +7816,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAnim1
       objectReference: {fileID: 0}
-    - target: {fileID: 5138074261643368017, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
-    - target: {fileID: 5138074261643368017, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6330962231268960828, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: exitPortal
       value: 
       objectReference: {fileID: 1434363093}
+    - target: {fileID: 6330962231268960828, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: timeProjectileCannotReEnterPortal
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7820327116674828617, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.55

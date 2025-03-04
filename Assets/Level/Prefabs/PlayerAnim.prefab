@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitPortal: {fileID: 0}
   speedOnExit: 1
+  timeProjectileCannotReEnterPortal: 0.25
   isAimAssistEnabled: 1
   degreesAimAssist: 30
   aimAssistDistanceMax: 25
