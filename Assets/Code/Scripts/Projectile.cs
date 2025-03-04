@@ -77,7 +77,7 @@ namespace Code.Scripts
             // Physics system's collision resolution
             if(other.gameObject.GetComponent<PlayerController>() is { } playerController)
             {
-                Vector3 direction = other.transform.position - transform.position;
+                Vector3 direction = rb.linearVelocity;
                 direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;
                 playerController.GetHitByProjectile(direction);
 
