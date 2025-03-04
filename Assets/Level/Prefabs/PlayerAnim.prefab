@@ -276,8 +276,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -331,6 +331,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeedDegrees: 720
+  distanceTravelledHitByProjectile: 3
+  durationTimeHitByProjectile: 0.25
   player_animator: {fileID: 2038038071798382828}
   character_transform: {fileID: 7820327116674828617}
 --- !u!54 &1551629877205542714

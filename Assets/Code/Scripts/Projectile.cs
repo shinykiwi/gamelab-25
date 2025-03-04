@@ -63,6 +63,15 @@ namespace Code.Scripts
             {
                 Kill();
             }
+            // If projectile hits a player
+            else if(other.collider.gameObject.GetComponent<PlayerController>() is { } playerController
+                && other.contactCount > 0)
+            {
+                Vector3 direction = -other.contacts[0].normal;
+                playerController.GetHitByProjectile(direction);
+
+                Kill();
+            }
             else
             {
                 queueDelete = false;

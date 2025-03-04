@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,12 +11,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float rotationSpeedDegrees = 720.0f;
 
+    [Header("Collisions")]
+    [SerializeField]
+    float distanceTravelledHitByProjectile = 1.0f;
+
+    [SerializeField]
+    float durationTimeHitByProjectile = 0.25f;
+
     PlayerInput playerInput;
     Rigidbody rb;
 
     InputAction moveAction;
     InputAction lookAction;
 
+    [Header("References")]
 
     [SerializeField]
     Animator player_animator;
@@ -59,5 +68,25 @@ public class PlayerController : MonoBehaviour
         Quaternion target_rotation = Quaternion.LookRotation(Quaternion.LookRotation(camera_rotation) * move);
         character_transform.rotation =
            Quaternion.RotateTowards(character_transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
+    }
+
+    public void GetHitByProjectile(Vector3 direction)
+    {
+        // TODO add animation
+
+        playerInput.enabled = false;
+        Vector3 velocity = distanceTravelledHitByProjectile / durationTimeHitByProjectile * direction;
+        rb.useGravity = false;
+        rb.linearVelocity = velocity;
+
+        StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
+    }
+
+    private IEnumerator OnHitEnd(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        rb.linearVelocity = Vector3.zero;
+        rb.useGravity = true;
+        playerInput.enabled = true;
     }
 }
