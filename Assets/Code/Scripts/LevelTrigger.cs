@@ -5,14 +5,14 @@ using UnityEngine;
 public class LevelTrigger : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
-    private bool canUse = true;
+    private bool canUse = false;
   
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        
+
         // Hide the object at first
-        meshRenderer.enabled = false;
+        Hide();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,11 +25,13 @@ public class LevelTrigger : MonoBehaviour
     public void Show()
     {
         meshRenderer.enabled = true;
+        canUse = true;
     }
 
     public void Hide()
     {
         meshRenderer.enabled = false;
+        canUse = false;
     }
     
     
