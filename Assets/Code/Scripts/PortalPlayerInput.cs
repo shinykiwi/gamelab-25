@@ -39,7 +39,6 @@ public class PortalPlayerInput : MonoBehaviour
             lookInputValue = (new Vector2(lookDir.x, lookDir.z)).normalized;
         }
 
-        Debug.DrawRay(transform.position, lookInputValue);
         lookInputValue = lookInputValue.normalized;
         if(lookInputValue.magnitude > 0.3f)
         {

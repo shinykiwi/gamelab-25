@@ -58,18 +58,10 @@ namespace Code.Scripts
 
         private void OnCollisionEnter(Collision other)
         {
-            // If projectile hits another projectile it explodes
-            if (other.collider.gameObject.GetComponent<Projectile>())
+            // If projectile hits another projectile or enemy it explodes
+            if (other.gameObject.GetComponent<Projectile>()
+                || other.gameObject.GetComponent<Enemy>())
             {
-                Kill();
-            }
-            // If projectile hits a player
-            else if(other.collider.gameObject.GetComponent<PlayerController>() is { } playerController
-                && other.contactCount > 0)
-            {
-                Vector3 direction = -other.contacts[0].normal;
-                playerController.GetHitByProjectile(direction);
-
                 Kill();
             }
             else
@@ -81,6 +73,17 @@ namespace Code.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
+            // A trigger collider is used for player bumping, because we don't want the
+            // Physics system's collision resolution
+            if(other.gameObject.GetComponent<PlayerController>() is { } playerController)
+            {
+                Vector3 direction = other.transform.position - transform.position;
+                direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;
+                playerController.GetHitByProjectile(direction);
+
+                Kill();
+            }
+
             queueDelete = false;
         }
 

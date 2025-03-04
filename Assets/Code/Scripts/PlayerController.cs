@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     float rotation_speed = 1000f;
 
+    bool isInvincibleToProjectiles = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,7 +53,26 @@ public class PlayerController : MonoBehaviour
         if(move.magnitude > 0)
             Move(move);
     }
-    
+
+    public void GetHitByProjectile(Vector3 direction)
+    {
+        if(isInvincibleToProjectiles)
+            return;
+        // TODO add animation
+
+        playerInput.enabled = false;
+        Vector3 velocity = distanceTravelledHitByProjectile / durationTimeHitByProjectile * direction;
+        rb.useGravity = false;
+        rb.linearVelocity = velocity;
+
+        StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
+    }
+
+    public void ToggleProjectileInvincibility()
+    {
+        isInvincibleToProjectiles = !isInvincibleToProjectiles;
+    }
+
     void Move(Vector3 move)
     {
         float movement_amount = Mathf.Abs(move.x) + Mathf.Abs(move.z);
@@ -70,17 +91,7 @@ public class PlayerController : MonoBehaviour
            Quaternion.RotateTowards(character_transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
     }
 
-    public void GetHitByProjectile(Vector3 direction)
-    {
-        // TODO add animation
 
-        playerInput.enabled = false;
-        Vector3 velocity = distanceTravelledHitByProjectile / durationTimeHitByProjectile * direction;
-        rb.useGravity = false;
-        rb.linearVelocity = velocity;
-
-        StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
-    }
 
     private IEnumerator OnHitEnd(float duration)
     {
