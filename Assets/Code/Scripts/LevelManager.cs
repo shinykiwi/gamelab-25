@@ -23,9 +23,29 @@ public class LevelManager : MonoBehaviour
         
         // Prevents Unity from deleting this object when a new scene is loaded.
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Automatically find references when the scene is loaded
+        FindFade();
+        
+        if (fadeToBlack == null)
+            Debug.LogWarning("FadeCanvas reference not found in scene!");
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Unsubscribe to avoid memory leaks
     }
 
     private void Start()
+    {
+        FindFade();
+    }
+
+    private void FindFade()
     {
         fadeToBlack = FindFirstObjectByType<FadeToBlack>();
     }
