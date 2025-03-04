@@ -31,21 +31,36 @@ public class PortalController : MonoBehaviour
 
     private RaycastHit[] raycastHits = new RaycastHit[1];
 
+    // Keep track of incoming objects to not re-teleport an object coming from the other portal
+    private List<GameObject> incomingObjects = new List<GameObject>();
+
+    public void AddIncomingTeleportingObject(GameObject obj)
+    {
+        incomingObjects.Add(obj);
+    }
+
     /// <summary>
     /// Is called when a projectile collides with a portal.
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Projectile projectile = other.gameObject.GetComponent<Projectile>();
-
-        if(projectile == null)
-        {
-            Debug.Log("No projectile object found on collider!" + name);
-        }
-        else
+        if(other.gameObject.GetComponent<Projectile>() is { } projectile
+            && !incomingObjects.Contains(other.gameObject))
         {
             TeleportProjectile(projectile);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(incomingObjects.Contains(other.gameObject))
+        {
+            incomingObjects.Remove(other.gameObject);
+            if(other.GetComponent<Projectile>() is {} projectile)
+            {
+                projectile.EndPortalTravel();
+            }
         }
     }
 
@@ -57,7 +72,7 @@ public class PortalController : MonoBehaviour
     {
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         
-        projectile.AllowPortalTravel();
+        projectile.BeginPortalTravel();
         
         // Set the position of the projectile to be where the portal is
         projectile.transform.position = exitPortal.transform.position;
@@ -79,17 +94,8 @@ public class PortalController : MonoBehaviour
         // Sets the shieldOwner of the projectile to be this gameObject
         projectile.Owner = gameObject;
 
-        StartCoroutine(ProjectileExits(projectile));
-    }
-
-    IEnumerator ProjectileExits(Projectile projectile)
-    {
-        yield return new WaitForSeconds(timeProjectileCannotReEnterPortal);
-
-        if(projectile != null)
-        {
-            projectile.DisablePortalTravel();
-        }
+        PortalController portalController = exitPortal.GetComponent<PortalController>();
+        portalController.AddIncomingTeleportingObject(projectile.gameObject);
     }
 
     Vector3 GetAutoAimVelocity(Vector3 position, Vector3 velocity)

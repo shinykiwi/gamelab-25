@@ -29,12 +29,12 @@ namespace Code.Scripts
             rb.AddForce(forceWorldSpace, ForceMode.Impulse);
         }
 
-        public void AllowPortalTravel()
+        public void BeginPortalTravel()
         {
             rb.excludeLayers = LayerMask.GetMask("Player");
         }
 
-        public void DisablePortalTravel()
+        public void EndPortalTravel()
         {
             rb.excludeLayers = new LayerMask();
         }
