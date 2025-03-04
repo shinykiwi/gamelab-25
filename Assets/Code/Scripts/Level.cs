@@ -51,11 +51,16 @@ namespace Code.Scripts
             {
                 LevelCompleted();
             }
+            
+            
         }
 
         void LevelCompleted()
         {
-            endLevelCanvas.gameObject.SetActive(true);
+            // Reveals the level trigger
+            FindFirstObjectByType<LevelTrigger>().Show();
+            
+            //endLevelCanvas.gameObject.SetActive(true);
         }
     }
 }
