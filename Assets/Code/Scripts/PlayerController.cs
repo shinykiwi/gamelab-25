@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -60,9 +61,10 @@ public class PlayerController : MonoBehaviour
         // TODO add animation
 
         playerInput.DeactivateInput();
-        Vector3 velocity = distanceTravelledHitByProjectile / durationTimeHitByProjectile * direction;
+
+        rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
+            .SetEase(Ease.OutSine);
         rb.useGravity = false;
-        rb.linearVelocity = velocity;
 
         StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
     }
@@ -93,12 +95,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     private IEnumerator OnHitEnd(float duration)
     {
         yield return new WaitForSeconds(duration);
-        rb.linearVelocity = Vector3.zero;
         rb.useGravity = true;
         playerInput.ActivateInput();
     }

@@ -1,7 +1,9 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Code.Scripts
 {
@@ -13,6 +15,13 @@ namespace Code.Scripts
 
         [SerializeField, Min(0.01f), Tooltip("Time the enemy has to have a Line of Sight on a player before spawning a projectile")]
         float timeToSeePlayerToSpawnProjectile = 2.0f;
+
+        [Header("Hit by projectiles")]
+        [SerializeField]
+        float distanceTravelledHitByProjectile = 1.0f;
+
+        [SerializeField, Min(0.01f)]
+        float durationTimeHitByProjectile = 0.25f;
 
         [Header("Setup")]
         [SerializeField]
@@ -66,6 +75,22 @@ namespace Code.Scripts
 
             base.Death();
             Level.Instance.EnemyHasBeenDefeated(this);
+        }
+
+        public void GetHitByProjectile(Vector3 direction)
+        {
+            // TODO add animation
+
+            rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
+                .SetEase(Ease.OutSine);
+
+            StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
+        }
+
+        private IEnumerator OnHitEnd(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            curTimeSeeingTargetPlayer = 0.0f;
         }
 
         void FaceNearestPlayer()

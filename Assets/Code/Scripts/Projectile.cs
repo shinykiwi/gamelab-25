@@ -59,8 +59,7 @@ namespace Code.Scripts
         private void OnCollisionEnter(Collision other)
         {
             // If projectile hits another projectile or enemy it explodes
-            if (other.gameObject.GetComponent<Projectile>()
-                || other.gameObject.GetComponent<Enemy>())
+            if (other.gameObject.GetComponent<Projectile>())
             {
                 Kill();
             }
@@ -73,14 +72,18 @@ namespace Code.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            // A trigger collider is used for player bumping, because we don't want the
-            // Physics system's collision resolution
+            // A trigger collider is used for bumping, because we want precise control over the collision resolution
+            // instead of the physics system handling it
+            Vector3 direction = rb.linearVelocity;
+            direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;
             if(other.gameObject.GetComponent<PlayerController>() is { } playerController)
             {
-                Vector3 direction = rb.linearVelocity;
-                direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;
                 playerController.GetHitByProjectile(direction);
-
+                Kill();
+            }
+            else if(other.gameObject.GetComponent<Enemy>() is { } enemy)
+            {
+                enemy.GetHitByProjectile(direction);
                 Kill();
             }
 
