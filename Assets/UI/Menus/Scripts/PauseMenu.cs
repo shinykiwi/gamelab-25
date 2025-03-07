@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-   private MenuAudio audio;
+   private MenuAudio menuAudio;
 
    [SerializeField] private GameObject options;
    [SerializeField] private GameObject pause;
@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
 
    private void Start()
    {
-      audio = GetComponentInChildren<MenuAudio>();
+      menuAudio = GetComponentInChildren<MenuAudio>();
       
       pause.SetActive(false);
       controls.SetActive(false);
@@ -30,12 +30,12 @@ public class PauseMenu : MonoBehaviour
    public void OnResumeButtonClick()
    {
       Toggle();
-      audio.PlayClickSound();
+      menuAudio.PlayClickSound();
    }
 
    public void OnOptionsButtonClick()
    {
-      audio.PlayClickSound();
+      menuAudio.PlayClickSound();
       
       // Show the options panel
       options.SetActive(true);
@@ -47,7 +47,7 @@ public class PauseMenu : MonoBehaviour
 
    public void OnBackButtonClick()
    {
-      audio.PlayBackSound();
+      menuAudio.PlayBackSound();
       
       // Show the pause panel
       pause.SetActive(true);
@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour
 
    public void OnControlsMenuClick()
    {
-      audio.PlayClickSound();
+      menuAudio.PlayClickSound();
       
       // Show the controls menu
       controls.SetActive(true);
@@ -77,7 +77,7 @@ public class PauseMenu : MonoBehaviour
 
    public void OnQuitButtonClick()
    {
-      audio.PlayBackSound();
+      menuAudio.PlayBackSound();
       Application.Quit();
    }
 

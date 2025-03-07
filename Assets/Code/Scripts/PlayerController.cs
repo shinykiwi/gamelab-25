@@ -9,9 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float moveSpeed = 1.0f;
 
-    [SerializeField]
-    float rotationSpeedDegrees = 720.0f;
-
     [Header("Collisions")]
     [SerializeField]
     float distanceTravelledHitByProjectile = 1.0f;
@@ -94,7 +91,7 @@ public class PlayerController : MonoBehaviour
         playerInput.DeactivateInput();
         rb.useGravity = false;
 
-        Vector3 velocity = distance / duration * direction;
+        rb.linearVelocity = distance / duration * direction;
         yield return new WaitForSeconds(duration);
 
         rb.linearVelocity = Vector3.zero;

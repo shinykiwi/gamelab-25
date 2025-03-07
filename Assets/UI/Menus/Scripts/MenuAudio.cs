@@ -12,7 +12,7 @@ public class MenuAudio : MonoBehaviour
 
     private void Start()
     {
-        // If there's no audio source or there's no audio clip then skip this part
+        // If there's no menuAudio source or there's no menuAudio clip then skip this part
         if (music == null || music.clip == null)
         {
             return;

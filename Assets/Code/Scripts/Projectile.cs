@@ -72,7 +72,7 @@ namespace Code.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            // A trigger collider is used for bumping, because we want precise control over the collision resolution
+            // A trigger coll is used for bumping, because we want precise control over the collision resolution
             // instead of the physics system handling it
             Vector3 direction = rb.linearVelocity;
             direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;

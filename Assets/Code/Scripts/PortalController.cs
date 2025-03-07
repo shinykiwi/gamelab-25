@@ -15,9 +15,6 @@ public class PortalController : MonoBehaviour
     [SerializeField] private float speedOnExit = 1f;
 
     [SerializeField]
-    private float timeProjectileCannotReEnterPortal = 1.0f;
-
-    [SerializeField]
     private bool isAimAssistEnabled = true;
 
     [SerializeField, Range(0f, 360.0f)]

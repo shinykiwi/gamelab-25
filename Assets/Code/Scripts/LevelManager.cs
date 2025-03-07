@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
         }
-        catch (Exception e)
+        catch
         {
             Debug.Log("Could not load scene " + sceneName + " because it doesn't exist.");
         }

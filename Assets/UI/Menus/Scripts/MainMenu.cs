@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private string scene;
     [SerializeField] private MainMenuSequence sequence;
 
-    private MenuAudio audio;
+    private MenuAudio menuAudio;
     
     // Main menu itself
     private Canvas canvas;
@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
-        audio = GetComponentInChildren<MenuAudio>();
+        menuAudio = GetComponentInChildren<MenuAudio>();
         
         // Hide the credits menu and the options menu to start with
         credits.SetActive(false);
@@ -76,7 +76,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnPlayButton()
     {
-        audio.PlayClickSound();
+        menuAudio.PlayClickSound();
         if (scene != null)
         {
             sequence.Play(scene);
@@ -93,7 +93,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnCreditsButton()
     {
-        audio.PlayClickSound();
+        menuAudio.PlayClickSound();
         
         // Show the credits menu
         credits.SetActive(true);
@@ -109,7 +109,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnOptionsButton()
     {
-        audio.PlayClickSound();
+        menuAudio.PlayClickSound();
         
         // Show the options menu
         options.SetActive(true);
@@ -124,7 +124,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnQuitButton()
     {
-        audio.PlayBackSound();
+        menuAudio.PlayBackSound();
         
         // Quits the game
         Application.Quit();
@@ -145,7 +145,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnBackButton()
     {
-        audio.PlayBackSound();
+        menuAudio.PlayBackSound();
         HideAllButMain();
     }
     

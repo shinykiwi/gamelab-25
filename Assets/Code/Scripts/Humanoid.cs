@@ -14,7 +14,7 @@ namespace Code.Scripts
         // Internal variables
         private MeshRenderer meshRenderer;
         private SkinnedMeshRenderer skinnedMeshRenderer;
-        private Collider collider;
+        private Collider coll;
 
         public bool IsAlive => health > 0f;
 
@@ -22,7 +22,7 @@ namespace Code.Scripts
         {
             meshRenderer = gameObject.GetComponent<MeshRenderer>();
             skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-            collider = gameObject.GetComponent<Collider>();
+            coll = gameObject.GetComponent<Collider>();
         }
 
         // For colliding with void
