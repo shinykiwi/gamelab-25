@@ -75,7 +75,7 @@ namespace Code.Scripts
             health = 100f;
 
             // Re-enable collisions
-            foreach(var c in gameObject.GetComponentsInChildren<Collider>())
+            foreach(var c in gameObject.GetComponentsInChildren<Collider>(true))
             {
                 c.enabled = true;
             }
