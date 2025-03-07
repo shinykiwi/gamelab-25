@@ -95,11 +95,14 @@ namespace Code.Scripts
 
             // Reset time seeing player when hit
             curTimeSeeingTargetPlayer = 0.0f;
-
+            
             rb.linearVelocity = distance / duration * direction;
+            bool usedGravity = rb.useGravity;
+            rb.useGravity = false;
             yield return new WaitForSeconds(duration);
 
             curTimeSeeingTargetPlayer = 0.0f;
+            rb.useGravity = usedGravity;
             rb.linearVelocity = Vector3.zero;
         }
 

@@ -15,6 +15,7 @@ namespace Code.Scripts
         private MeshRenderer meshRenderer;
         private SkinnedMeshRenderer skinnedMeshRenderer;
         private Collider coll;
+        private Rigidbody rb;
 
         public bool IsAlive => health > 0f;
 
@@ -23,6 +24,7 @@ namespace Code.Scripts
             meshRenderer = gameObject.GetComponent<MeshRenderer>();
             skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
             coll = gameObject.GetComponent<Collider>();
+            rb = gameObject.GetComponent<Rigidbody>();
         }
 
         // For colliding with void
@@ -42,6 +44,18 @@ namespace Code.Scripts
             Debug.Log(this.name + " has died.");
             health = 0f;
 
+            // Disable collisions while dead
+            foreach(var c in gameObject.GetComponentsInChildren<Collider>())
+            {
+                c.enabled = false;
+            }
+            foreach(var c in gameObject.GetComponents<Collider>())
+            {
+                c.enabled = false;
+            }
+            rb.useGravity = false;
+
+
             // Damage visual sequence
             Material material = skinnedMeshRenderer.material;
             Color originalColor = material.color;
@@ -59,7 +73,18 @@ namespace Code.Scripts
         protected virtual void Respawn()
         {
             health = 100f;
-        
+
+            // Re-enable collisions
+            foreach(var c in gameObject.GetComponentsInChildren<Collider>())
+            {
+                c.enabled = true;
+            }
+            foreach(var c in gameObject.GetComponents<Collider>())
+            {
+                c.enabled = true;
+            }
+            rb.useGravity = true;
+
             Material material = skinnedMeshRenderer.material;
            
             Color originalColor = material.color;
