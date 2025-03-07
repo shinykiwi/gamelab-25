@@ -15,7 +15,7 @@ namespace Code.Scripts
         private MeshRenderer meshRenderer;
         private SkinnedMeshRenderer skinnedMeshRenderer;
         private Collider coll;
-        private Rigidbody rb;
+        protected Rigidbody rb;
 
         public bool IsAlive => health > 0f;
 
