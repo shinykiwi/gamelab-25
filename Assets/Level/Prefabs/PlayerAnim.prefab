@@ -155,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitPortal: {fileID: 0}
   speedOnExit: 1
-  timeProjectileCannotReEnterPortal: 0.25
   isAimAssistEnabled: 1
   degreesAimAssist: 30
   aimAssistDistanceMax: 25
@@ -226,7 +225,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7820327116674828617}
@@ -331,7 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rotationSpeedDegrees: 720
   distanceTravelledHitByProjectile: 3
   durationTimeHitByProjectile: 0.25
   player_animator: {fileID: 2038038071798382828}
