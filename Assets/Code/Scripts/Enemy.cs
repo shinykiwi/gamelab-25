@@ -68,6 +68,11 @@ namespace Code.Scripts
             }
         }
 
+        private void OnDestroy()
+        {
+            rotationTween.Kill();
+        }
+
         protected override void Death()
         {
             if(!IsAlive)
@@ -79,18 +84,23 @@ namespace Code.Scripts
 
         public void GetHitByProjectile(Vector3 direction)
         {
-            // TODO add animation
-
-            rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
-                .SetEase(Ease.OutSine);
-
-            StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
+            //rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
+            //    .SetEase(Ease.OutSine);
+            StartCoroutine(DoProjectileHit(direction, distanceTravelledHitByProjectile, durationTimeHitByProjectile));
         }
 
-        private IEnumerator OnHitEnd(float duration)
+        private IEnumerator DoProjectileHit(Vector3 direction, float distance, float duration)
         {
-            yield return new WaitForSeconds(duration);
+            // TODO add animation
+
+            // Reset time seeing player when hit
             curTimeSeeingTargetPlayer = 0.0f;
+
+            rb.linearVelocity = distance / duration * direction;
+            yield return new WaitForSeconds(duration);
+
+            curTimeSeeingTargetPlayer = 0.0f;
+            rb.linearVelocity = Vector3.zero;
         }
 
         void FaceNearestPlayer()

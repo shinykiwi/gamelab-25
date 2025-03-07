@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Code.Scripts
 {
@@ -14,6 +15,7 @@ namespace Code.Scripts
         private GameObject portalObject;
         [SerializeField] private PlayerNum playerNum;
         private Transform spawnPoint;
+        private PlayerInput playerInput;
 
         protected override void Start()
         {
@@ -21,6 +23,8 @@ namespace Code.Scripts
             portalController = GetComponentInChildren<PortalController>();
             portalObject = portalController.gameObject;
             spawnPoint = playerNum == PlayerNum.Player1 ? Level.SpawnPointP1 : Level.SpawnPointP2;
+
+            playerInput = GetComponent<PlayerInput>();
         }
         
         protected override void Death()
@@ -34,6 +38,8 @@ namespace Code.Scripts
             
             // Deactivates portal
             portalObject.SetActive(false);
+
+            playerInput.DeactivateInput();
             
             // TODO: deactivate the other players' portal
             // See PortalController's exit portal ref
@@ -45,7 +51,9 @@ namespace Code.Scripts
             
             // Activates portal
             portalObject.SetActive(true);
-            
+
+            playerInput.ActivateInput();
+
             // TODO: reactivate the other players' portal
         }
     

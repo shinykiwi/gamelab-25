@@ -58,15 +58,8 @@ public class PlayerController : MonoBehaviour
     {
         if(isInvincibleToProjectiles)
             return;
-        // TODO add animation
-
-        playerInput.DeactivateInput();
-
-        rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
-            .SetEase(Ease.OutSine);
-        rb.useGravity = false;
-
-        StartCoroutine(OnHitEnd(durationTimeHitByProjectile));
+        
+        StartCoroutine(DoProjectileHit(direction, distanceTravelledHitByProjectile, durationTimeHitByProjectile));
     }
 
     public void ToggleProjectileInvincibility()
@@ -95,9 +88,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator OnHitEnd(float duration)
+    private IEnumerator DoProjectileHit(Vector3 direction, float distance, float duration)
     {
+        // TODO add animation
+        playerInput.DeactivateInput();
+        rb.useGravity = false;
+
+        Vector3 velocity = distance / duration * direction;
         yield return new WaitForSeconds(duration);
+
+        rb.linearVelocity = Vector3.zero;
         rb.useGravity = true;
         playerInput.ActivateInput();
     }
