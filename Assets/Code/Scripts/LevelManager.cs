@@ -33,6 +33,9 @@ public class LevelManager : MonoBehaviour
         
         if (fadeToBlack == null)
             Debug.LogWarning("FadeCanvas reference not found in scene!");
+
+        // Make sure the game is not paused when a new scene is loaded
+        Resume();
     }
 
     private void OnDestroy()
@@ -80,6 +83,16 @@ public class LevelManager : MonoBehaviour
     public void LoadDefault()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
