@@ -2567,7 +2567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1219612022119053121, guid: 39848c9cf8194459c9acb3638cca55cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -1.71
       objectReference: {fileID: 0}
     - target: {fileID: 1219612022119053121, guid: 39848c9cf8194459c9acb3638cca55cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7566,11 +7566,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6050336957113848013, guid: 5beb4f98152edef4697cc9a1652bc0b1, type: 3}
   m_PrefabInstance: {fileID: 1920640385}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1837426496 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 283787777375411557, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
-  m_PrefabInstance: {fileID: 1846806603}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1841432185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5396922681042692636, guid: a81294d541c806445903d2578dbeb86d, type: 3}
@@ -7639,7 +7634,7 @@ PrefabInstance:
     - target: {fileID: 8576843912427364845, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
-      objectReference: {fileID: 1837426496}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
