@@ -43,13 +43,11 @@ public class PauseMenu : MonoBehaviour
         var playerInputs = Level.Instance.Players.ConvertAll(player => player.GetComponent<PlayerInput>());
         if(parent.activeSelf)
         {
-            playerInputs.ForEach(playerInput => playerInput.SwitchCurrentActionMap("UI"));
             EventSystem.current.SetSelectedGameObject(pauseSelectable);
             LevelManager.Instance.Pause();
         }
         else
         {
-            playerInputs.ForEach(playerInput => playerInput.SwitchCurrentActionMap("Player"));
             LevelManager.Instance.Resume();
         }
     }

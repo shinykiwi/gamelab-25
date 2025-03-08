@@ -1,5 +1,7 @@
+using Code.Scripts;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -87,11 +89,15 @@ public class LevelManager : MonoBehaviour
 
     public void Pause()
     {
+        Level.Instance?.Players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("UI"));
+
         Time.timeScale = 0;
     }
 
     public void Resume()
     {
+        Level.Instance?.Players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player"));
+
         Time.timeScale = 1;
     }
 

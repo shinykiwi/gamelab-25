@@ -1,8 +1,12 @@
+using Code.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,23 +18,30 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button creditsButton;
     [SerializeField] private Button quitButton;
-    
+
     // Pages
-    [Header("Pages")] 
+    [Header("Pages")]
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject menu;
-    
+
+    [Header("Pages Selectables")]
+    [SerializeField] private Selectable creditsFirstSelectable;
+    [SerializeField] private Selectable optionsFirstSelectable;
+    [SerializeField] private Selectable menuFirstSelectable;
+
     // Main menu config
-    [Header("Settings")] 
+    [Header("Settings")]
     [Tooltip("Scene to load upon play, if any. Will hide the menu instead if no scene asset.")]
     [SerializeField] private string scene;
     [SerializeField] private MainMenuSequence sequence;
 
     private MenuAudio menuAudio;
-    
+
     // Main menu itself
     private Canvas canvas;
+
+    private InputAction[] cancelActions;
 
     private void Awake()
     {
@@ -40,6 +51,11 @@ public class MainMenu : MonoBehaviour
         // Hide the credits menu and the options menu to start with
         credits.SetActive(false);
         options.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(playButton.gameObject);
+
+        var playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None).ToList();
+        cancelActions = playerInputs.ConvertAll(playerInput => playerInput.actions["Cancel"]).ToArray();
     }
 
     private void Update()
@@ -48,7 +64,7 @@ public class MainMenu : MonoBehaviour
         if (credits.activeSelf || options.activeSelf)
         {
             // If the escape key is pressed
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || cancelActions.Any(action => action.triggered))
             {
                 OnBackButton(); // do the same thing as if the back button was clicked
             }
@@ -102,6 +118,7 @@ public class MainMenu : MonoBehaviour
         options.SetActive(false);
         menu.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(creditsFirstSelectable.gameObject);
     }
 
     /// <summary>
@@ -117,6 +134,8 @@ public class MainMenu : MonoBehaviour
         // Hide the credits and main menu
         credits.SetActive(false);
         menu.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(optionsFirstSelectable.gameObject);
     }
 
     /// <summary>
@@ -138,6 +157,7 @@ public class MainMenu : MonoBehaviour
         credits.SetActive(false);
         options.SetActive(false);
         menu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(menuFirstSelectable.gameObject);
     }
 
     /// <summary>
@@ -148,5 +168,4 @@ public class MainMenu : MonoBehaviour
         menuAudio.PlayBackSound();
         HideAllButMain();
     }
-    
 }

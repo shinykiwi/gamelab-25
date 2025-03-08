@@ -474,7 +474,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &589110317
@@ -2021,10 +2021,6 @@ PrefabInstance:
     - target: {fileID: 2594506257338742255, guid: 82531d6b012a842a2a67e8fbcf3aad32, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -157.20001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3233634208015876764, guid: 82531d6b012a842a2a67e8fbcf3aad32, type: 3}
-      propertyPath: scene
-      value: Main
       objectReference: {fileID: 0}
     - target: {fileID: 3233634208015876764, guid: 82531d6b012a842a2a67e8fbcf3aad32, type: 3}
       propertyPath: sequence
