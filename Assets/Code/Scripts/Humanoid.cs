@@ -15,7 +15,7 @@ namespace Code.Scripts
         private MeshRenderer meshRenderer;
         private SkinnedMeshRenderer skinnedMeshRenderer;
         private Collider coll;
-        private Rigidbody rb;
+        protected Rigidbody rb;
 
         public bool IsAlive => health > 0f;
 
@@ -75,7 +75,7 @@ namespace Code.Scripts
             health = 100f;
 
             // Re-enable collisions
-            foreach(var c in gameObject.GetComponentsInChildren<Collider>())
+            foreach(var c in gameObject.GetComponentsInChildren<Collider>(true))
             {
                 c.enabled = true;
             }

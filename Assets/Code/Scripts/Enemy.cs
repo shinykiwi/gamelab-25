@@ -28,7 +28,6 @@ namespace Code.Scripts
         LayerMask ignoredMasksForPlayerLOS;
 
         ProjectileSpawner projectileSpawner;
-        Rigidbody rb;
         RaycastHit[] raycastHits = new RaycastHit[1];
 
         Player[] players;

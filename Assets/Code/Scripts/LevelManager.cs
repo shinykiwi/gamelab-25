@@ -1,5 +1,7 @@
+using Code.Scripts;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -33,6 +35,9 @@ public class LevelManager : MonoBehaviour
         
         if (fadeToBlack == null)
             Debug.LogWarning("FadeCanvas reference not found in scene!");
+
+        // Make sure the game is not paused when a new scene is loaded
+        Resume();
     }
 
     private void OnDestroy()
@@ -80,6 +85,20 @@ public class LevelManager : MonoBehaviour
     public void LoadDefault()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void Pause()
+    {
+        Level.Instance?.Players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("UI"));
+
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        Level.Instance?.Players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player"));
+
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
