@@ -685,7 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeedDegrees: 90
   timeToSeePlayerToSpawnProjectile: 2
-  distanceTravelledHitByProjectile: 4
+  distanceTravelledHitByProjectile: 5
   durationTimeHitByProjectile: 0.3
   ignoredMasksForPlayerLOS:
     serializedVersion: 2

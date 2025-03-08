@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -18,9 +19,12 @@ namespace Code.Scripts
         [Header("References")]
         [SerializeField]
         private Canvas endLevelCanvas;
+        
+        [SerializeField] private CinemachineCamera mainCamera;
 
         public static Transform SpawnPointP1 => Instance?.spawnPointP1;
         public static Transform SpawnPointP2 => Instance?.spawnPointP2;
+        public static CinemachineCamera MainCamera => Instance?.mainCamera;
 
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 
