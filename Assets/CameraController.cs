@@ -4,29 +4,45 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    
+    [SerializeField] private GameObject cameraTarget;
+    [SerializeField] private float zoomFactor = 0.5f;
+    [SerializeField] private float maxDistanceThreshold = 10f;
+    
+    
+    // The players transforms
     private Transform player1;
     private Transform player2;
 
+    // Base camera distance threshold not to pass
     private float baseDistance;
 
+    // The initial distance between the camera and the players
     private float initialDistance;
     
     private CinemachinePositionComposer positionComposer;
 
+    private CinemachineCamera cam;
+    
     private void Start()
     {
-        positionComposer = GetComponent<CinemachinePositionComposer>();
-        baseDistance = positionComposer.CameraDistance;
-        initialDistance = CalculateDistance();
-        
         Player[] players = FindObjectsByType<Player>(FindObjectsSortMode.None);
         player1 = players[0].transform;
         player2 = players[1].transform;
+        
+        positionComposer = GetComponent<CinemachinePositionComposer>();
+        cam = GetComponent<CinemachineCamera>();
+        
+        baseDistance = positionComposer.CameraDistance;
+        initialDistance = CalculateDistance();
+        
+        Debug.Log(positionComposer);
+        Debug.Log(baseDistance);
+        Debug.Log(initialDistance);
 
-        if (player1 == null)
-        {
-            Debug.Log("CANT FIND PLAYER");
-        }
+        cameraTarget = Instantiate(cameraTarget);
+        cam.Follow = cameraTarget.transform;
+
     }
     
     private void Zoom()
@@ -35,7 +51,11 @@ public class CameraController : MonoBehaviour
         // If the distanced has increased since the initial distance
         if (CalculateDistance() > initialDistance)
         {
-            positionComposer.CameraDistance = baseDistance + (CalculateDistance() - initialDistance);
+            float difference = CalculateDistance() - initialDistance;
+            if (difference > maxDistanceThreshold)
+            {
+                positionComposer.CameraDistance = baseDistance + ((difference) * zoomFactor);
+            }
         }
         else
         {
@@ -59,7 +79,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = CalculateMidpoint();
+        cameraTarget.transform.position = CalculateMidpoint();
         Zoom();
     }
 }
