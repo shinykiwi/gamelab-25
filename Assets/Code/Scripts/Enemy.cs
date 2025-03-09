@@ -32,8 +32,10 @@ namespace Code.Scripts
 
         Player[] players;
         Tween rotationTween;
+        Coroutine velocityChangeCoroutine;
         Player targetPlayer;
         float curTimeSeeingTargetPlayer = 0.0f;
+        float timeLeftHit = 0.0f;
 
         protected override void Start()
         {
@@ -83,25 +85,41 @@ namespace Code.Scripts
 
         public void GetHitByProjectile(Vector3 direction)
         {
-            //rb.DOMove(rb.position + direction * distanceTravelledHitByProjectile, durationTimeHitByProjectile)
-            //    .SetEase(Ease.OutSine);
-            StartCoroutine(DoProjectileHit(direction, distanceTravelledHitByProjectile, durationTimeHitByProjectile));
+            Vector3 velocity = direction * distanceTravelledHitByProjectile / durationTimeHitByProjectile;
+            if(velocityChangeCoroutine != null)
+            {
+                StopCoroutine(velocityChangeCoroutine);
+            }
+            velocityChangeCoroutine = StartCoroutine(DoChangeVelocity(velocity, durationTimeHitByProjectile));
         }
 
-        private IEnumerator DoProjectileHit(Vector3 direction, float distance, float duration)
+        public void GetHitByBouncyWall(Vector3 newVelocity)
+        {
+            if(velocityChangeCoroutine != null)
+            {
+                StopCoroutine(velocityChangeCoroutine);
+            }
+            // duration for the hit on a bouncy wall is the same as a projectile (could change)
+            velocityChangeCoroutine = StartCoroutine(DoChangeVelocity(newVelocity, durationTimeHitByProjectile));
+        }
+
+        // Changes the newVelocity of an enemy f
+        private IEnumerator DoChangeVelocity(Vector3 newVelocity, float duration)
         {
             // TODO add animation
-
             // Reset time seeing player when hit
             curTimeSeeingTargetPlayer = 0.0f;
-            
-            rb.linearVelocity = distance / duration * direction;
-            bool usedGravity = rb.useGravity;
+            rb.linearVelocity = newVelocity;
             rb.useGravity = false;
-            yield return new WaitForSeconds(duration);
-
+            timeLeftHit = duration;
+            while(timeLeftHit > 0.0f)
+            {
+                timeLeftHit -= Time.deltaTime;
+                yield return null;
+            }
+            timeLeftHit = 0.0f;
             curTimeSeeingTargetPlayer = 0.0f;
-            rb.useGravity = usedGravity;
+            rb.useGravity = true;
             rb.linearVelocity = Vector3.zero;
         }
 
