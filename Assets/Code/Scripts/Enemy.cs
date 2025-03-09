@@ -27,6 +27,9 @@ namespace Code.Scripts
         [SerializeField]
         LayerMask ignoredMasksForPlayerLOS;
 
+        public Enemy EnemyCollidedWithThisFrame { get; private set; }
+        public Vector3 PrevVelocity { get; private set; } // Previous physics iteration velocity
+
         ProjectileSpawner projectileSpawner;
         RaycastHit[] raycastHits = new RaycastHit[1];
 
@@ -56,6 +59,8 @@ namespace Code.Scripts
         
         void Update()
         {
+            EnemyCollidedWithThisFrame = null; // Reset every frame
+
             FaceNearestPlayer();
 
             if(!IsAlive)
@@ -69,9 +74,62 @@ namespace Code.Scripts
             }
         }
 
+        private void FixedUpdate()
+        {
+            PrevVelocity = rb.linearVelocity;
+        }
+
         private void OnDestroy()
         {
             rotationTween.Kill();
+        }
+
+        protected override void OnCollisionEnter(Collision collision)
+        {
+            base.OnCollisionEnter(collision);
+
+            if(collision.gameObject.GetComponent<Enemy>() is { } otherEnemy)
+            {
+                HitEnemy(collision, otherEnemy);
+            }
+        }
+
+        public void GetHitByProjectile(Vector3 direction)
+        {
+            Vector3 velocity = direction * distanceTravelledHitByProjectile / durationTimeHitByProjectile;
+            ChangeVelocityOnHit(velocity, durationTimeHitByProjectile);
+        }
+
+        public void GetHitByBouncyWall(Vector3 newVelocity)
+        {
+            // duration for the hit on a bouncy wall is the same as a projectile (could change)
+            ChangeVelocityOnHit(newVelocity, durationTimeHitByProjectile);
+        }
+
+        public void GetHitByEnemy(Enemy otherEnemy, Vector3 newVelocity)
+        {
+            if(EnemyCollidedWithThisFrame == otherEnemy)
+            {
+                // We already did the collision with that enemy
+                return;
+            }
+            EnemyCollidedWithThisFrame = otherEnemy;
+            ChangeVelocityOnHit(newVelocity, durationTimeHitByProjectile);
+        }
+
+        private void HitEnemy(Collision collision, Enemy otherEnemy)
+        {
+            // This would get called once on each enemy, but we want for it to be called only once for the whole collision
+            if(EnemyCollidedWithThisFrame == otherEnemy)
+            {
+                // We already did the collision
+                return;
+            }
+            EnemyCollidedWithThisFrame = otherEnemy;
+
+            // The enemy exchanges their previous velocities
+            otherEnemy.GetHitByEnemy(this, PrevVelocity);
+            ChangeVelocityOnHit(otherEnemy.PrevVelocity, durationTimeHitByProjectile);
         }
 
         protected override void Death()
@@ -83,27 +141,16 @@ namespace Code.Scripts
             Level.Instance.EnemyHasBeenDefeated(this);
         }
 
-        public void GetHitByProjectile(Vector3 direction)
-        {
-            Vector3 velocity = direction * distanceTravelledHitByProjectile / durationTimeHitByProjectile;
-            if(velocityChangeCoroutine != null)
-            {
-                StopCoroutine(velocityChangeCoroutine);
-            }
-            velocityChangeCoroutine = StartCoroutine(DoChangeVelocity(velocity, durationTimeHitByProjectile));
-        }
-
-        public void GetHitByBouncyWall(Vector3 newVelocity)
+        private void ChangeVelocityOnHit(Vector3 newVelocity, float duration)
         {
             if(velocityChangeCoroutine != null)
             {
                 StopCoroutine(velocityChangeCoroutine);
             }
-            // duration for the hit on a bouncy wall is the same as a projectile (could change)
-            velocityChangeCoroutine = StartCoroutine(DoChangeVelocity(newVelocity, durationTimeHitByProjectile));
+            velocityChangeCoroutine = StartCoroutine(DoChangeVelocity(newVelocity, duration));
         }
 
-        // Changes the newVelocity of an enemy f
+        // Changes the newVelocity of an enemy for a duration, and doesn't let them act
         private IEnumerator DoChangeVelocity(Vector3 newVelocity, float duration)
         {
             // TODO add animation

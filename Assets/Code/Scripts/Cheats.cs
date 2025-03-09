@@ -32,5 +32,13 @@ public class Cheats : MonoBehaviour
                 player.ToggleProjectileInvincibility();
             }
         }
+        else if(Input.GetKeyDown(KeyCode.Equals))
+        {
+            Time.timeScale += 0.1f;
+        }
+        else if(Input.GetKeyDown(KeyCode.Minus))
+        {
+            Time.timeScale -= 0.1f;
+        }
     }
 }
