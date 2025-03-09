@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cells:
   - m_GameObject: {fileID: 1224034194413972892, guid: a81294d541c806445903d2578dbeb86d, type: 3}
-    m_Offset: {x: 0, y: 0, z: 0}
+    m_Offset: {x: -2, y: 0, z: -2}
+    m_Scale: {x: 4, y: 4, z: 4}
+    m_Orientation: {x: 0, y: 0, z: 0, w: 1}
+  - m_GameObject: {fileID: 1224034194413972892, guid: a81294d541c806445903d2578dbeb86d, type: 3}
+    m_Offset: {x: -2, y: 0, z: -2}
     m_Scale: {x: 4, y: 4, z: 4}
     m_Orientation: {x: 0, y: 0, z: 0, w: 1}
   m_Size: {x: 1, y: 1, z: 1}
