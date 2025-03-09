@@ -6,29 +6,34 @@ namespace Code.Scripts
     {
         [Range(0.5f,12f)]
         [Tooltip("The minimal speed at which the projectile will rebound off the wall.")]
-        [SerializeField] private float minSpeedOnExit = 7f;
+        [SerializeField] private float minSpeedProjectileOnExit = 2f;
 
-        [Tooltip("The projectile's speed will be multiplied by this value when it hits the wall.")]
-        [SerializeField] 
-        private float speedModifier = 1f;
+        [SerializeField, Min(0.01f), Tooltip("The mininum speed an enemy will have after they collide with the bouncy wall.")]
+        float minSpeedEnemyOnExit = 2.0f;
 
         private void OnCollisionEnter(Collision other)
         {
             // If it's a projectile that hits the wall
-            if (other.gameObject.GetComponent<Projectile>() is {} projectile)
+            if(other.gameObject.GetComponent<Projectile>() is { } projectile)
             {
                 Rigidbody projectileRb = projectile.gameObject.GetComponent<Rigidbody>();
                 Vector3 wallNormal = other.contacts[0].normal;
                 Vector3 newSpeed = Vector3.Reflect(other.relativeVelocity, wallNormal);
-                if(newSpeed.magnitude < minSpeedOnExit)
+                if(newSpeed.magnitude < minSpeedProjectileOnExit)
                 {
-                    newSpeed = newSpeed.normalized * minSpeedOnExit;
+                    newSpeed = newSpeed.normalized * minSpeedProjectileOnExit;
                 }
-                projectileRb.linearVelocity = speedModifier * newSpeed;
+                projectileRb.linearVelocity = newSpeed;
 
                 Debug.DrawRay(other.transform.position, other.relativeVelocity, Color.green, 1f);
                 Debug.DrawRay(transform.position, wallNormal, Color.red, 1f);
                 Debug.DrawRay(other.transform.position, newSpeed, Color.blue, 1f);
+            }
+            else if(other.gameObject.GetComponent<Enemy>() is { } enemy)
+            {
+                Vector3 wallNormal = -other.contacts[0].normal;
+                Vector3 velocity = wallNormal * Mathf.Max(other.relativeVelocity.magnitude, minSpeedEnemyOnExit);
+                enemy.GetHitByBouncyWall(velocity);
             }
         }
     }
