@@ -967,6 +967,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f856c03ecdeb470ba7363289074664c, type: 3}
+--- !u!4 &84449717 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8104339087519367149, guid: 75716e472965c1c48bab43d6b021ee27, type: 3}
+  m_PrefabInstance: {fileID: 7417498170541830541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &135891085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3213,6 +3218,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f21086e64b104afa9c02286862b04f9, type: 3}
+--- !u!4 &637114455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1139786195055885052, guid: 3d0e9b320f8b27e46a5730ae4ac8c2b5, type: 3}
+  m_PrefabInstance: {fileID: 3979145563382394728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &637436725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9182,11 +9192,11 @@ PrefabInstance:
     - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
       propertyPath: spawnPointP1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 84449717}
     - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
       propertyPath: spawnPointP2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 637114455}
     - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
       propertyPath: endLevelCanvas
       value: 
