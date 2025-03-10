@@ -85,6 +85,6 @@ Material:
     - _GridSpeed: {r: 0, g: -0.1, b: 0, a: 0}
     - _GroundColor: {r: 0.5457309, g: 0, b: 0.5471698, a: 1}
     - _Parallax_Color: {r: 0, g: 2.101961, b: 2.9960785, a: 1}
-    - _Tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Tiling: {r: 1.24, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
