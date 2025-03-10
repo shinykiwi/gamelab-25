@@ -18,6 +18,8 @@ MonoBehaviour:
   - {fileID: 4248232531534755170}
   - {fileID: 2410198069677598245}
   - {fileID: 1638081129863450847}
+  - {fileID: 9096903337587591586}
+  - {fileID: 4520513601718042933}
 --- !u!114 &1638081129863450847
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -30,10 +32,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.06
+    m_Value: 0.044
 --- !u!114 &2410198069677598245
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -49,10 +51,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.2735849, g: 0.21551263, b: 0.21551263, a: 1}
+    m_Value: {r: 0.33455622, g: 0.30090782, b: 0.4339623, a: 1}
   highlights:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 0.80713964, b: 0.3443396, a: 1}
+    m_Value: {r: 1, g: 0.9009434, b: 0.9290706, a: 1}
   balance:
     m_OverrideState: 0
     m_Value: 0
@@ -123,7 +125,35 @@ MonoBehaviour:
     m_Value: -11
   saturation:
     m_OverrideState: 1
-    m_Value: 38
+    m_Value: 40
+--- !u!114 &4520513601718042933
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.248
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.2
+  rounded:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &4572840687969595350
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -171,3 +201,25 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &9096903337587591586
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
+  m_Name: LiftGammaGain
+  m_EditorClassIdentifier: 
+  active: 0
+  lift:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  gamma:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.23952094}
+  gain:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
