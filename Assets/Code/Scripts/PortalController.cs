@@ -31,6 +31,19 @@ public class PortalController : MonoBehaviour
     // Keep track of incoming objects to not re-teleport an object coming from the other portal
     private List<GameObject> incomingObjects = new List<GameObject>();
 
+    private void Start()
+    {
+        // Find and assign the exit portal
+        PortalController[] portals = FindObjectsByType<PortalController>(FindObjectsSortMode.None);
+        foreach (var portal in portals)
+        {
+            if (!portal.gameObject.Equals(gameObject))
+            {
+                exitPortal = portal.gameObject;
+            }
+        }
+    }
+
     public void AddIncomingTeleportingObject(GameObject obj)
     {
         incomingObjects.Add(obj);
