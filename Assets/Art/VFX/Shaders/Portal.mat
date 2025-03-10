@@ -55,7 +55,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Disolve_Amount: 1.64
+    - _Disolve_Amount: 3.46
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 2.5
