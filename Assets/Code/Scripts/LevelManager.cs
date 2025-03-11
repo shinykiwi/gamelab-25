@@ -48,6 +48,11 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         FindFade();
+        string[] sceneName = SceneManager.GetActiveScene().name.Split("_");
+        if (sceneName[0] == "Level")
+        {
+            currentLevel = int.Parse(sceneName[1]);
+        }
     }
 
     private void FindFade()
