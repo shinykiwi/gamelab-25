@@ -1810,6 +1810,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8306914183442789334, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: distanceTravelledHitByProjectile
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4002941155084205528, guid: 10311fd853f3176419e31ddbc511627d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -6942,6 +6946,10 @@ PrefabInstance:
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: PlayerAnim1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306914183442789334, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: distanceTravelledHitByProjectile
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4002941155084205528, guid: 10311fd853f3176419e31ddbc511627d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
