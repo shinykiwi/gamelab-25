@@ -156,7 +156,7 @@ MonoBehaviour:
   minSpeedProjectileOnExit: 2
   minSpeedEnemyOnExit: 2
   aimAssistDistanceMax: 50
-  degreesAimAssist: 30
+  degreesAimAssist: 25
   ignoredMasksForLOS:
     serializedVersion: 2
     m_Bits: 580

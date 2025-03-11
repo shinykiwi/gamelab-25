@@ -22,6 +22,7 @@ public class AimAssistUtils
     {
         float bestAngle = float.MaxValue;
         Vector3 bestVelocity = velocity;
+        Vector3 bestToTarget = int.MaxValue * Vector3.one;
 
         // Check if the projectile is towards an enemy
         foreach(Enemy enemy in Level.Instance.EnemiesToBeat)
@@ -34,10 +35,11 @@ public class AimAssistUtils
                 continue;
             float angle = Vector3.Angle(velocity, toTarget);
             if(angle < degreesAimAssist / 2
-            && angle < bestAngle
+                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
                 && HasLineOfSightTo(projectilePosition, enemy.transform.position, enemyMask, ignoredMasksForLOS))
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
+                bestToTarget = toTarget;
             }
         }
 
@@ -49,10 +51,11 @@ public class AimAssistUtils
 
             float angle = Vector3.Angle(velocity, toTarget);
             if(angle < degreesAimAssist / 2
-            && angle < bestAngle
+                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax) 
                 && HasLineOfSightTo(projectilePosition, player.transform.position, playerMask, ignoredMasksForLOS))
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
+                bestToTarget = toTarget;
             }
         }
 
@@ -64,13 +67,20 @@ public class AimAssistUtils
                 continue;
             float angle = Vector3.Angle(velocity, toTarget);
             if(angle < degreesAimAssist / 2
-            && angle < bestAngle
+                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
                 && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
+                bestToTarget = toTarget;
             }
         }
 
         return bestVelocity;
+    }
+
+    private static bool IsTargetBetter(float targetAngle, Vector3 toTarget, float bestAngle, Vector3 bestToTarget, float maxDistance)
+    {
+        // Try to prioritize targets that are closer and have a smaller angle, might work
+        return targetAngle * (toTarget.sqrMagnitude / (maxDistance * maxDistance)) < bestAngle * (bestToTarget.sqrMagnitude / (maxDistance * maxDistance));
     }
 }
