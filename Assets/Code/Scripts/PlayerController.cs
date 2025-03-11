@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using Code.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player")]
     [SerializeField]
     float moveSpeed = 1.0f;
+
+    [Header("VFX")] [SerializeField] private ParticleSystem walkingParticles;
 
     [Header("Collisions")]
     [SerializeField]
@@ -30,6 +33,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform character_transform;
 
+    private PlayerAudio playerAudio;
+
     float rotation_speed = 1000f;
 
     bool isInvincibleToProjectiles = false;
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         moveAction = playerInput.actions.FindAction("Move");
         lookAction = playerInput.actions.FindAction("Look");
+        playerAudio = GetComponentInChildren<PlayerAudio>();
     }
 
     // Update is called once per frame
@@ -74,6 +80,19 @@ public class PlayerController : MonoBehaviour
         Vector3 displacement = moveSpeed * Time.deltaTime * move;
         rb.MovePosition(rb.position + displacement);
 
+        if (move.magnitude > 0)
+        {
+            if (!walkingParticles.isPlaying)
+            {
+                walkingParticles.Play();
+                playerAudio.PlayFootsteps();
+            }
+        }
+        else
+        {
+            walkingParticles.Stop();
+            playerAudio.Stop();
+        }
 
         //Adjust the character rotation (child)
         Vector3 camera_rotation = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);

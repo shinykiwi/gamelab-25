@@ -14,5 +14,11 @@ public class ProjectileShield : MonoBehaviour
         {
             projectile.Kill();
         }
+        
+        EnemyAudio enemyAudio = gameObject.transform.root.GetComponent<EnemyAudio>();
+        if (enemyAudio)
+        {
+            enemyAudio.PlayShieldHit();
+        }
     }
 }
