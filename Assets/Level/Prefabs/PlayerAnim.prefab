@@ -485,8 +485,8 @@ MonoBehaviour:
   exitPortal: {fileID: 0}
   speedOnExit: 1
   isAimAssistEnabled: 1
-  degreesAimAssist: 30
-  aimAssistDistanceMax: 25
+  degreesAimAssist: 36
+  aimAssistDistanceMax: 50
   ignoredMasksForLOS:
     serializedVersion: 2
     m_Bits: 68

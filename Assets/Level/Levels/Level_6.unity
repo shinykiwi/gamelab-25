@@ -5272,6 +5272,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 235ff79a8571b44a9949b4b5dccd1334, type: 2}
+    - target: {fileID: 4081727091340831401, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: degreesAimAssist
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: PlayerAnim1

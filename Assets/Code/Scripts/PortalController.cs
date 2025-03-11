@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PortalController : MonoBehaviour
 {
@@ -25,8 +26,6 @@ public class PortalController : MonoBehaviour
 
     [SerializeField, Tooltip("Ignored layers for the Line of Sight for the Aim Assist")]
     private LayerMask ignoredMasksForLOS;
-
-    private RaycastHit[] raycastHits = new RaycastHit[1];
 
     // Keep track of incoming objects to not re-teleport an object coming from the other portal
     private List<GameObject> incomingObjects = new List<GameObject>();
@@ -91,7 +90,7 @@ public class PortalController : MonoBehaviour
         
         projectile.BeginPortalTravel();
         
-        // Set the position of the projectile to be where the portal is
+        // Set the projectilePosition of the projectile to be where the portal is
         projectile.transform.position = exitPortal.transform.position;
         float magnitude = projectileRigidbody.linearVelocity.magnitude;
         // The exit velocity is towards the normal of the exit portal
@@ -105,7 +104,13 @@ public class PortalController : MonoBehaviour
         Quaternion rotateLeft = Quaternion.Euler(0, -degreesAimAssist / 2, 0);
         Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateLeft * newVelocity.normalized), Color.green, 1);
 
-        projectileRigidbody.linearVelocity = GetAutoAimVelocity(projectile.transform.position, newVelocity);
+        if(isAimAssistEnabled)
+        {
+            newVelocity = AimAssistUtils.GetAutoAimVelocity(projectile.transform.position, newVelocity, aimAssistDistanceMax, 
+                degreesAimAssist, ignoredMasksForLOS);
+        }
+        projectileRigidbody.linearVelocity = newVelocity;
+
         // De-parents the projectile so it can be free
         projectile.gameObject.transform.SetParent(null);
         // Sets the shieldOwner of the projectile to be this gameObject
@@ -114,45 +119,7 @@ public class PortalController : MonoBehaviour
         PortalController portalController = exitPortal.GetComponent<PortalController>();
         portalController.AddIncomingTeleportingObject(projectile.gameObject);
     }
-
-    Vector3 GetAutoAimVelocity(Vector3 position, Vector3 velocity)
-    {
-        if(!isAimAssistEnabled)
-            return velocity;
-
-        float bestAngle = float.MaxValue;
-        Vector3 bestVelocity = velocity;
-        foreach(Enemy enemy in Level.Instance.EnemiesToBeat)
-        {
-            if(!enemy.IsAlive)
-                continue;
-
-            Vector3 enemyPosition = enemy.transform.position;
-            Vector3 toEnemy = enemyPosition - position;
-
-            if(toEnemy.magnitude >= aimAssistDistanceMax)
-                continue;
-
-            float angle = Vector3.Angle(velocity, toEnemy);
-            if(angle < degreesAimAssist / 2 && angle < bestAngle && HasLineOfSightToEnemy(enemy))
-            {
-                bestVelocity = velocity.magnitude * toEnemy.normalized;
-            }
-        }
-
-        return bestVelocity;
-    }
-
-    private bool HasLineOfSightToEnemy(Enemy enemy)
-    {
-        float distance = Vector3.Distance(transform.position, enemy.transform.position);
-        Ray rayTowardsPlayer = new Ray(transform.position, (enemy.transform.position - transform.position).normalized);
-
-        int noProjectileMask = int.MaxValue - ignoredMasksForLOS;
-        Physics.RaycastNonAlloc(rayTowardsPlayer, raycastHits, distance, noProjectileMask, QueryTriggerInteraction.Ignore);
-        return raycastHits[0].collider != null && raycastHits[0].collider.gameObject.layer == LayerMask.NameToLayer("Enemy");
-    }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
