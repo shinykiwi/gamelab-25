@@ -172,3 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeVFX: {fileID: 8336327620273662853, guid: ee925d3b99ff21c48ab4cafe5bd0a1f7, type: 3}
+  killAfterSeconds: 18
