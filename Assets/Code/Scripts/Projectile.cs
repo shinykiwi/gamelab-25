@@ -9,6 +9,8 @@ namespace Code.Scripts
         [SerializeField]
         ParticleSystem explodeVFX;
 
+        [SerializeField] private float killAfterSeconds = 6f;
+
         public GameObject Owner { get; set; }
 
         private Rigidbody rb;
@@ -96,9 +98,9 @@ namespace Code.Scripts
             StartCoroutine(KillAfterSeconds());
         }
 
-        private IEnumerator KillAfterSeconds(float seconds = 4f)
+        private IEnumerator KillAfterSeconds()
         {
-            yield return new WaitForSeconds(seconds);
+            yield return new WaitForSeconds(killAfterSeconds);
             
             // If it's still set to delete
             if (queueDelete)
