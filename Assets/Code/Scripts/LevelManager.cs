@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
     
         if (Instance != null && Instance != this) 
         { 
-            Destroy(this); 
+            Destroy(this.gameObject); 
         } 
         else 
         { 
@@ -139,6 +139,14 @@ public class LevelManager : MonoBehaviour
         {
             LoadLevel(6);
         }
+        
+        // Load level 7
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            LoadLevel(7);
+        }
+        
+        
         
     }
 }
