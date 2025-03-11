@@ -2888,6 +2888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightingPackage
       objectReference: {fileID: 0}
+    - target: {fileID: 4226338278974000476, guid: 9a06420162d94634ab0c309ece98f207, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6897568270993671512, guid: 9a06420162d94634ab0c309ece98f207, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.84
