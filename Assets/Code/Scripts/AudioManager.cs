@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Code.Scripts
 {
-    [RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
     {
         private AudioSource audioSource;
 
         protected virtual void Start()
         {
-            audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
         }
 
         protected void Play(AudioClip clip, bool looped = false)

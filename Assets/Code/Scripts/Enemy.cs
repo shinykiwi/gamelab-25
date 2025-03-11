@@ -40,6 +40,8 @@ namespace Code.Scripts
         float curTimeSeeingTargetPlayer = 0.0f;
         float timeLeftHit = 0.0f;
 
+        private EnemyAudio enemyAudio;
+
         protected override void Start()
         {
             base.Start();
@@ -55,6 +57,7 @@ namespace Code.Scripts
             }
 
             players = FindObjectsByType<Player>(FindObjectsSortMode.None);
+            enemyAudio = GetComponentInChildren<EnemyAudio>();
         }
         
         void Update()
