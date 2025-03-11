@@ -485,11 +485,11 @@ MonoBehaviour:
   exitPortal: {fileID: 0}
   speedOnExit: 1
   isAimAssistEnabled: 1
-  degreesAimAssist: 36
+  degreesAimAssist: 30
   aimAssistDistanceMax: 50
   ignoredMasksForLOS:
     serializedVersion: 2
-    m_Bits: 68
+    m_Bits: 580
 --- !u!1001 &8712168823618006094
 PrefabInstance:
   m_ObjectHideFlags: 0
