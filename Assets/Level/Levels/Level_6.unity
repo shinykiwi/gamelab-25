@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BouncyWall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4157584493994769183, guid: 5611ba0e71e45814b9ebd27c474fbfb6, type: 3}
+      propertyPath: ignoredMasksForLOS.m_Bits
+      value: 576
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5272,6 +5276,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 235ff79a8571b44a9949b4b5dccd1334, type: 2}
+    - target: {fileID: 4081727091340831401, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: degreesAimAssist
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: PlayerAnim1

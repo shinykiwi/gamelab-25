@@ -227,7 +227,7 @@ namespace Code.Scripts
             Ray rayTowardsPlayer = new Ray(transform.position, (player.transform.position - transform.position).normalized);
 
             int noProjectileMask = int.MaxValue - ignoredMasksForPlayerLOS;
-            Physics.RaycastNonAlloc(rayTowardsPlayer, raycastHits, distance, noProjectileMask, QueryTriggerInteraction.Ignore);
+            Physics.RaycastNonAlloc(rayTowardsPlayer, raycastHits, distance, ~AimAssistUtils.ignoredMaskForLOS.value, QueryTriggerInteraction.Ignore);
             distanceToPlayer = raycastHits[0].distance;
             return raycastHits[0].collider != null && raycastHits[0].collider.gameObject.layer == LayerMask.NameToLayer("Player");
         }

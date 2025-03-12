@@ -19,12 +19,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float durationTimeHitByProjectile = 0.25f;
 
-    PlayerInput playerInput;
-    Rigidbody rb;
-
-    InputAction moveAction;
-    InputAction lookAction;
-
     [Header("References")]
 
     [SerializeField]
@@ -32,6 +26,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Transform character_transform;
+
+    [SerializeField]
+    LayerMask fenceMask;
+
+    PlayerInput playerInput;
+    Rigidbody rb;
+    Collider coll;
+
+    InputAction moveAction;
+    InputAction lookAction;
 
     private PlayerAudio playerAudio;
 
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
+        coll = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         moveAction = playerInput.actions.FindAction("Move");
         lookAction = playerInput.actions.FindAction("Look");
@@ -109,12 +114,14 @@ public class PlayerController : MonoBehaviour
         // TODO add animation
         playerInput.DeactivateInput();
         rb.useGravity = false;
+        coll.excludeLayers += fenceMask;
 
         rb.linearVelocity = distance / duration * direction;
         yield return new WaitForSeconds(duration);
 
         rb.linearVelocity = Vector3.zero;
         rb.useGravity = true;
+        coll.excludeLayers -= fenceMask;
         playerInput.ActivateInput();
     }
 }

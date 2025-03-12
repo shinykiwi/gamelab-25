@@ -25,7 +25,7 @@ namespace Code.Scripts
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 
         public List<Enemy> EnemiesToBeat { get; private set; }
-
+        public List<BouncyWall> BouncyWalls { get; private set; }
         public List<Player> Players { get; private set; }
         
         private void Awake() 
@@ -41,8 +41,9 @@ namespace Code.Scripts
                 Instance = this; 
             }
 
-            // Require to beat all enenmies in the level
+            // Require to beat all enemies in the level
             EnemiesToBeat = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+            BouncyWalls = new List<BouncyWall>(FindObjectsByType<BouncyWall>(FindObjectsSortMode.None));
             Players = new List<Player>(FindObjectsByType<Player>(FindObjectsSortMode.None));
         }
 
