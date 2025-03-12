@@ -28,14 +28,18 @@ public class PortalPlayerInput : MonoBehaviour
     void Update()
     {
         Vector2 lookInputValue = LookAction.ReadValue<Vector2>();
-        Vector3 look = new Vector3(lookInputValue.x, 0, lookInputValue.y);
         // Get look direction for mouse controls
         if(playerInput.currentControlScheme == "Keyboard&Mouse")
         {
-            float distToCamera = (Camera.main.transform.position - transform.position).magnitude;
+            // Get the distance to the camera
+            const float offset = 1.0f; // Offset to make the result more accurate
+            Plane raycastPlane = new Plane(Vector3.up, new Vector3(0.0f, transform.position.y + offset, 0.0f));
+            Ray rayToTarget = Camera.main.ScreenPointToRay(lookInputValue);
+            raycastPlane.Raycast(rayToTarget, out float distToCamera);
+
+            // Get a look-direction
             Vector3 lookTarget = Camera.main.ScreenToWorldPoint(new Vector3(lookInputValue.x, lookInputValue.y, distToCamera));
-            Vector3 lookDir = lookTarget - transform.position;
-            look = new Vector3(lookDir.x, 0.0f, lookDir.z);
+            Vector3 lookDir = lookTarget - character.position;
             lookInputValue = (new Vector2(lookDir.x, lookDir.z)).normalized;
         }
 
