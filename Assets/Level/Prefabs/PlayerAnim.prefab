@@ -253,6 +253,9 @@ MonoBehaviour:
   durationTimeHitByProjectile: 0.25
   player_animator: {fileID: 2994122767608795615}
   character_transform: {fileID: 7820327116674828617}
+  fenceMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!54 &1551629877205542714
 Rigidbody:
   m_ObjectHideFlags: 0

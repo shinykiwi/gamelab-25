@@ -35,7 +35,7 @@ namespace Code.Scripts
                     newVelocity = newVelocity.normalized * minSpeedProjectileOnExit;
                 }
                 Vector3 aimAssistedVelocity = AimAssistUtils.GetAutoAimVelocity(projectile.transform.position, newVelocity, 
-                    aimAssistDistanceMax, degreesAimAssist, ignoredMasksForLOS);
+                    aimAssistDistanceMax, degreesAimAssist, AimAssistUtils.ignoredMaskForLOS);
 
                 projectileRb.linearVelocity = aimAssistedVelocity;
 

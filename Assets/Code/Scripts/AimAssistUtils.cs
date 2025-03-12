@@ -3,17 +3,21 @@ using UnityEngine;
 
 public class AimAssistUtils 
 {
+    public static readonly LayerMask ignoredMaskForLOS = LayerMask.GetMask("Ignore Raycast") 
+                                                + LayerMask.GetMask("Projectile")
+                                                + LayerMask.GetMask("Fence");
+
+
     private static RaycastHit[] hitInfo = new RaycastHit[1];
     private static LayerMask enemyMask = LayerMask.GetMask("Enemy");
     private static LayerMask playerMask = LayerMask.GetMask("Player");
     private static LayerMask bouncyWallMask = LayerMask.GetMask("BouncyWall");
 
-
     public static bool HasLineOfSightTo(Vector3 origin, Vector3 targetPosition, LayerMask targetLayer, LayerMask ignoredMasks)
     {
         float distance = Vector3.Distance(origin, targetPosition);
         Ray rayToTarget = new Ray(origin, (targetPosition - origin).normalized);
-        Physics.RaycastNonAlloc(rayToTarget, hitInfo, distance, ~ignoredMasks, QueryTriggerInteraction.Ignore);
+        Physics.RaycastNonAlloc(rayToTarget, hitInfo, distance, ~(ignoredMasks.value), QueryTriggerInteraction.Ignore);
         return hitInfo[0].collider != null && 1 << hitInfo[0].collider.gameObject.layer == targetLayer;
     }
 

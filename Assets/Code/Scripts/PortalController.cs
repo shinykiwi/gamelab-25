@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class PortalController : MonoBehaviour
 {
@@ -107,7 +106,7 @@ public class PortalController : MonoBehaviour
         if(isAimAssistEnabled)
         {
             newVelocity = AimAssistUtils.GetAutoAimVelocity(projectile.transform.position, newVelocity, aimAssistDistanceMax, 
-                degreesAimAssist, ignoredMasksForLOS);
+                degreesAimAssist, AimAssistUtils.ignoredMaskForLOS);
         }
         projectileRigidbody.linearVelocity = newVelocity;
 
