@@ -17,6 +17,8 @@ namespace Code.Scripts
         private Transform spawnPoint;
         private PlayerInput playerInput;
 
+        public ZoneType zone;
+
         protected override void Start()
         {
             base.Start();
@@ -25,6 +27,8 @@ namespace Code.Scripts
             spawnPoint = playerNum == PlayerNum.Player1 ? Level.SpawnPointP1 : Level.SpawnPointP2;
 
             playerInput = GetComponent<PlayerInput>();
+            ZoneManager.Instance.SetPlayer(this, playerNum);
+
         }
         
         protected override void Death()
