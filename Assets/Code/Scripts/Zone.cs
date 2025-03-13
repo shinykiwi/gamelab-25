@@ -19,14 +19,25 @@ public class Zone : MonoBehaviour
     [SerializeField]
     BoxCollider boxCollider;
 
-    [SerializeField]
-    List<Tile> tile_list;
+    List<Tile> tile_list = new List<Tile>();
 
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
 
         ZoneManager.Instance.RegisterZone(this);
+
+        Vector3 center = boxCollider.transform.TransformPoint(boxCollider.center);
+        Vector3 halfExtents = boxCollider.size * 0.5f;
+        Quaternion rotation = boxCollider.transform.rotation;
+
+        Collider[] hitColliders = Physics.OverlapBox(center, halfExtents, rotation);
+
+        foreach (Collider obj in hitColliders)
+        {
+            var tile = obj.gameObject.GetComponentInParent<Tile>();
+            if (tile != null) tile_list.Add(tile);
+        }
     }
 
     private void OnDestroy()
@@ -46,7 +57,7 @@ public class Zone : MonoBehaviour
 
     public void SetActive(bool state)
     {
-
+        Debug.Log(type + " setting state " + state);
         foreach (Tile tile in tile_list)
         {
             tile.SetActive(state);
