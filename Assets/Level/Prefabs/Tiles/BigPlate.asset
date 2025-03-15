@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BigPlate
   m_EditorClassIdentifier: 
   m_Cells:
-  - m_GameObject: {fileID: 8197456731536643296, guid: 5f1c725a7129515408c65e251bedd88b, type: 3}
+  - m_GameObject: {fileID: 1335492855607303399, guid: 6097faf86e6c6ab48871ee9fcc06f417, type: 3}
     m_Offset: {x: 0, y: 0, z: 0}
     m_Scale: {x: 6, y: 4, z: 6}
     m_Orientation: {x: 0, y: 0, z: 0, w: 1}
