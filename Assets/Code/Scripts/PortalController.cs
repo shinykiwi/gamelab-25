@@ -25,6 +25,7 @@ public class PortalController : MonoBehaviour
 
     [SerializeField]
     MeshRenderer portal_render;
+    Material portal_material;
 
     [SerializeField]
     MeshCollider portal_collider;
@@ -46,6 +47,11 @@ public class PortalController : MonoBehaviour
                 exitPortal = portal.gameObject;
             }
         }
+
+        List<Material> temp = new List<Material> ();
+        portal_render.GetMaterials(temp);
+
+        portal_material = temp[0];
     }
 
     public void AddIncomingTeleportingObject(GameObject obj)
@@ -143,6 +149,8 @@ public class PortalController : MonoBehaviour
         {
             portal_render.enabled = true;
             portal_collider.enabled = true;
+            portal_material.SetColor("_Color", ZoneManager.Instance.ZoneColorSettings.GetZone(ZoneManager.Instance.active_type).color * 500);
+            portal_material.SetColor("_EmisionColor", ZoneManager.Instance.ZoneColorSettings.GetZone(ZoneManager.Instance.active_type).color * 10);
         }
         else
         {

@@ -9,7 +9,7 @@ public class ZoneManager : MonoBehaviour
 
     [SerializeField]
     public ZoneColorSettings ZoneColorSettings;
-    ZoneType active_type;
+    public ZoneType active_type;
 
 
     List<Zone> zones = new List<Zone>();
@@ -47,11 +47,11 @@ public class ZoneManager : MonoBehaviour
 
         if(player1.zone == player2.zone)
         {
-            ZoneType active_zone = player1.zone;
+           active_type = player1.zone;
 
             foreach (Zone zone in zones)
             {
-                if(zone.type == active_zone)
+                if(zone.type == active_type)
                 {
                     zone.SetActive(true);
                 }
