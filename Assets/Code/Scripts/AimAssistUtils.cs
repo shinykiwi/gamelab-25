@@ -29,7 +29,7 @@ public class AimAssistUtils
         Vector3 bestToTarget = int.MaxValue * Vector3.one;
 
         // Check if the projectile is towards an enemy
-        foreach(Enemy enemy in Level.Instance.EnemiesToBeat)
+        foreach(Enemy enemy in Level.Instance.AllEnemies)
         {
             if(!enemy.IsAlive)
                 continue;
@@ -64,7 +64,7 @@ public class AimAssistUtils
         }
 
         // Check if the projectile is towards a bouncy wall
-        foreach(BouncyWall bouncyWall in Level.Instance.BouncyWalls)
+        foreach(BouncyWall bouncyWall in Level.Instance.AllBouncyWalls)
         {
             Vector3 toTarget = bouncyWall.transform.position - projectilePosition;
             if(toTarget.magnitude >= aimAssistDistanceMax)

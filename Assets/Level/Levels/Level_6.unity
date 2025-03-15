@@ -8757,6 +8757,17 @@ PrefabInstance:
       addedObject: {fileID: 1372518939}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+--- !u!114 &617034227874885528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+  m_PrefabInstance: {fileID: 617034227874885527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736204525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14f641719c784c1eba6fd8dcfb1bbd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2892132226316003417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9058,6 +9069,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d0e9b320f8b27e46a5730ae4ac8c2b5, type: 3}
+--- !u!4 &3979145563382394729 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1139786195055885052, guid: 3d0e9b320f8b27e46a5730ae4ac8c2b5, type: 3}
+  m_PrefabInstance: {fileID: 3979145563382394728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4226537295833632514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9257,6 +9273,26 @@ PrefabInstance:
       propertyPath: endLevelCanvas
       value: 
       objectReference: {fileID: 1558132349}
+    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
+      propertyPath: levelSections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
+      propertyPath: levelSections.Array.data[0].spawnPointP1
+      value: 
+      objectReference: {fileID: 84449717}
+    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
+      propertyPath: levelSections.Array.data[0].spawnPointP2
+      value: 
+      objectReference: {fileID: 3979145563382394729}
+    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
+      propertyPath: levelSections.Array.data[0].enemiesToBeat.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468300972877777567, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
+      propertyPath: 'levelSections.Array.data[0].enemiesToBeat.Array.data[0]'
+      value: 
+      objectReference: {fileID: 617034227874885528}
     - target: {fileID: 3906044837657110495, guid: 79bb86fbf0e354466b78ffa77498dc84, type: 3}
       propertyPath: m_Name
       value: LevelSettings
