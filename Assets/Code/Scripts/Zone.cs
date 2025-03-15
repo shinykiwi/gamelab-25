@@ -36,7 +36,11 @@ public class Zone : MonoBehaviour
         foreach (Collider obj in hitColliders)
         {
             var tile = obj.gameObject.GetComponentInParent<Tile>();
-            if (tile != null) tile_list.Add(tile);
+            if (tile != null)
+            {
+                tile_list.Add(tile);
+                tile.SetZoneTypeColor(ZoneManager.Instance.ZoneColorSettings.GetZone(type));
+            }
         }
     }
 

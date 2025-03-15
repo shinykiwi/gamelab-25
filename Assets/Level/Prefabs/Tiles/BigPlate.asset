@@ -10,16 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5054c22f711d48489260461534713d8, type: 3}
-  m_Name: CenterTile
+  m_Name: BigPlate
   m_EditorClassIdentifier: 
   m_Cells:
   - m_GameObject: {fileID: 8197456731536643296, guid: 5f1c725a7129515408c65e251bedd88b, type: 3}
-    m_Offset: {x: -2, y: 0, z: -2}
-    m_Scale: {x: 2, y: 4, z: 2}
-    m_Orientation: {x: 0, y: 0, z: 0, w: 1}
-  - m_GameObject: {fileID: 8197456731536643296, guid: 5f1c725a7129515408c65e251bedd88b, type: 3}
-    m_Offset: {x: -2, y: 0, z: -2}
-    m_Scale: {x: 2, y: 4, z: 2}
+    m_Offset: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 6, y: 4, z: 6}
     m_Orientation: {x: 0, y: 0, z: 0, w: 1}
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
@@ -30,4 +26,4 @@ MonoBehaviour:
     cellLayout: 0
     cellSwizzle: 0
   hiddenGrid: {fileID: 0}
-  m_Anchor: {x: 1, y: 1, z: 0}
+  m_Anchor: {x: 0.5, y: 0.5, z: 0}

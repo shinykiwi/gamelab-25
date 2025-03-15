@@ -23,6 +23,12 @@ public class PortalController : MonoBehaviour
     [SerializeField, Min(0f)]
     private float aimAssistDistanceMax = 25.0f;
 
+    [SerializeField]
+    MeshRenderer portal_render;
+
+    [SerializeField]
+    MeshCollider portal_collider;
+
     [SerializeField, Tooltip("Ignored layers for the Line of Sight for the Aim Assist")]
     private LayerMask ignoredMasksForLOS;
 
@@ -129,5 +135,19 @@ public class PortalController : MonoBehaviour
 
         Quaternion rotateLeft = Quaternion.Euler(0, -degreesAimAssist / 2, 0);
         Debug.DrawRay(transform.position, aimAssistDistanceMax * (rotateLeft * dir));
+    }
+
+    private void Update()
+    {
+        if(Level.Instance.ArePortalActive())
+        {
+            portal_render.enabled = true;
+            portal_collider.enabled = true;
+        }
+        else
+        {
+            portal_render.enabled = false;
+            portal_collider.enabled = false;
+        }
     }
 }

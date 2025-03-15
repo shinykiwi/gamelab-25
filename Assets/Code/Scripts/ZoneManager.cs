@@ -7,6 +7,8 @@ public class ZoneManager : MonoBehaviour
 {
     public static ZoneManager Instance { get; private set; }
 
+    [SerializeField]
+    public ZoneColorSettings ZoneColorSettings;
     ZoneType active_type;
 
 

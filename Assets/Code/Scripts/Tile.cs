@@ -1,15 +1,22 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Tile : MonoBehaviour
 {
-    public Material mat_active;
-    public Material mat_not_active;
+    [SerializeField]
+    MeshRenderer renderer;
+    Color color;
+    Material mat_glow;
+    Material mat_albedo;
 
-
-    public MeshRenderer mesh;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //mat.EnableKeyword("_EMISSION");
+        List<Material> mat = new List<Material>();
+        renderer.GetMaterials(mat);
+        mat[1].EnableKeyword("_EMISSION");
+        mat_glow = mat[1];
     }
 
     // Update is called once per frame
@@ -20,14 +27,21 @@ public class Tile : MonoBehaviour
 
     public void SetActive(bool state)
     {
-        if(state)
+        if (state)
         {
-            mesh.material = mat_active;
+            mat_glow.SetColor("_EmissionColor", color * 10);
         }
 
         else
         {
-            mesh.material = mat_not_active;
+            mat_glow.SetColor("_EmissionColor", color * 3);
         }
+    }
+
+    public void SetZoneTypeColor(Material type_mat)
+    {
+        color = type_mat.GetColor("_EmissionColor");
+        mat_glow.SetColor("_EmissionColor", color);
+
     }
 }
