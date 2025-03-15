@@ -5,7 +5,7 @@ using System;
 
 public enum ZoneType
 {
-    A, B, C, D, E, F
+    A, B, C, D, E, F, NONE
 }
 
 [RequireComponent(typeof(BoxCollider))]

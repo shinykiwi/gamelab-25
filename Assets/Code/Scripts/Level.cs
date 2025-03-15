@@ -72,6 +72,8 @@ namespace Code.Scripts
         public bool ArePortalActive()
         {
             ZoneType type = Players[0].zone;
+            if (type == ZoneType.NONE) return false;
+
             foreach (var player in Players)
             {
                 if (type != player.zone) return false;
