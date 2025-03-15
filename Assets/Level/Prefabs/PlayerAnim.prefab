@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
+  zone: 0
 --- !u!114 &8306914183442789334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,9 +491,16 @@ MonoBehaviour:
   isAimAssistEnabled: 1
   degreesAimAssist: 30
   aimAssistDistanceMax: 50
+  portal_render: {fileID: 3540853633838761524}
+  portal_collider: {fileID: 834589122129375014}
   ignoredMasksForLOS:
     serializedVersion: 2
     m_Bits: 580
+--- !u!23 &3540853633838761524 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: fe9dd8a719280f549a085dbd4ad5072c, type: 3}
+  m_PrefabInstance: {fileID: 2801861564338985648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8712168823618006094
 PrefabInstance:
   m_ObjectHideFlags: 0

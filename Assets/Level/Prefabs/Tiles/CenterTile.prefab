@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5396922681042692636}
+  - component: {fileID: 207498639418880936}
   m_Layer: 0
   m_Name: CenterTile
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   - {fileID: 6270817636778812319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &207498639418880936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224034194413972892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2fc798a21e581419ab0246a8b7d07e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat_active: {fileID: 2100000, guid: 5e6c7a92011dc9d45a4740c5bdd9782e, type: 2}
+  mat_not_active: {fileID: 2100000, guid: d78d265734e534c6080c788138612f58, type: 2}
+  mesh: {fileID: 5137841597839005936}
 --- !u!1 &6651178683803695397
 GameObject:
   m_ObjectHideFlags: 0

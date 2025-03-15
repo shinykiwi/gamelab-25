@@ -69,6 +69,17 @@ namespace Code.Scripts
             return true;
         }
 
+        public bool ArePortalActive()
+        {
+            ZoneType type = Players[0].zone;
+            foreach (var player in Players)
+            {
+                if (type != player.zone) return false;
+            }
+
+            return true;
+        }
+
         void LevelCompleted()
         {
             // Reveals the level trigger
