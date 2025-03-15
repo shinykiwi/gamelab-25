@@ -8,21 +8,22 @@ namespace Code.Scripts
     
     public class Humanoid : MonoBehaviour
     {
-        // Not sure if this will be needed but it's just an example of where we can put common vars like this
-        private float health = 100f;
-    
-        // Internal variables
-        private MeshRenderer meshRenderer;
-        private SkinnedMeshRenderer skinnedMeshRenderer;
+        [SerializeField]
+        Renderer characterRenderer;
+
         private Collider coll;
         protected Rigidbody rb;
 
+        // Not sure if this will be needed but it's just an example of where we can put common vars like this
+        private float health = 100f;
         public bool IsAlive => health > 0f;
 
         protected virtual void Start()
         {
-            meshRenderer = gameObject.GetComponent<MeshRenderer>();
-            skinnedMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            if(!characterRenderer)
+            {
+                Debug.LogError("No MeshRenderer found on this object.", this);
+            }
             coll = gameObject.GetComponent<Collider>();
             rb = gameObject.GetComponent<Rigidbody>();
         }
@@ -57,16 +58,15 @@ namespace Code.Scripts
 
 
             // Damage visual sequence
-            Material material = skinnedMeshRenderer.material;
+            Material material = characterRenderer.material;
             Color originalColor = material.color;
             float duration = 0.2f;
-        
+
             Sequence sequence = DOTween.Sequence();
-        
-            sequence.Append(material.DOColor(Color.red, duration)); 
+
+            sequence.Append(material.DOColor(Color.red, duration));
             sequence.Append(material.DOColor(originalColor, duration));
             sequence.AppendCallback(ToggleVisibility);
-
             sequence.Play();
         }
 
@@ -85,11 +85,11 @@ namespace Code.Scripts
             }
             rb.useGravity = true;
 
-            Material material = skinnedMeshRenderer.material;
-           
+            Material material = characterRenderer.material;
+
             Color originalColor = material.color;
-            originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f); 
-        
+            originalColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+
             material.color = originalColor;
 
             material.DOFade(1f, 1f);
@@ -117,7 +117,6 @@ namespace Code.Scripts
 
         protected IEnumerator DelaySpawn(float delay, Transform location)
         {
-            Debug.Log("Delay spawn!");
             yield return new WaitForSeconds(delay);
             Spawn(location);
         }
@@ -127,8 +126,9 @@ namespace Code.Scripts
         /// </summary>
         private void ToggleVisibility()
         {
-            bool visibility = !skinnedMeshRenderer.enabled;
-            skinnedMeshRenderer.enabled = visibility;
+            bool visibility = !characterRenderer.enabled;
+            characterRenderer.enabled = visibility;
+
             MeshRenderer[] renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (var r in renderers)
             {

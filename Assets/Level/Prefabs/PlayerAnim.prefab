@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98081796388548459d5e23a498892db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterRenderer: {fileID: 1138279136295170846}
   playerNum: 0
   zone: 0
 --- !u!114 &8306914183442789334
@@ -608,6 +609,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca6848aac7b5b1741a8d1b3e9b2c772d, type: 3}
+--- !u!137 &1138279136295170846 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8587288845520166736, guid: ca6848aac7b5b1741a8d1b3e9b2c772d, type: 3}
+  m_PrefabInstance: {fileID: 8712168823618006094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2994122767608795615 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ca6848aac7b5b1741a8d1b3e9b2c772d, type: 3}
