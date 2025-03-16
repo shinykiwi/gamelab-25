@@ -56,22 +56,21 @@ public class Zone : MonoBehaviour
         if (player == null) return;
 
         player.zone = type;
-
+        
         ZoneManager.Instance.NotifyZoneChange();
     }
 
     public void SetActive(bool state)
     {
-        Debug.Log(type + " setting state " + state);
+        //Debug.Log(type + " setting state " + state);
         if(type != ZoneType.NONE)
             foreach (Tile tile in tile_list)
             {
                 tile.SetActive(state);
             }
-
     }
 
-    private void OnrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawCube(boxCollider.center, boxCollider.size);
     }

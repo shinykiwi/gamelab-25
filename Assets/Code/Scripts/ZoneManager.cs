@@ -49,6 +49,17 @@ public class ZoneManager : MonoBehaviour
         {
            active_type = player1.zone;
 
+           if (active_type != ZoneType.NONE)
+           {
+               CameraController cameraController = FindAnyObjectByType<CameraController>();
+               cameraController.SetClosestEnemy();
+           }
+           else if (active_type == ZoneType.NONE)
+           {
+               CameraController cameraController = FindAnyObjectByType<CameraController>();
+               cameraController.ClearClosestEnemy();
+           }
+           
             foreach (Zone zone in zones)
             {
                 if(zone.type == active_type)
