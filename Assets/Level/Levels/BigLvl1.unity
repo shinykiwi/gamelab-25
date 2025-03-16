@@ -13486,7 +13486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1164605675043111649, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
       propertyPath: CenterOnActivate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1164605675043111649, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
       propertyPath: Lookahead.Enabled

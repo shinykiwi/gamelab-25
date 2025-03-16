@@ -101,10 +101,10 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 2}
+  TargetOffset: {x: 0, y: 0, z: 0}
   Damping: {x: 3, y: 3, z: 3}
   Lookahead:
-    Enabled: 0
+    Enabled: 1
     Time: 0
     Smoothing: 0
     IgnoreY: 0
@@ -123,3 +123,4 @@ MonoBehaviour:
   cameraTarget: {fileID: 166759779010514496, guid: 9a1877e0c41be41a5bfec3fbc0e801c2, type: 3}
   zoomFactor: 0.5
   maxDistanceThreshold: 10
+  enemyWeight: 0.25
