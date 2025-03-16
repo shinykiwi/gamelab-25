@@ -8327,6 +8327,10 @@ PrefabInstance:
       propertyPath: TargetOffset.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1164605675043111649, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
+      propertyPath: Composition.DeadZone.Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6519416371494905283, guid: ae753759e38b74d89a548110b0a868f9, type: 3}
       propertyPath: player1
       value: 

@@ -5,6 +5,9 @@ namespace Code.Scripts
     public class AudioManager : MonoBehaviour
     {
         private AudioSource audioSource;
+        
+        [Range(0f,1f)]
+        [SerializeField] protected float volume = 1f;
 
         protected virtual void Start()
         {

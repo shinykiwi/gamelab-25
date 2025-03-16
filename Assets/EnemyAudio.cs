@@ -8,7 +8,7 @@ public class EnemyAudio : AudioManager
     
     public void PlayShieldHit()
     {
-        // Disabled it for now for the build because the sound is too loud and I havent fixed it yet
-        //Play(shieldHitSound);    
+        volume = 0.5f;
+        Play(shieldHitSound);    
     }
 }

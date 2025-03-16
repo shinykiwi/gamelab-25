@@ -49,9 +49,11 @@ public class CameraController : MonoBehaviour
     {
         // Decide whether we need to zoom or not
         // If the distanced has increased since the initial distance
-        if (CalculateDistance() > initialDistance)
+
+        float distance = CalculateDistance();
+        if (distance > initialDistance)
         {
-            float difference = CalculateDistance() - initialDistance;
+            float difference = distance - initialDistance;
             if (difference > maxDistanceThreshold)
             {
                 positionComposer.CameraDistance = baseDistance + ((difference) * zoomFactor);

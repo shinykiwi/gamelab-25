@@ -76,7 +76,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccafb5ddd6d4d704989ed505677d04bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walking: {fileID: 8300000, guid: 711ec328d5ae3094e9683818a2dd4f4b, type: 3}
+  volume: 1
+  walking:
+  - {fileID: 8300000, guid: b522aa660b9b9c8438801789fd650194, type: 3}
+  - {fileID: 8300000, guid: 270266b9bfb7b1f4982303955c562ec8, type: 3}
+  - {fileID: 8300000, guid: f5703a397bee55c4c837a5debd30184a, type: 3}
+  - {fileID: 8300000, guid: af0a54fbe2bd88544999cd10247023d7, type: 3}
+  - {fileID: 8300000, guid: ad398e8a8903ac4458210553c4b8c44b, type: 3}
+  - {fileID: 8300000, guid: 552dfa2e31ffae446bf6b691a0067cca, type: 3}
 --- !u!1 &2682679995819513652
 GameObject:
   m_ObjectHideFlags: 0

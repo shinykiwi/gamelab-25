@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour
             if (!walkingParticles.isPlaying)
             {
                 walkingParticles.Play();
-                playerAudio.PlayFootsteps();
             }
+            playerAudio.PlayFootsteps();
         }
         else
         {

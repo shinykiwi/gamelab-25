@@ -5,11 +5,11 @@ namespace Code.Scripts
 {
     public class PlayerAudio : AudioManager
     {
-        [SerializeField] private AudioClip walking;
+        [SerializeField] private AudioClip[] walking;
 
         public void PlayFootsteps()
         {
-            Play(walking, true);
+            Play(walking);
         }
 
         protected override void Start()
