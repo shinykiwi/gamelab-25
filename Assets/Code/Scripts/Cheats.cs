@@ -25,7 +25,7 @@ public class Cheats : MonoBehaviour
         {
             LevelManager.Instance.LoadDefault();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha7))
+        else if(Input.GetKeyDown(KeyCode.P))
         {
             foreach(var player in FindObjectsByType<PlayerController>(FindObjectsSortMode.None))
             {

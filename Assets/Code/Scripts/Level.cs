@@ -9,24 +9,24 @@ namespace Code.Scripts
         public static Level Instance { get; private set; }
 
         [Header("Parameters")]
-        [Tooltip("The default place to spawn when starting the Instance and also when respawning.")] 
-        [SerializeField] private Transform spawnPointP1;
-        [SerializeField] private Transform spawnPointP2;
-
         [Tooltip("The amount of time a player has to wait before respawning.")] 
-        [SerializeField] private float respawnDelay = 5f;
+        [SerializeField] private float respawnDelay = 1f;
 
-        [Header("References")]
-        [SerializeField]
-        private Canvas endLevelCanvas;
+        [SerializeField, Tooltip("Sections are to be completed in order of this array.")]
+        LevelSection[] levelSections;
 
-        public static Transform SpawnPointP1 => Instance?.spawnPointP1;
-        public static Transform SpawnPointP2 => Instance?.spawnPointP2;
+        public static LevelSection CurrentSection => Instance?.currentSection;
+        public static Transform SpawnPointP1 => CurrentSection?.spawnPointP1;
+        public static Transform SpawnPointP2 => CurrentSection?.spawnPointP2;
         public static float RespawnDelay => Instance?.respawnDelay ?? 0f;
 
-        public List<Enemy> EnemiesToBeat { get; private set; }
-        public List<BouncyWall> BouncyWalls { get; private set; }
+        public static List<Enemy> SectionEnemies => CurrentSection?.enemiesToBeat;
+        public List<Enemy> AllEnemies { get; private set; }
+        public List<BouncyWall> AllBouncyWalls { get; private set; }
         public List<Player> Players { get; private set; }
+
+        private int currentSectionIndex = 0;
+        private LevelSection currentSection = null;
         
         private void Awake() 
         { 
@@ -42,18 +42,24 @@ namespace Code.Scripts
             }
 
             // Require to beat all enemies in the level
-            EnemiesToBeat = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
-            BouncyWalls = new List<BouncyWall>(FindObjectsByType<BouncyWall>(FindObjectsSortMode.None));
+            AllEnemies = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
+            AllBouncyWalls = new List<BouncyWall>(FindObjectsByType<BouncyWall>(FindObjectsSortMode.None));
             Players = new List<Player>(FindObjectsByType<Player>(FindObjectsSortMode.None));
+
+            if(levelSections.Length > 0)
+                currentSection = levelSections[currentSectionIndex];
+            else
+                Debug.LogWarning("No sections in the level.", this);
         }
 
         public void EnemyHasBeenDefeated(Enemy enemy)
         {
-            EnemiesToBeat.Remove(enemy);
+            AllEnemies.Remove(enemy);
+            CurrentSection.enemiesToBeat.Remove(enemy);
 
-            if(EnemiesToBeat.Count == 0)
+            if(CurrentSection.enemiesToBeat.Count == 0)
             {
-                LevelCompleted();
+                SectionCompleted();
             }
         }
 
@@ -72,12 +78,36 @@ namespace Code.Scripts
         public bool ArePortalActive()
         {
             ZoneType type = Players[0].zone;
+            if (type == ZoneType.NONE) return false;
+
             foreach (var player in Players)
             {
                 if (type != player.zone) return false;
             }
 
             return true;
+        }
+
+        public void SectionCompleted()
+        {
+            CurrentSection.isCompleted = true;
+            CurrentSection.onSectionComplete.Invoke();
+
+            if(currentSectionIndex < levelSections.Length - 1)
+            {
+                currentSectionIndex++;
+                currentSection = levelSections[currentSectionIndex];
+
+                // For now if there are no enemies in the next section, we consider it completed, to avoid softlocks
+                if(currentSection.enemiesToBeat.Count == 0)
+                {
+                    SectionCompleted();
+                }
+            }
+            else
+            {
+                LevelCompleted();
+            }
         }
 
         void LevelCompleted()

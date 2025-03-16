@@ -9,6 +9,12 @@ public class PortalController : MonoBehaviour
     [Header("Dependencies")] [SerializeField]
     private GameObject exitPortal;
 
+    [SerializeField]
+    MeshRenderer portal_render;
+
+    [SerializeField]
+    MeshCollider portal_collider;
+
     [Header("Settings")] 
     
     [Range(0.5f, 10f)]
@@ -23,14 +29,17 @@ public class PortalController : MonoBehaviour
     [SerializeField, Min(0f)]
     private float aimAssistDistanceMax = 25.0f;
 
-    [SerializeField]
-    MeshRenderer portal_render;
+    [Header("Visuals")]
+    [SerializeField, Min(0.001f)]
+    private float portalClosedScale = 0.05f;
 
-    [SerializeField]
-    MeshCollider portal_collider;
+    [SerializeField, Min(0.001f)]
+    private float portalOpenScale = 1.0f;
 
-    [SerializeField, Tooltip("Ignored layers for the Line of Sight for the Aim Assist")]
-    private LayerMask ignoredMasksForLOS;
+    [SerializeField, Min(0.001f)]
+    private float portalScaleSpeed = 2.0f;
+
+    Material portal_material;
 
     // Keep track of incoming objects to not re-teleport an object coming from the other portal
     private List<GameObject> incomingObjects = new List<GameObject>();
@@ -46,6 +55,11 @@ public class PortalController : MonoBehaviour
                 exitPortal = portal.gameObject;
             }
         }
+
+        List<Material> temp = new List<Material> ();
+        portal_render.GetMaterials(temp);
+
+        portal_material = temp[0];
     }
 
     public void AddIncomingTeleportingObject(GameObject obj)
@@ -143,11 +157,35 @@ public class PortalController : MonoBehaviour
         {
             portal_render.enabled = true;
             portal_collider.enabled = true;
+            portal_material.SetColor("_Color", ZoneManager.Instance.ZoneColorSettings.GetZone(ZoneManager.Instance.active_type).color * 500);
+            portal_material.SetColor("_EmisionColor", ZoneManager.Instance.ZoneColorSettings.GetZone(ZoneManager.Instance.active_type).color * 10);
+
+            // Open portal slowly
+            if(portal_render.gameObject.transform.localScale.x < portalOpenScale)
+            {
+                portal_render.gameObject.transform.localScale += 
+                    portal_render.gameObject.transform.localScale.x * portalScaleSpeed * Time.deltaTime * Vector3.one;
+                if(portal_render.gameObject.transform.localScale.x > portalOpenScale)
+                {
+                    portal_render.gameObject.transform.localScale = Vector3.one;
+                }
+            }
         }
         else
         {
-            portal_render.enabled = false;
             portal_collider.enabled = false;
+
+            // Close portal slowly
+            if(portal_render.gameObject.transform.localScale.x > portalClosedScale)
+            {
+                portal_render.gameObject.transform.localScale -=
+                    portal_render.gameObject.transform.localScale.x * portalScaleSpeed * Time.deltaTime * Vector3.one;
+                if(portal_render.gameObject.transform.localScale.x < portalClosedScale)
+                {
+                    portal_render.gameObject.transform.localScale = portalClosedScale * Vector3.one;
+                    portal_render.enabled = false;
+                }
+            }
         }
     }
 }
