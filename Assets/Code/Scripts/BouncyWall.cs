@@ -18,10 +18,6 @@ namespace Code.Scripts
         [SerializeField, Range(0f, 360.0f)]
         float degreesAimAssist = 30.0f;
 
-        [Header("Dependencies")]
-        [SerializeField]
-        LayerMask ignoredMasksForLOS;
-
         private void OnCollisionEnter(Collision other)
         {
             // If it's a projectile that hits the wall

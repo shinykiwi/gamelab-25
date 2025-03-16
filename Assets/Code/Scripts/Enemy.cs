@@ -16,6 +16,12 @@ namespace Code.Scripts
         [SerializeField, Min(0.01f), Tooltip("Time the enemy has to have a Line of Sight on a player before spawning a projectile")]
         float timeToSeePlayerToSpawnProjectile = 2.0f;
 
+        [SerializeField, Min(0.01f)]
+        float maxRangeToSeePlayer = 15.0f;
+
+        [SerializeField, Tooltip("Whether the enemy tries to detect the player")]
+        bool isEnemyActive = true;
+
         [Header("Hit by projectiles")]
         [SerializeField]
         float distanceTravelledHitByProjectile = 1.0f;
@@ -60,10 +66,10 @@ namespace Code.Scripts
         {
             EnemyCollidedWithThisFrame = null; // Reset every frame
 
-            FaceNearestPlayer();
-
-            if(!IsAlive)
+            if(!isEnemyActive || !IsAlive)
                 return;
+
+            FaceNearestPlayer();
 
             if(curTimeSeeingTargetPlayer >= timeToSeePlayerToSpawnProjectile
                 && IsFacingTargetPlayer())
@@ -91,6 +97,11 @@ namespace Code.Scripts
             {
                 HitEnemy(collision, otherEnemy);
             }
+        }
+
+        public void SetEnemyActive(bool isActive)
+        {
+            isEnemyActive = isActive;
         }
 
         public void GetHitByProjectile(Vector3 direction)
@@ -172,8 +183,9 @@ namespace Code.Scripts
         void FaceNearestPlayer()
         {
             Player closestPlayer = GetClosestSeenPlayer();
+            bool isPlayerInRange = closestPlayer != null && Vector3.Distance(transform.position, closestPlayer.transform.position) <= maxRangeToSeePlayer;
 
-            if(closestPlayer != null)
+            if(isPlayerInRange)
             {
                 // Rotate towards player
                 Vector3 lookDir = closestPlayer.transform.position - transform.position;
@@ -245,6 +257,9 @@ namespace Code.Scripts
                 Gizmos.color = Color.cyan;
                 Gizmos.DrawLine(transform.position, targetPlayer.transform.position);
             }
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, maxRangeToSeePlayer);
         }
     }
 }

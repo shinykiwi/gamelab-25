@@ -22,7 +22,7 @@ namespace Code.Scripts
             rb = GetComponent<Rigidbody>();
             if (rb == null)
             {
-                Debug.Log("Cannot find rigidbody");
+                Debug.Log("Cannot find rigidbody", this);
             }
         }
 
@@ -60,14 +60,14 @@ namespace Code.Scripts
 
         private void OnCollisionEnter(Collision other)
         {
-            // If projectile hits another projectile or enemy it explodes
-            if (other.gameObject.GetComponent<Projectile>())
+            // If projectile hits anything other than a bouncy wall, it explodes
+            if(other.gameObject.GetComponent<BouncyWall>() != null)
             {
-                Kill();
+                queueDelete = false;
             }
             else
             {
-                queueDelete = false;
+                Kill();
             }
             
         }

@@ -687,6 +687,8 @@ MonoBehaviour:
   characterRenderer: {fileID: 3649244655447412834}
   rotationSpeedDegrees: 90
   timeToSeePlayerToSpawnProjectile: 2
+  maxRangeToSeePlayer: 35
+  isEnemyActive: 1
   distanceTravelledHitByProjectile: 5
   durationTimeHitByProjectile: 0.3
 --- !u!54 &4006989525825297054
@@ -730,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpawnVelocity: 7
   spawnVelocityDirection: {x: 0, y: 0, z: 1}
-  maxNbProjectilesAlive: 5
+  maxNbProjectilesAlive: 1
   projectileMaxLifetime: 60
   projectilePrefab: {fileID: 2185268885783303169, guid: f534a04d6bb3644a9b00295bd36efc0a, type: 3}
   spawnPoint: {fileID: 1549398938815517662}
@@ -1344,6 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73159fbba693f943ba19f743e015cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume: 1
   shieldHitSound: {fileID: 8300000, guid: 67c172e643b30ed4d970f045c54582f8, type: 3}
 --- !u!1 &6445675641467640621
 GameObject:
