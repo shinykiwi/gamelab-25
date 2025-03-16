@@ -39,7 +39,8 @@ public class Zone : MonoBehaviour
             if (tile != null)
             {
                 tile_list.Add(tile);
-                tile.SetZoneTypeColor(ZoneManager.Instance.ZoneColorSettings.GetZone(type));
+                if(type != ZoneType.NONE)
+                    tile.SetZoneTypeColor(ZoneManager.Instance.ZoneColorSettings.GetZone(type));
             }
         }
     }
@@ -62,10 +63,11 @@ public class Zone : MonoBehaviour
     public void SetActive(bool state)
     {
         Debug.Log(type + " setting state " + state);
-        foreach (Tile tile in tile_list)
-        {
-            tile.SetActive(state);
-        }
+        if(type != ZoneType.NONE)
+            foreach (Tile tile in tile_list)
+            {
+                tile.SetActive(state);
+            }
 
     }
 
