@@ -93,6 +93,7 @@ namespace Code.Scripts
             CurrentSection.isCompleted = true;
             CurrentSection.onSectionComplete.Invoke();
 
+            // Go to next section if there is one
             if(currentSectionIndex < levelSections.Length - 1)
             {
                 currentSectionIndex++;
@@ -114,8 +115,6 @@ namespace Code.Scripts
         {
             // Reveals the level trigger
             FindFirstObjectByType<LevelTrigger>().Show();
-            
-            //endLevelCanvas.gameObject.SetActive(true);
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Code.Scripts
             base.Start();
             portalController = GetComponentInChildren<PortalController>();
             portalObject = portalController.gameObject;
-            spawnPoint = playerNum == PlayerNum.Player1 ? Level.SpawnPointP1 : Level.SpawnPointP2;
 
             playerInput = GetComponent<PlayerInput>();
             ZoneManager.Instance.SetPlayer(this, playerNum);
@@ -38,6 +37,7 @@ namespace Code.Scripts
 
             base.Death();
 
+            spawnPoint = playerNum == PlayerNum.Player1 ? Level.SpawnPointP1 : Level.SpawnPointP2;
             StartCoroutine(DelaySpawn(Level.RespawnDelay, spawnPoint));
             
             // Deactivates portal
