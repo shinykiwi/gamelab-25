@@ -19,6 +19,9 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField, Min(0)]
     float projectileMaxLifetime = 60.0f;
 
+    [SerializeField, Min(0), Tooltip("The maximal range that the projectile can be far away from this object's position")]
+    float projectileMaxRange = 60.0f;
+
     [Header("References")]
     [SerializeField]
     Projectile projectilePrefab;
@@ -42,6 +45,7 @@ public class ProjectileSpawner : MonoBehaviour
         Vector3 worldForce = projectileSpawnVelocity * (transform.rotation * spawnVelocityDirection);
         spawnedProjectile.Fire(worldForce);
         spawnedProjectile.Owner = gameObject;
+        spawnedProjectile.SetMaxRange(projectileMaxRange, transform.position);
 
         projectilesSpawned.Add(spawnedProjectile);
         StartCoroutine(DestroyProjectile(spawnedProjectile));
@@ -70,6 +74,11 @@ public class ProjectileSpawner : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawMesh(meshFilter.sharedMesh, spawnPoint.position);
             Gizmos.DrawRay(spawnPoint.position, transform.rotation * spawnVelocityDirection);
+        }
+        if(spawnPoint)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(spawnPoint.position, projectileMaxRange);
         }
     }
 }

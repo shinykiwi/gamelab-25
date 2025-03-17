@@ -6362,6 +6362,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+      propertyPath: projectileMaxRange
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2374599489872746489, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 89.23
@@ -11138,6 +11142,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+      propertyPath: projectileMaxRange
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2374599489872746489, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.792
@@ -13878,6 +13886,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+      propertyPath: projectileMaxRange
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2374599489872746489, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.176
@@ -14401,7 +14413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7670903729285216021, guid: e625706c6b838ca43979af281790edb0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

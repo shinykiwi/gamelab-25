@@ -735,6 +735,7 @@ MonoBehaviour:
   spawnVelocityDirection: {x: 0, y: 0, z: 1}
   maxNbProjectilesAlive: 1
   projectileMaxLifetime: 60
+  projectileMaxRange: 50
   projectilePrefab: {fileID: 2185268885783303169, guid: f534a04d6bb3644a9b00295bd36efc0a, type: 3}
   spawnPoint: {fileID: 1549398938815517662}
 --- !u!1 &2733679886833301525

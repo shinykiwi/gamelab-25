@@ -16,6 +16,16 @@ namespace Code.Scripts
         private Rigidbody rb;
 
         private bool queueDelete = true;
+        private Vector3 worldSpawnPos;
+        private float maxRangeFromSpawnPos = float.MaxValue;
+
+        private void Update()
+        {
+            if(Vector3.Distance(worldSpawnPos, transform.position) >= maxRangeFromSpawnPos)
+            {
+                Kill();
+            }
+        }
 
         private void OnEnable()
         {
@@ -24,31 +34,6 @@ namespace Code.Scripts
             {
                 Debug.Log("Cannot find rigidbody", this);
             }
-        }
-
-        public void Fire(Vector3 forceWorldSpace)
-        {
-            rb.AddForce(forceWorldSpace, ForceMode.Impulse);
-        }
-
-        public void BeginPortalTravel()
-        {
-            rb.excludeLayers = LayerMask.GetMask("Player");
-        }
-
-        public void EndPortalTravel()
-        {
-            rb.excludeLayers = new LayerMask();
-        }
-
-        public void Kill()
-        {
-            if(explodeVFX)
-            {
-                GameObject vfx = Instantiate(explodeVFX, transform.position, Quaternion.identity).gameObject;
-                Destroy(vfx, 15.0f);
-            }
-            Destroy(gameObject);
         }
 
         private void OnCollisionExit(Collision other)
@@ -96,6 +81,38 @@ namespace Code.Scripts
         {
             queueDelete = true;
             StartCoroutine(KillAfterSeconds());
+        }
+
+
+        public void Fire(Vector3 forceWorldSpace)
+        {
+            rb.AddForce(forceWorldSpace, ForceMode.Impulse);
+        }
+
+        public void BeginPortalTravel()
+        {
+            rb.excludeLayers = LayerMask.GetMask("Player");
+        }
+
+        public void EndPortalTravel()
+        {
+            rb.excludeLayers = new LayerMask();
+        }
+
+        public void SetMaxRange(float maxRangeFromSpawn, Vector3 spawnWorldPos)
+        {
+            this.maxRangeFromSpawnPos = maxRangeFromSpawn;
+            this.worldSpawnPos = spawnWorldPos;
+        }
+
+        public void Kill()
+        {
+            if(explodeVFX)
+            {
+                GameObject vfx = Instantiate(explodeVFX, transform.position, Quaternion.identity).gameObject;
+                Destroy(vfx, 15.0f);
+            }
+            Destroy(gameObject);
         }
 
         private IEnumerator KillAfterSeconds()
