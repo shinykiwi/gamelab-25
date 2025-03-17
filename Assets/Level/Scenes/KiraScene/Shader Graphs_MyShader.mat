@@ -25,11 +25,13 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _RECEIVE_SHADOWS_OFF
+  - _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -37,6 +39,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2D_9fbb15b23fb644e48d2d536642069795_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7eda6815d20d8d54b9a520bf72700095, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e428843be4b24ddab5ce82cf710a3f09_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e4615803bcd82410c84926d2f5b4126b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 2800000, guid: 7eda6815d20d8d54b9a520bf72700095, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -55,10 +65,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Cull: 2
+    - _DstBlend: 10
     - _Intensity: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _TextureScale: 2
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _Base_Color: {r: 1, g: 0.14192966, b: 0, a: 0}
     - _GridColor: {r: 0, g: 1, b: 0.9478698, a: 0}
