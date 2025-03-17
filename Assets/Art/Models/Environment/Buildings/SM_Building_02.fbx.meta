@@ -7,21 +7,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building_1
-    second: {fileID: -50817764338153473, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Building_2
-    second: {fileID: -551089579767075874, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Building_3
-    second: {fileID: -6852963621633026537, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Glow_Blue
     second: {fileID: 2100000, guid: d6af13e310c6bff48ad9ac144d997a00, type: 2}
   - first:
