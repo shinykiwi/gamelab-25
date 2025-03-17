@@ -37,6 +37,14 @@ namespace Code.Scripts
             }
         }
 
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.CompareTag("Void"))
+            {
+                Death();
+            }
+        }
+
         protected virtual void Death()
         {
             if (!IsAlive)
