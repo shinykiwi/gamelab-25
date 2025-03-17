@@ -72,6 +72,31 @@ public class Zone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(boxCollider.center, boxCollider.size);
+        Vector3 center = boxCollider.transform.TransformPoint(boxCollider.center);
+        switch (type)
+        {
+            case ZoneType.A:
+                Gizmos.color = Color.yellow;
+                break;
+            case ZoneType.B:
+                Gizmos.color = Color.red;
+                break;
+            case ZoneType.C:
+                Gizmos.color = Color.green;
+                break;
+            case ZoneType.D:
+                Gizmos.color = Color.blue;
+                break;
+            case ZoneType.E:
+                Gizmos.color = Color.cyan;
+                break;
+            case ZoneType.F:
+                Gizmos.color = Color.white;
+                break;
+            case ZoneType.NONE:
+                Gizmos.color = Color.gray;
+                break;
+        }
+        Gizmos.DrawWireCube(center, boxCollider.size );
     }
 }
