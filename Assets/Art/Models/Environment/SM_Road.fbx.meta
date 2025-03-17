@@ -7,16 +7,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Building_2
-    second: {fileID: -551089579767075874, guid: 0dab3555674076f49b4951c60bf44393, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Building_3
-    second: {fileID: -6852963621633026537, guid: 0dab3555674076f49b4951c60bf44393, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: Glow_Pink
     second: {fileID: 2100000, guid: d6af13e310c6bff48ad9ac144d997a00, type: 2}
   materials:
