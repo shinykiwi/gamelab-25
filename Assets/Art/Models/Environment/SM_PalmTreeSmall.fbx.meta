@@ -3,7 +3,12 @@ guid: 083f734268aab1e49b632c54c7d92daf
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV MAP
+    second: {fileID: 2100000, guid: d6af13e310c6bff48ad9ac144d997a00, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
