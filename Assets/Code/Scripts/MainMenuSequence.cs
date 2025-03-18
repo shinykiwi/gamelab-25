@@ -20,19 +20,27 @@ public class MainMenuSequence : MonoBehaviour
     private IEnumerator LoadLevel(string sceneName)
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("fading in");
+     
         fadeToBlack.DoFadeIn(2f);
-        yield return new WaitForSeconds(2f);
         
-        fadeToBlack.Toggle();
-        Debug.Log("playing video");
-        float seconds = fadeToBlack.PlayVideo();
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(1f);
         
-        fadeToBlack.Toggle();
-        Debug.Log("loading");
+        fadeToBlack.DoFadeIn();
         
-        LevelManager.Instance.LoadLevel(1);
+        // fadeToBlack.Toggle();
+        //
+        // float seconds = fadeToBlack.PlayVideo();
+        //
+        // yield return new WaitForSeconds(seconds);
+        //
+        // fadeToBlack.Toggle();
+        //
+        // LevelManager.Instance.LoadLevel(1);
+        
+    }
+
+    private void ShowCharacterSelection()
+    {
         
     }
     
