@@ -2606,6 +2606,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 574247550158957972, guid: e88af1cb84c874518b085d8359cef69c, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 574247550158957972, guid: e88af1cb84c874518b085d8359cef69c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 574247550158957972, guid: e88af1cb84c874518b085d8359cef69c, type: 3}
+      propertyPath: m_TargetCamera
+      value: 
+      objectReference: {fileID: 961739752}
     - target: {fileID: 2730333507227554321, guid: e88af1cb84c874518b085d8359cef69c, type: 3}
       propertyPath: fadeOutOnStart
       value: 0
