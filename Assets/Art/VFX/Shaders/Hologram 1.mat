@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hologram
+  m_Name: Hologram 1
   m_Shader: {fileID: -6465566751694194690, guid: 01341d49c78aa1a4caef72f19093923e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,8 +41,12 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7143f68d65cde214db758e346a9cbd05, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ModelTexture:
+    - _ModelNormal:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ModelTexture:
+        m_Texture: {fileID: 2800000, guid: 8f075805525de4d4780b03235731c764, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_31a9bc5a39f0436fb046fbbd24406740_Texture_1_Texture2D:
@@ -71,9 +75,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Color_19C6C157: {r: 2.3107617, g: 0.5794304, b: 2.9960783, a: 1}
+    - Color_19C6C157: {r: 0.6313726, g: 0, b: 0.8862745, a: 1}
     - Color_E448CF9F: {r: 2.9960778, g: 1.0823529, b: 0, a: 0}
     - Vector2_6925FF1E: {r: 1, g: 3, b: 0, a: 0}
-    - _Position: {r: 0, g: 2, b: 0, a: 0}
+    - _Position: {r: 0, g: 2.1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
