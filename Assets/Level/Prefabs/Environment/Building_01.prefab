@@ -67,11 +67,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f31fa84c6db93124dbc3ce7ca1fa80f1, type: 2}
+      objectReference: {fileID: 2100000, guid: b1736bfb5d0a74a49a630c334a947f0a, type: 2}
     - target: {fileID: -7511558181221131132, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 75de8b8068e61c14dab9c3b90620fc6e, type: 2}
+      objectReference: {fileID: 2100000, guid: f31fa84c6db93124dbc3ce7ca1fa80f1, type: 2}
     - target: {fileID: 919132149155446097, guid: ac8cecbe4d6d6184db4b99383653aa92, type: 3}
       propertyPath: m_Name
       value: Building_01

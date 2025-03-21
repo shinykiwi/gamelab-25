@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 8836abf7346b8f04b98ff3eb91fd1a2b
+guid: 5d225e41b14b2c346bca6ff5a579a135
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glow_Blue
-    second: {fileID: 2100000, guid: d6af13e310c6bff48ad9ac144d997a00, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glow_Pink
-    second: {fileID: 2100000, guid: 08e19e0f2a52c29449bba5c3ae261a89, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Window
-    second: {fileID: 2100000, guid: d6af13e310c6bff48ad9ac144d997a00, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
