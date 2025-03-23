@@ -13,12 +13,13 @@ public class Tile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //mat.EnableKeyword("_EMISSION");
         List<Material> mat = new List<Material>();
         renderer.GetMaterials(mat);
-        mat[1].EnableKeyword("_EMISSION");
-        mat_albedo = mat[0];
-        mat_glow = mat[1];
+        mat_albedo = new Material(mat[0]);
+        mat_glow = new Material(mat[1]);
+        mat_glow.EnableKeyword("_EMISSION");
+
+        renderer.materials = new Material[] { mat_albedo, mat_glow };
     }
 
     // Update is called once per frame
@@ -31,21 +32,30 @@ public class Tile : MonoBehaviour
     {
         if (state)
         {
-            mat_glow.SetColor("_EmissionColor", color_glow * 10);
-            mat_albedo.color = color_albedo * 1f;
+            Debug.Log("Tile active");
+            mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
+            mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_on;
         }
 
         else
         {
-            mat_glow.SetColor("_EmissionColor", color_glow * 1);
-            mat_albedo.color = color_albedo * 0.1f;
+
+            Debug.Log("Tile not active");
+
+            mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
+            mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_off;
         }
     }
 
     public void SetZoneTypeColor(Material type_mat)
     {
-        color_glow = type_mat.GetColor("_EmissionColor");
-        color_albedo = type_mat.color;
+        Color tmp = type_mat.GetColor("_EmissionColor");
+        color_glow = new Color(tmp.r, tmp.g, tmp.b, tmp.a);
+
+        tmp = type_mat.color;
+        color_albedo = new Color(tmp.r, tmp.g, tmp.b, tmp.a);
+
+
         mat_glow.SetColor("_EmissionColor", color_glow);
         mat_albedo.color = color_albedo;
     }

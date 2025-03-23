@@ -10,6 +10,12 @@ public class ZoneColorSettings : ScriptableObject
     public Material zoneE;
     public Material zoneF;
 
+    public float emission_force_on;
+    public float emission_force_off;
+
+    public float albedo_force_on;
+    public float albedo_force_off;
+
     public Material GetZone(ZoneType type)
     {
         switch (type)

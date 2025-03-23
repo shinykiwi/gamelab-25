@@ -135,6 +135,10 @@ public class CameraController : MonoBehaviour
         Debug.Log("Index is " + index);
 
         //Debug.Log("There are " + enemies.Length);
+        if(index == -1)
+        {
+            return new Vector3();
+        }
         return enemies[index].transform.position;
     }
 

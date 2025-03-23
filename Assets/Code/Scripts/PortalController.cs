@@ -76,7 +76,7 @@ public class PortalController : MonoBehaviour
         if(other.gameObject.GetComponent<Projectile>() is { } projectile
             && !incomingObjects.Contains(other.gameObject))
         {
-            if(Level.Instance.ArePlayersAlive() && Level.Instance.ArePortalActive())
+            if(Level.Instance.ArePlayersAlive() && ZoneManager.Instance.ArePortalActive())
             {
                 TeleportProjectile(projectile);
             }
@@ -153,7 +153,7 @@ public class PortalController : MonoBehaviour
 
     private void Update()
     {
-        if(Level.Instance.ArePortalActive())
+        if(ZoneManager.Instance.ArePortalActive())
         {
             portal_render.enabled = true;
             portal_collider.enabled = true;

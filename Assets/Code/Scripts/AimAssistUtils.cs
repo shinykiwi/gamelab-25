@@ -47,7 +47,7 @@ public class AimAssistUtils
             }
         }
 
-        foreach(Player player in Level.Instance.Players)
+        foreach(Player player in Level.Instance.players)
         {
             Vector3 toTarget = player.transform.position - projectilePosition;
             if(toTarget.magnitude >= aimAssistDistanceMax)

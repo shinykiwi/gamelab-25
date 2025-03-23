@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
     {
         menuAudio = GetComponentInChildren<MenuAudio>();
 
-        var playerInputs = Level.Instance.Players.ConvertAll(player => player.GetComponent<PlayerInput>());
+        var playerInputs = Level.Instance.players.ConvertAll(player => player.GetComponent<PlayerInput>());
         pauseActions = playerInputs.ConvertAll(playerInput => playerInput.actions["Pause"]).ToArray();
         cancelActions = playerInputs.ConvertAll(playerInput => playerInput.actions["Cancel"]).ToArray();
 
@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
     {
         parent.SetActive(!parent.activeSelf);
 
-        var playerInputs = Level.Instance.Players.ConvertAll(player => player.GetComponent<PlayerInput>());
+        var playerInputs = Level.Instance.players.ConvertAll(player => player.GetComponent<PlayerInput>());
         if(parent.activeSelf)
         {
             EventSystem.current.SetSelectedGameObject(pauseSelectable);

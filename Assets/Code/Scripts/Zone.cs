@@ -52,14 +52,24 @@ public class Zone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //TODO maybe wait a bit
+
         var player = other.gameObject.GetComponent<Player>();
         if (player == null) return;
 
-        player.zone = type;
-        
-        ZoneManager.Instance.NotifyZoneChange();
+        if (player.zone != this)
+        {
+            player.zone = this;
+            ZoneManager.Instance.NotifyZoneChange();
+
+        }
+
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+    }
+    
     public void SetActive(bool state)
     {
         //Debug.Log(type + " setting state " + state);

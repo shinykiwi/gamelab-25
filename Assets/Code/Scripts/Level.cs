@@ -23,7 +23,7 @@ namespace Code.Scripts
         public static List<Enemy> SectionEnemies => CurrentSection?.enemiesToBeat;
         public List<Enemy> AllEnemies { get; private set; }
         public List<BouncyWall> AllBouncyWalls { get; private set; }
-        public List<Player> Players { get; private set; }
+        public List<Player> players { get; private set; }
 
         private int currentSectionIndex = 0;
         private LevelSection currentSection = null;
@@ -44,7 +44,7 @@ namespace Code.Scripts
             // Require to beat all enemies in the level
             AllEnemies = new List<Enemy>(FindObjectsByType<Enemy>(FindObjectsSortMode.None));
             AllBouncyWalls = new List<BouncyWall>(FindObjectsByType<BouncyWall>(FindObjectsSortMode.None));
-            Players = new List<Player>(FindObjectsByType<Player>(FindObjectsSortMode.None));
+            players = new List<Player>(FindObjectsByType<Player>(FindObjectsSortMode.None));
 
             if(levelSections.Length > 0)
                 currentSection = levelSections[currentSectionIndex];
@@ -65,7 +65,7 @@ namespace Code.Scripts
 
         public bool ArePlayersAlive()
         {
-            foreach(var player in Players)
+            foreach(var player in players)
             {
                 if(!player.IsAlive)
                 {
@@ -75,18 +75,6 @@ namespace Code.Scripts
             return true;
         }
 
-        public bool ArePortalActive()
-        {
-            ZoneType type = Players[0].zone;
-            if (type == ZoneType.NONE) return false;
-
-            foreach (var player in Players)
-            {
-                if (type != player.zone) return false;
-            }
-
-            return true;
-        }
 
         public void SectionCompleted()
         {

@@ -17,7 +17,7 @@ namespace Code.Scripts
         private Transform spawnPoint;
         private PlayerInput playerInput;
 
-        public ZoneType zone;
+        public Zone zone;
 
         protected override void Start()
         {
