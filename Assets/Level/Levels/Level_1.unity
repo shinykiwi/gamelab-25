@@ -2208,10 +2208,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 511485858}
     m_Modifications:
-    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
-      propertyPath: m_Name
-      value: SM_ground_full (1)
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -2263,6 +2259,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
+      propertyPath: m_Name
+      value: SM_ground_full (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2375,10 +2375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 511485858}
     m_Modifications:
-    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
-      propertyPath: m_Name
-      value: SM_ground_full
-      objectReference: {fileID: 0}
+    - target: {fileID: 7986673651211229570, guid: f4ed569fa52f23946b0c7ab864b9bf20, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8e4e59fa92ece6b46abbd142c59d2d83, type: 2}
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -2431,10 +2431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7986673651211229570, guid: f4ed569fa52f23946b0c7ab864b9bf20, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 8e4e59fa92ece6b46abbd142c59d2d83, type: 2}
+    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
+      propertyPath: m_Name
+      value: SM_ground_full
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4958,10 +4958,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 511485858}
     m_Modifications:
-    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
-      propertyPath: m_Name
-      value: SM_ground_full (3)
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -5013,6 +5009,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
+      propertyPath: m_Name
+      value: SM_ground_full (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6732,10 +6732,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 511485858}
     m_Modifications:
-    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
-      propertyPath: m_Name
-      value: SM_ground_full (2)
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -6787,6 +6783,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
+      propertyPath: m_Name
+      value: SM_ground_full (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10268,7 +10268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ZoneColorSettings: {fileID: 11400000, guid: 09b25938662a42248a03fca359676f1d, type: 2}
   active_type: 0
-  is_split_zone: 0
+  is_split_zone: 1
 --- !u!4 &1324965465
 Transform:
   m_ObjectHideFlags: 0
