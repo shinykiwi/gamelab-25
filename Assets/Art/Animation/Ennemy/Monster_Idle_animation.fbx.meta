@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e5553ce1da5eb649922b478b509ab4a
+guid: e177f936dc76e7d47ba92b08f8296e21
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Modularfloor
-    second: {fileID: 2100000, guid: dde1ad93b3e98794f9ac25213b57f687, type: 2}
+      name: blinn1
+    second: {fileID: 2100000, guid: 742ecb6781245954a89c49701de83b8f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -102,7 +102,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

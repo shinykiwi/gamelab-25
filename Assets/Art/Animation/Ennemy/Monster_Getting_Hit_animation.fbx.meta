@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e5553ce1da5eb649922b478b509ab4a
+guid: ae01e2b2a38c8fa48b1091d9d5219f57
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Modularfloor
-    second: {fileID: 2100000, guid: dde1ad93b3e98794f9ac25213b57f687, type: 2}
+      name: blinn1
+    second: {fileID: 2100000, guid: 742ecb6781245954a89c49701de83b8f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
