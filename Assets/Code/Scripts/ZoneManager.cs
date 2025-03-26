@@ -114,7 +114,7 @@ public class ZoneManager : MonoBehaviour
         if (player1.zone == null || player2.zone == null)
             return;
 
-        if (player1.zone.type == player2.zone.type && player1.zone != player2.zone)
+        if (player1.zone != player2.zone)
         {
             active_type = player1.zone.type;
 

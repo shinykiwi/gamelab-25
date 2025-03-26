@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour
     Material mat_albedo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         List<Material> mat = new List<Material>();
         renderer.GetMaterials(mat);
