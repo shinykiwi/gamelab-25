@@ -685,13 +685,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f641719c784c1eba6fd8dcfb1bbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 0}
+  characterRenderer: {fileID: 7372837651493500063}
   rotationSpeedDegrees: 90
   timeToSeePlayerToSpawnProjectile: 2
   maxRangeToSeePlayer: 35
   isEnemyActive: 1
   distanceTravelledHitByProjectile: 5
   durationTimeHitByProjectile: 0.3
+  animator: {fileID: 4432184461605341457}
 --- !u!54 &4006989525825297054
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2350,11 +2351,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_ennemy_low
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1c91d997322f38c4a91cc248ba306b57, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: edc2886d2c0419e4db4194cb5708518c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c91d997322f38c4a91cc248ba306b57, type: 3}
+--- !u!95 &4432184461605341457 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1c91d997322f38c4a91cc248ba306b57, type: 3}
+  m_PrefabInstance: {fileID: 7847766309252019328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7372837651493500063 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 772729242736361503, guid: 1c91d997322f38c4a91cc248ba306b57, type: 3}
+  m_PrefabInstance: {fileID: 7847766309252019328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7737857732992291691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c91d997322f38c4a91cc248ba306b57, type: 3}

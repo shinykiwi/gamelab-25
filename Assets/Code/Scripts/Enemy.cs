@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,9 @@ namespace Code.Scripts
         [SerializeField, Min(0.01f)]
         float durationTimeHitByProjectile = 0.25f;
 
+        [SerializeField]
+        Animator animator;
+
         public Enemy EnemyCollidedWithThisFrame { get; private set; }
         public Vector3 PrevVelocity { get; private set; } // Previous physics iteration velocity
 
@@ -41,6 +45,8 @@ namespace Code.Scripts
         Player targetPlayer;
         float curTimeSeeingTargetPlayer = 0.0f;
         float timeLeftHit = 0.0f;
+
+
 
         private EnemyAudio enemyAudio;
 
@@ -106,6 +112,7 @@ namespace Code.Scripts
 
         public void GetHitByProjectile(Vector3 direction)
         {
+            PlayGettingHitAnimation();
             Vector3 velocity = direction * distanceTravelledHitByProjectile / durationTimeHitByProjectile;
             ChangeVelocityOnHit(velocity, durationTimeHitByProjectile);
         }
@@ -260,6 +267,14 @@ namespace Code.Scripts
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, maxRangeToSeePlayer);
+        }
+
+        private void PlayGettingHitAnimation()
+        {
+            if(animator == null)
+                return;
+
+            animator.SetTrigger("is_hit");
         }
     }
 }

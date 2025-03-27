@@ -8200,6 +8200,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1856414340077045341, guid: f4ed569fa52f23946b0c7ab864b9bf20, type: 3}
   m_PrefabInstance: {fileID: 55673358}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1145237014 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4432184461605341457, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+  m_PrefabInstance: {fileID: 1659859448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1147044136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12619,6 +12624,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1145237014}
     - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: maxRangeToSeePlayer
       value: 22
