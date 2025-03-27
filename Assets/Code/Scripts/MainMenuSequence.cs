@@ -27,6 +27,8 @@ public class MainMenuSequence : MonoBehaviour
         
         fadeToBlack.DoFadeIn();
         
+        SceneManager.LoadScene("CharacterSelection");
+        
         // fadeToBlack.Toggle();
         //
         // float seconds = fadeToBlack.PlayVideo();
@@ -35,7 +37,7 @@ public class MainMenuSequence : MonoBehaviour
         //
         // fadeToBlack.Toggle();
         //
-        // LevelManager.Instance.LoadLevel(1);
+        
         
     }
 
