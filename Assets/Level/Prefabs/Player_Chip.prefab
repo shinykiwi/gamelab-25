@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 8306914183442789334}
   - component: {fileID: 1551629877205542714}
   m_Layer: 3
-  m_Name: PlayerAnim
+  m_Name: Player_Chip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
