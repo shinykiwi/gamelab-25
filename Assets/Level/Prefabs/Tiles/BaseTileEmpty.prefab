@@ -53,9 +53,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -1107978820458350540, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d3df15721e524944aa18c78524be06d, type: 2}
+    - target: {fileID: -1107978820458350540, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: -7273844043322662409, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
+      objectReference: {fileID: 2100000, guid: 822af15d767b3214ea005811721a5bd6, type: 2}
     - target: {fileID: 919132149155446097, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_Name
       value: BaseTileEmpty
