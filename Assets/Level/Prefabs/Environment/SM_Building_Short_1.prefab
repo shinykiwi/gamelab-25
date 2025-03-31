@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Building_Short_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f09dc8e830b57241b62717a2494936a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
