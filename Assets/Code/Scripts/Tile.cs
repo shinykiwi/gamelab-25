@@ -34,7 +34,7 @@ public class Tile : MonoBehaviour
         {
             Debug.Log("Tile active");
             mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
-            mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_on;
+            mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_on);
         }
 
         else
@@ -43,7 +43,8 @@ public class Tile : MonoBehaviour
             Debug.Log("Tile not active");
 
             mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
-            mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_off;
+            mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
+            //mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_off;
         }
     }
 
@@ -56,7 +57,9 @@ public class Tile : MonoBehaviour
         color_albedo = new Color(tmp.r, tmp.g, tmp.b, tmp.a);
 
 
-        mat_glow.SetColor("_EmissionColor", color_glow);
-        mat_albedo.color = color_albedo;
+        mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
+        mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
+        //mat_albedo.color = color_albedo;
+
     }
 }

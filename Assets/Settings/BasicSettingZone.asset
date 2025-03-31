@@ -19,6 +19,6 @@ MonoBehaviour:
   zoneE: {fileID: 2100000, guid: 10f8ca60af50b01479918f0b5f8d605e, type: 2}
   zoneF: {fileID: 2100000, guid: 2080e9c0f2cb46c4aac62d52afab536e, type: 2}
   emission_force_on: 10
-  emission_force_off: 3
-  albedo_force_on: 4
-  albedo_force_off: 1
+  emission_force_off: 4
+  albedo_force_on: 0.5
+  albedo_force_off: 0.1
