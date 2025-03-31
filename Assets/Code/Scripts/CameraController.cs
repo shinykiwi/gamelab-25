@@ -39,10 +39,6 @@ public class CameraController : MonoBehaviour
         
         baseDistance = positionComposer.CameraDistance;
         initialDistance = CalculateDistance();
-        
-        // Debug.Log(positionComposer);
-        // Debug.Log(baseDistance);
-        // Debug.Log(initialDistance);
 
         cameraTarget = Instantiate(cameraTarget);
         cam.Follow = cameraTarget.transform;

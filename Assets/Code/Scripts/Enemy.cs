@@ -156,6 +156,8 @@ namespace Code.Scripts
 
             base.Death();
             Level.Instance.EnemyHasBeenDefeated(this);
+            NewCameraController.Instance.Reset();
+
         }
 
         private void ChangeVelocityOnHit(Vector3 newVelocity, float duration)

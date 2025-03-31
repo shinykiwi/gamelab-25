@@ -114,12 +114,11 @@ public class ZoneManager : MonoBehaviour
         if (player1.zone == null || player2.zone == null)
             return;
 
+        
         if (player1.zone != player2.zone)
         {
             active_type = player1.zone.type;
-
-            DefaultCameraLogic();
-
+            
             player1.zone.SetActive(true);
             player2.zone.SetActive(true);
 
@@ -148,7 +147,6 @@ public class ZoneManager : MonoBehaviour
         if (player1.zone.type == player2.zone.type)
         {
             active_type = player1.zone.type;
-            DefaultCameraLogic();
 
             foreach (Zone zone in zones)
             {
@@ -170,19 +168,5 @@ public class ZoneManager : MonoBehaviour
             }
         }
 
-    }
-
-    private void DefaultCameraLogic()
-    {
-        if (active_type != ZoneType.NONE)
-        {
-            CameraController cameraController = FindAnyObjectByType<CameraController>();
-            cameraController.SetClosestEnemy();
-        }
-        else if (active_type == ZoneType.NONE)
-        {
-            CameraController cameraController = FindAnyObjectByType<CameraController>();
-            cameraController.ClearClosestEnemy();
-        }
     }
 }
