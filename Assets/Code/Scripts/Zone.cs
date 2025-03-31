@@ -52,22 +52,31 @@ public class Zone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //TODO maybe wait a bit
+        var player = other.gameObject.GetComponent<Player>();
+        if (player == null) return;
+
+        player.zone = null;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
 
         var player = other.gameObject.GetComponent<Player>();
         if (player == null) return;
 
-        if (player.zone != this)
+        if(type == ZoneType.NONE && player.zone == null) 
+        {
+            player.zone = this;
+            ZoneManager.Instance.NotifyZoneChange();
+        }
+
+        else if (player.zone != this)
         {
             player.zone = this;
             ZoneManager.Instance.NotifyZoneChange();
 
         }
 
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
     }
     
     public void SetActive(bool state)
