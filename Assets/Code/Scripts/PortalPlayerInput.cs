@@ -14,9 +14,13 @@ public class PortalPlayerInput : MonoBehaviour
 
     public PlayerInput playerInput;
 
+    [SerializeField, Tooltip("Size of the gaps in angle (Use dividers of 360 and 90 for good results:30,45")]
+    private int portalAngleStepSize = 30;
+
     private InputAction LookAction;
 
     private float currentAngle = 0; // Current angle of the shield around the character
+    private float targetAngle = 0.0f; // Target angle of the shield around the character
     private Vector3 currentShieldPosition; // To store the current shield position
 
     private void Start()
@@ -43,29 +47,37 @@ public class PortalPlayerInput : MonoBehaviour
             lookInputValue = (new Vector2(lookDir.x, lookDir.z)).normalized;
         }
 
+        // Step1: Update the target angle based on joystick input
         lookInputValue = lookInputValue.normalized;
         if(lookInputValue.magnitude > 0.3f)
         {
-            // Step 1: Calculate the target angle based on joystick input
-            float target_angle = Mathf.Atan2(lookInputValue.y, lookInputValue.x);
+            // Calculate the target angle based on joystick input
+            targetAngle = Mathf.Atan2(lookInputValue.y, lookInputValue.x);
 
-            // Step 2: Use Mathf.DeltaAngle to calculate the shortest path to the target angle
-            float angleDifference = Mathf.DeltaAngle(currentAngle * Mathf.Rad2Deg, target_angle * Mathf.Rad2Deg);
-
-            // Step 3: Smoothly interpolate to the target angle
-            // Use LerpAngle to ensure smooth transition, combined with delta angle for shortest path
-            currentAngle = Mathf.LerpAngle(currentAngle, currentAngle + Mathf.Deg2Rad * angleDifference, Time.deltaTime * 5f); // 5f controls the speed
-
-            // Step 4: Calculate the new position based on the smooth angle
-            float x = orbitRadius * Mathf.Cos(currentAngle) + character.position.x;
-            float z = orbitRadius * Mathf.Sin(currentAngle) + character.position.z;
-
-            // Update the shield's position to stay on the orbit
-            portal.position = new Vector3(x, character.position.y, z);
-
-            // Step 5: Calculate the current rotation that the shield should have based on the new position
-            Vector3 direction = portal.position - character.position;
-            portal.rotation = Quaternion.LookRotation(direction);
+            // Lock the angles to specific degree increments, if not using keyboard and mouse
+            if(playerInput.currentControlScheme != "Keyboard&Mouse")
+            {
+                targetAngle = Mathf.Round(targetAngle * Mathf.Rad2Deg / portalAngleStepSize) * portalAngleStepSize;
+                targetAngle *= Mathf.Deg2Rad;
+            }
         }
+        // Step2: Set the portal's target angle to the target angle
+        // Use Mathf.DeltaAngle to calculate the shortest path to the target angle
+        float angleDifference = Mathf.DeltaAngle(currentAngle * Mathf.Rad2Deg, targetAngle * Mathf.Rad2Deg);
+
+        // Smoothly interpolate to the target angle
+        // Use LerpAngle to ensure smooth transition, combined with delta angle for shortest path
+        currentAngle = Mathf.LerpAngle(currentAngle, currentAngle + Mathf.Deg2Rad * angleDifference, Time.deltaTime * 5f); // 5f controls the speed
+
+        // Calculate the new position based on the smooth angle
+        float x = orbitRadius * Mathf.Cos(currentAngle) + character.position.x;
+        float z = orbitRadius * Mathf.Sin(currentAngle) + character.position.z;
+
+        // Update the shield's position to stay on the orbit
+        portal.position = new Vector3(x, character.position.y, z);
+
+        // Calculate the current rotation that the shield should have based on the new position
+        Vector3 direction = portal.position - character.position;
+        portal.rotation = Quaternion.LookRotation(direction);
     }
 }
