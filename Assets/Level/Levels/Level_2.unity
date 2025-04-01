@@ -10995,7 +10995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileMaxRange
-      value: 29.5
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileSpawnVelocity
@@ -11063,7 +11063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: maxRangeToSeePlayer
-      value: 29.1
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: durationTimeHitByProjectile
@@ -18961,7 +18961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileMaxRange
-      value: 20.1
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2374599489872746489, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: m_LocalPosition.x

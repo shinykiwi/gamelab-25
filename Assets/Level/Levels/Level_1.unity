@@ -6968,7 +6968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileMaxRange
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileSpawnVelocity
@@ -7036,7 +7036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: maxRangeToSeePlayer
-      value: 32.2
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3281874137226433858, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: distanceTravelledHitByProjectile
@@ -10193,10 +10193,6 @@ PrefabInstance:
       propertyPath: portalAngleStepSize
       value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: 8306914183442789334, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
-      propertyPath: moveSpeed
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12839,7 +12835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileMaxRange
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileSpawnVelocity
@@ -13971,10 +13967,6 @@ PrefabInstance:
     - target: {fileID: 7605111313000734922, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: portalAngleStepSize
       value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306914183442789334, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: moveSpeed
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15746,7 +15738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileMaxRange
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1730633615913677341, guid: 50a59d51b4f5feb4b96318b57af2fbc8, type: 3}
       propertyPath: projectileSpawnVelocity
