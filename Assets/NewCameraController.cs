@@ -24,6 +24,8 @@ public class NewCameraController : MonoBehaviour
         {
             Instance = this;
         }
+        
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
