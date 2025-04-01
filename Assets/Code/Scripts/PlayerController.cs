@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     float rotation_speed = 1000f;
 
     bool isInvincibleToProjectiles = false;
+    bool isBeingHit = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,12 +55,14 @@ public class PlayerController : MonoBehaviour
         playerAudio = GetComponentInChildren<PlayerAudio>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        Vector2 moveInputValue = moveAction.ReadValue<Vector2>();
-        Vector3 move = new Vector3(moveInputValue.x, 0, moveInputValue.y);
-        Move(move);
+        if(!isBeingHit)
+        {
+            Vector2 moveInputValue = moveAction.ReadValue<Vector2>();
+            Vector3 move = new Vector3(moveInputValue.x, 0, moveInputValue.y);
+            Move(move);
+        }
     }
 
     public void GetHitByProjectile(Vector3 direction)
@@ -81,9 +84,8 @@ public class PlayerController : MonoBehaviour
         player_animator.SetFloat("movement_amount", movement_amount);
         player_animator.SetBool("is_aiming", false);
 
-        //Move the player transform
-        Vector3 displacement = moveSpeed * Time.deltaTime * move;
-        rb.MovePosition(rb.position + displacement);
+        //Move the player
+        rb.linearVelocity = moveSpeed * move;
 
         if (move.magnitude > 0)
         {
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         // TODO add animation
         playerInput.DeactivateInput();
+        isBeingHit = true;
         rb.useGravity = false;
         coll.excludeLayers += fenceMask;
 
@@ -122,6 +125,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.useGravity = true;
         coll.excludeLayers -= fenceMask;
+        isBeingHit = false;
         playerInput.ActivateInput();
     }
 }

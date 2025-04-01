@@ -121,6 +121,6 @@ public class PortalPlayerInput : MonoBehaviour
     }
     private bool ArePortalAnglesStepped()
     {
-        return playerInput.currentControlScheme != "Keyboard&Mouse";
+        return playerInput.currentControlScheme == "Gamepad" || playerInput.currentControlScheme == "Joystick";
     }
 }
