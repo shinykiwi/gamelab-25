@@ -43,6 +43,7 @@ public class AimAssistUtils
                 && HasLineOfSightTo(projectilePosition, enemy.transform.position, enemyMask, ignoredMasksForLOS))
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
+                bestAngle = angle;
                 bestToTarget = toTarget;
             }
         }
@@ -59,6 +60,7 @@ public class AimAssistUtils
                 && HasLineOfSightTo(projectilePosition, player.transform.position, playerMask, ignoredMasksForLOS))
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
+                bestAngle = angle;
                 bestToTarget = toTarget;
             }
         }

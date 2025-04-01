@@ -11,6 +11,10 @@ public class PlayerDeviceManager : MonoBehaviour
 
     private void Start()
     {
+        if(playerInput1 == null || playerInput2 == null)
+        {
+            Debug.LogError("Missing PlayerInput references.", this);
+        }
         AssignInitialDevices();
     }
 

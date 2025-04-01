@@ -254,6 +254,7 @@ MonoBehaviour:
   positionSmoothness: 10
   angle_treshold: 0.3
   playerInput: {fileID: 5138074261643368017}
+  portalAngleStepSize: 30
 --- !u!114 &5138074261643368017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 6721707543131772684}
-  playerNum: 0
+  playerNum: 1
   zone: {fileID: 0}
 --- !u!114 &8306914183442789334
 MonoBehaviour:
