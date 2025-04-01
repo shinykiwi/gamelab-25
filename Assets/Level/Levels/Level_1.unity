@@ -5417,6 +5417,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8795479721249133844, guid: 7f270f4e6842d6947a42e982d09002fa, type: 3}
   m_PrefabInstance: {fileID: 702803385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &708214505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5138074261643368017, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+  m_PrefabInstance: {fileID: 1833382593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &710749191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10178,6 +10189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Jupi
       objectReference: {fileID: 0}
+    - target: {fileID: 7605111313000734922, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
+      propertyPath: portalAngleStepSize
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 8306914183442789334, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
       propertyPath: moveSpeed
       value: 7
@@ -13953,6 +13968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Chip
       objectReference: {fileID: 0}
+    - target: {fileID: 7605111313000734922, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
+      propertyPath: portalAngleStepSize
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 8306914183442789334, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: moveSpeed
       value: 7
@@ -15173,6 +15192,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6097faf86e6c6ab48871ee9fcc06f417, type: 3}
+--- !u!114 &2098204831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5138074261643368017, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
+  m_PrefabInstance: {fileID: 1368986801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2099916746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16238,11 +16268,11 @@ PrefabInstance:
     - target: {fileID: 797770709642961036, guid: a77493a45e1134401a7d71e111bf5304, type: 3}
       propertyPath: playerInput1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 708214505}
     - target: {fileID: 797770709642961036, guid: a77493a45e1134401a7d71e111bf5304, type: 3}
       propertyPath: playerInput2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2098204831}
     - target: {fileID: 3939423025407718053, guid: a77493a45e1134401a7d71e111bf5304, type: 3}
       propertyPath: m_Name
       value: PlayerInputManager
