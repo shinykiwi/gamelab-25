@@ -254,6 +254,9 @@ MonoBehaviour:
   positionSmoothness: 10
   angle_treshold: 0.3
   playerInput: {fileID: 5138074261643368017}
+  portalAngleStepSize: 45
+  portalAngleSpeed: 5
+  timeToLockTargetAngle: 0.1
 --- !u!114 &5138074261643368017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 1138279136295170846}
   playerNum: 0
-  zone: 0
+  zone: {fileID: 0}
 --- !u!114 &8306914183442789334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d20498113329e42b2df25c969bfeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   walkingParticles: {fileID: 8355490989694600470}
   distanceTravelledHitByProjectile: 3
   durationTimeHitByProjectile: 0.25

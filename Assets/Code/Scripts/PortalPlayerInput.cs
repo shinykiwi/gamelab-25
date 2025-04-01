@@ -1,4 +1,5 @@
 using Code.Scripts;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,19 +18,30 @@ public class PortalPlayerInput : MonoBehaviour
     [SerializeField, Tooltip("Size of the gaps in angle (Use dividers of 360 and 90 for good results:30,45")]
     private int portalAngleStepSize = 30;
 
+    [SerializeField]
+    private float portalAngleSpeed = 5f;
+
+    [SerializeField]
+    private float timeToLockTargetAngle = 0.15f;
+
     private InputAction LookAction;
 
-    private float currentAngle = 0; // Current angle of the shield around the character
-    private float targetAngle = 0.0f; // Target angle of the shield around the character
-    private Vector3 currentShieldPosition; // To store the current shield position
+    private float currentAngleDeg = 0; // Current angleDegree of the portal around the character
+    private float targetAngleDeg = 0.0f; // Target angleDegree of the portal around the character
+    private float timeKeptSameTargetAngle = 0.0f;
 
     private void Start()
     {
         LookAction = playerInput.actions.FindAction("Look");
-        currentShieldPosition = portal.position;
     }
 
     void Update()
+    {
+        CalculatePortalAngle();
+        RotatePortal();
+    }
+
+    private void CalculatePortalAngle()
     {
         Vector2 lookInputValue = LookAction.ReadValue<Vector2>();
         // Get look direction for mouse controls
@@ -47,31 +59,53 @@ public class PortalPlayerInput : MonoBehaviour
             lookInputValue = (new Vector2(lookDir.x, lookDir.z)).normalized;
         }
 
-        // Step1: Update the target angle based on joystick input
-        lookInputValue = lookInputValue.normalized;
-        if(lookInputValue.magnitude > 0.3f)
+        if(lookInputValue.magnitude > 0.7f)
         {
-            // Calculate the target angle based on joystick input
-            targetAngle = Mathf.Atan2(lookInputValue.y, lookInputValue.x);
+            lookInputValue = lookInputValue.normalized;
+            // Calculate the target angleDegree based on joystick input
+            float newTargetAngleDeg = Mathf.Atan2(lookInputValue.y, lookInputValue.x) * Mathf.Rad2Deg;
 
             // Lock the angles to specific degree increments, if not using keyboard and mouse
-            if(playerInput.currentControlScheme != "Keyboard&Mouse")
+            if(ArePortalAnglesStepped())
             {
-                targetAngle = Mathf.Round(targetAngle * Mathf.Rad2Deg / portalAngleStepSize) * portalAngleStepSize;
-                targetAngle *= Mathf.Deg2Rad;
+                newTargetAngleDeg = QuantizeAngle(newTargetAngleDeg, portalAngleStepSize);
+                if (newTargetAngleDeg == targetAngleDeg)
+                {
+                    timeKeptSameTargetAngle += Time.deltaTime;
+                }
+                else
+                {
+                    timeKeptSameTargetAngle = 0.0f;
+                }
             }
+            targetAngleDeg = newTargetAngleDeg;
+
+            // Use Mathf.DeltaAngle to calculate the shortest path to the target angleDegree
+            float angleDifference = Mathf.DeltaAngle(currentAngleDeg, targetAngleDeg);
+
+            // Smoothly interpolate to the target angleDegree
+            // Use LerpAngle to ensure smooth transition, combined with delta angleDegree for shortest path
+            currentAngleDeg = Mathf.LerpAngle(currentAngleDeg, currentAngleDeg + angleDifference, portalAngleSpeed * Time.deltaTime);
         }
-        // Step2: Set the portal's target angle to the target angle
-        // Use Mathf.DeltaAngle to calculate the shortest path to the target angle
-        float angleDifference = Mathf.DeltaAngle(currentAngle * Mathf.Rad2Deg, targetAngle * Mathf.Rad2Deg);
+        else
+        {
+            // If the joystick is not being used, keep the portal in the nearest angleDegree
+            if(ArePortalAnglesStepped() && timeKeptSameTargetAngle > 0.0f && timeKeptSameTargetAngle <= timeToLockTargetAngle)
+            {
+                // Lock the angles to specific degree increments, if not using keyboard and mouse
+                targetAngleDeg = QuantizeAngle(currentAngleDeg, portalAngleStepSize);
+            }
+            timeKeptSameTargetAngle = 0.0f;
+            float angleDifference = Mathf.DeltaAngle(currentAngleDeg, targetAngleDeg);
+            currentAngleDeg = Mathf.LerpAngle(currentAngleDeg, currentAngleDeg + angleDifference, portalAngleSpeed * Time.deltaTime);
+        }
+    }
 
-        // Smoothly interpolate to the target angle
-        // Use LerpAngle to ensure smooth transition, combined with delta angle for shortest path
-        currentAngle = Mathf.LerpAngle(currentAngle, currentAngle + Mathf.Deg2Rad * angleDifference, Time.deltaTime * 5f); // 5f controls the speed
-
-        // Calculate the new position based on the smooth angle
-        float x = orbitRadius * Mathf.Cos(currentAngle) + character.position.x;
-        float z = orbitRadius * Mathf.Sin(currentAngle) + character.position.z;
+    private void RotatePortal()
+    {
+        // Calculate the new position based on the smooth angleDegree
+        float x = orbitRadius * Mathf.Cos(currentAngleDeg * Mathf.Deg2Rad) + character.position.x;
+        float z = orbitRadius * Mathf.Sin(currentAngleDeg * Mathf.Deg2Rad) + character.position.z;
 
         // Update the shield's position to stay on the orbit
         portal.position = new Vector3(x, character.position.y, z);
@@ -79,5 +113,14 @@ public class PortalPlayerInput : MonoBehaviour
         // Calculate the current rotation that the shield should have based on the new position
         Vector3 direction = portal.position - character.position;
         portal.rotation = Quaternion.LookRotation(direction);
+    }
+
+    private float QuantizeAngle(float angleDegree, int stepSize)
+    {
+        return Mathf.Round(angleDegree / stepSize) * stepSize;
+    }
+    private bool ArePortalAnglesStepped()
+    {
+        return playerInput.currentControlScheme != "Keyboard&Mouse";
     }
 }
