@@ -32,16 +32,12 @@ public class Tile : MonoBehaviour
     {
         if (state)
         {
-            Debug.Log("Tile active");
             mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
             mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_on);
         }
 
         else
         {
-
-            Debug.Log("Tile not active");
-
             mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
             mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
             //mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_off;
