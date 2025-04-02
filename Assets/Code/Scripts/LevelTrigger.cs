@@ -59,7 +59,7 @@ public class LevelTrigger : MonoBehaviour
                 meshRenderer.gameObject.transform.localScale.x * portalScaleSpeed * Time.deltaTime * Vector3.one;
             if (meshRenderer.gameObject.transform.localScale.x > portalOpenScale)
             {
-                meshRenderer.gameObject.transform.localScale = Vector3.one;
+                meshRenderer.gameObject.transform.localScale = portalOpenScale * Vector3.one;
             }
         }
 
