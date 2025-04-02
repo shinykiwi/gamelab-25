@@ -28,20 +28,42 @@ public class Tile : MonoBehaviour
         
     }
 
-    public void SetActive(bool state)
+    public void SetActive(bool state, bool full_active)
     {
         if (state)
         {
-            mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
-            mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_on);
+            if (full_active)
+            {
+                LightActive();
+            }
+            else
+            {
+                LightSemiActive();
+            }
         }
 
         else
         {
-            mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
-            mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
-            //mat_albedo.color = color_albedo * ZoneManager.Instance.ZoneColorSettings.albedo_force_off;
+            LightOff();
         }
+    }
+
+    private void LightSemiActive()
+    {
+        mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
+        mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
+    }
+
+    private void LightActive()
+    {
+        mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_on);
+        mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_on);
+    }
+
+    private void LightOff()
+    {
+        mat_glow.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.emission_force_off);
+        mat_albedo.SetColor("_EmissionColor", color_glow * ZoneManager.Instance.ZoneColorSettings.albedo_force_off);
     }
 
     public void SetZoneTypeColor(Material type_mat)

@@ -85,7 +85,7 @@ public class Zone : MonoBehaviour
         if(type != ZoneType.NONE)
             foreach (Tile tile in tile_list)
             {
-                tile.SetActive(state);
+                tile.SetActive(state, ZoneManager.Instance.ArePortalActive());
             }
     }
 
