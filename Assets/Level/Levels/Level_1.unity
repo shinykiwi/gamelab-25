@@ -10255,14 +10255,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Jupi
       objectReference: {fileID: 0}
-    - target: {fileID: 7605111313000734922, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
-      propertyPath: portalAngleStepSize
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306914183442789334, guid: ec6411e845f610a4c80287132871ac3e, type: 3}
-      propertyPath: moveSpeed
-      value: 7.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14091,14 +14083,6 @@ PrefabInstance:
     - target: {fileID: 5107989037923199145, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
       propertyPath: m_Name
       value: Player_Chip
-      objectReference: {fileID: 0}
-    - target: {fileID: 7605111313000734922, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: portalAngleStepSize
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8306914183442789334, guid: 580ce39a6536f2d449c42cb8dc76b401, type: 3}
-      propertyPath: moveSpeed
-      value: 7.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
