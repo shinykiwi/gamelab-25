@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8407280584985187566}
   - component: {fileID: 3689400222205088456}
   m_Layer: 0
-  m_Name: ZoneTrigger
+  m_Name: CameraZoneTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5404440486934907673
 Transform:

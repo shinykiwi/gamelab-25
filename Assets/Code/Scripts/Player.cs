@@ -30,7 +30,7 @@ namespace Code.Scripts
 
         }
         
-        protected override void Death()
+        public override void Death()
         {
             if(!IsAlive)
                 return;

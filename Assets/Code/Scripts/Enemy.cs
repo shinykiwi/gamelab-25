@@ -149,7 +149,7 @@ namespace Code.Scripts
             ChangeVelocityOnHit(otherEnemy.PrevVelocity, durationTimeHitByProjectile);
         }
 
-        protected override void Death()
+        public override void Death()
         {
             if(!IsAlive)
                 return;

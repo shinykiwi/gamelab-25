@@ -45,7 +45,7 @@ namespace Code.Scripts
             }
         }
 
-        protected virtual void Death()
+        public virtual void Death()
         {
             if (!IsAlive)
                 return;
