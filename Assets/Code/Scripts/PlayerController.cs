@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         player_animator.SetBool("is_aiming", false);
 
         //Move the player
-        rb.linearVelocity = moveSpeed * move;
+        rb.linearVelocity = new Vector3(0.0f, rb.linearVelocity.y, 0.0f) + moveSpeed * move;
 
         if (move.magnitude > 0)
         {
