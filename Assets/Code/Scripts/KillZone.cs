@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Boundary : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    [SerializeField]
+    private bool projectilesOnly = false;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Humanoid>() is { } humanoid)
+        if(other.gameObject.GetComponent<Projectile>() is { } projectile)
+        {
+            projectile.Kill();
+        }
+        else if(!projectilesOnly && other.gameObject.GetComponent<Humanoid>() is { } humanoid)
         {
             humanoid.Death();
-        }
-        else
-        {
-            Destroy(other.gameObject);
         }
     }
 }
