@@ -161,7 +161,7 @@ MonoBehaviour:
   aimAssistDistanceMax: 50
   portalClosedScale: 0.05
   portalOpenScale: 1
-  portalScaleSpeed: 4
+  portalScaleSpeed: 10
 --- !u!1 &3922717099836855088
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +254,9 @@ MonoBehaviour:
   positionSmoothness: 10
   angle_treshold: 0.3
   playerInput: {fileID: 5138074261643368017}
-  portalAngleStepSize: 15
-  portalAngleSpeed: 5
-  timeToLockTargetAngle: 0.1
+  portalAngleStepSize: 22.5
+  portalAngleSpeed: 10
+  timeToLockTargetAngle: 0.05
 --- !u!114 &5138074261643368017
 MonoBehaviour:
   m_ObjectHideFlags: 0

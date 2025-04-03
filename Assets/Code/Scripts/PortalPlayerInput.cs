@@ -16,7 +16,7 @@ public class PortalPlayerInput : MonoBehaviour
     public PlayerInput playerInput;
 
     [SerializeField, Tooltip("Size of the gaps in angle (Use dividers of 360 and 90 for good results:30,45")]
-    private int portalAngleStepSize = 30;
+    private float portalAngleStepSize = 30;
 
     [SerializeField]
     private float portalAngleSpeed = 5f;
@@ -115,7 +115,7 @@ public class PortalPlayerInput : MonoBehaviour
         portal.rotation = Quaternion.LookRotation(direction);
     }
 
-    private float QuantizeAngle(float angleDegree, int stepSize)
+    private float QuantizeAngle(float angleDegree, float stepSize)
     {
         return Mathf.Round(angleDegree / stepSize) * stepSize;
     }
