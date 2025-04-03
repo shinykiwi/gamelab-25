@@ -55,7 +55,7 @@ public class Zone : MonoBehaviour
         var player = other.gameObject.GetComponent<Player>();
         if (player == null) return;
 
-        player.zone = null;
+        player.zone = this;
     }
 
     private void OnTriggerStay(Collider other)
