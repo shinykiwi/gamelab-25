@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_ground_full
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5553ce1da5eb649922b478b509ab4a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -129,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_Name
       value: BaseTileEmpty
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

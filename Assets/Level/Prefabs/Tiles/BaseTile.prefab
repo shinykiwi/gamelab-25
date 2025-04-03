@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6330808952819700352, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: -1107978820458350540, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_Materials.Array.size
@@ -67,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_Name
       value: BaseTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
