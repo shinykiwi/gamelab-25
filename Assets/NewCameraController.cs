@@ -1,7 +1,6 @@
 using System;
 using Code.Scripts;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewCameraController : MonoBehaviour
@@ -15,7 +14,6 @@ public class NewCameraController : MonoBehaviour
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
-
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -24,8 +22,6 @@ public class NewCameraController : MonoBehaviour
         {
             Instance = this;
         }
-        
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -39,7 +35,7 @@ public class NewCameraController : MonoBehaviour
         CinemachineTargetGroup.Target target = new CinemachineTargetGroup.Target();
         target.Object = t;
         target.Radius = 0;
-        target.Weight = 1;
+        target.Weight = 0.75f; // Allowing some leeway seems to work in practice
         targetGroup.Targets.Add(target);
     }
 
@@ -57,19 +53,14 @@ public class NewCameraController : MonoBehaviour
         return false;
     }
 
-    private void ClearTargets()
-    {
-        Debug.Log("Clearing targets");
-        for (int i = 2; i < targetGroup.Targets.Count; i++)
-        {
-            targetGroup.Targets.RemoveAt(i);
-        }
-    }
-    
     // Only focuses on the players
-    public void Reset()
+    public void ResetTargetsToPlayers()
     {
-        ClearTargets();
+        const int nbPlayers = 2;
+        if(targetGroup.Targets.Count > 2)
+        {
+            targetGroup.Targets.RemoveRange(nbPlayers, targetGroup.Targets.Count - nbPlayers);
+        }
     }
 
     // Focuses on the enemy, players and the respective zones
@@ -80,14 +71,13 @@ public class NewCameraController : MonoBehaviour
             AddToTargetGroup(obj.transform);
             
             UpdateCameraEnemy();
-            
         }
     }
 
     public void UpdateCameraEnemy()
     {
         Transform t = FindClosestEnemy();
-        if (!IsInTargetGroup(t)){}
+        if (t != null && !IsInTargetGroup(t))
         {
             AddToTargetGroup(t);
         }
@@ -114,13 +104,9 @@ public class NewCameraController : MonoBehaviour
             }
         }
         
-        Debug.Log("Index is " + index);
-
-        //Debug.Log("There are " + enemies.Length);
         if(index == -1)
         {
             return null;
-            Debug.Log("An error occured in finding the enemy.");
         }
         return enemies[index].transform;
     }

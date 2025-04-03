@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945842870769008271}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4167856, y: 0.000000010765801, z: -0.0000000065179515, w: 0.90900487}
+  m_LocalRotation: {x: 0.45988935, y: 0.000000010516748, z: -0.0000000063671677, w: 0.8879763}
   m_LocalPosition: {x: -10.640416, y: 15.585, z: -4.3177385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 14.99, z: -12.91}
+  FollowOffset: {x: 0, y: 15, z: -7}
 --- !u!114 &2781428607841397907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,19 +134,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945842870769008271}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eb4843bae7d24943842ea23130dcd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FramingMode: 2
-  FramingSize: 0.94
+  FramingMode: 1
+  FramingSize: 0.8
   CenterOffset: {x: 0, y: 0}
-  Damping: 2
+  Damping: 4
   SizeAdjustment: 2
   LateralAdjustment: 0
-  FovRange: {x: 1, y: 100}
-  DollyRange: {x: -100, y: 100}
+  FovRange: {x: 60, y: 75}
+  DollyRange: {x: -20, y: -4}
   OrthoSizeRange: {x: 1, y: 1000}
 --- !u!114 &8536191574077457707
 MonoBehaviour:
@@ -160,7 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa81bfbc67add24ab259f2c680e9add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersTargetGroup: {fileID: 0}
-  zoneA: {fileID: 0}
-  zoneB: {fileID: 0}
-  zoneCD: {fileID: 0}
+  targetGroupObject: {fileID: 0}

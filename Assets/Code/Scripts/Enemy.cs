@@ -155,7 +155,7 @@ namespace Code.Scripts
                 return;
 
             base.Death();
-            NewCameraController.Instance.Reset();
+            NewCameraController.Instance.ResetTargetsToPlayers();
             Level.Instance.EnemyHasBeenDefeated(this);
             Destroy(this.gameObject);
         }
