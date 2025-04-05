@@ -8,7 +8,6 @@ public class AimAssistUtils
                                                 + LayerMask.GetMask("Fence");
 
 
-    private static RaycastHit[] hitInfo = new RaycastHit[1];
     private static LayerMask enemyMask = LayerMask.GetMask("Enemy");
     private static LayerMask playerMask = LayerMask.GetMask("Player");
     private static LayerMask bouncyWallMask = LayerMask.GetMask("BouncyWall");
@@ -22,62 +21,72 @@ public class AimAssistUtils
     }
 
     public static Vector3 GetAutoAimVelocity(Vector3 projectilePosition, Vector3 velocity, 
-        float aimAssistDistanceMax, float degreesAimAssist, LayerMask ignoredMasksForLOS)
+        float aimAssistDistanceMax, float degreesAimAssist, LayerMask ignoredMasksForLOS,
+        bool aimAtEnemy = true, bool aimAtPlayer = true, bool aimAtBouncyWall = true)
     {
         float bestAngle = float.MaxValue;
         Vector3 bestVelocity = velocity;
         Vector3 bestToTarget = int.MaxValue * Vector3.one;
 
         // Check if the projectile is towards an enemy
-        foreach(Enemy enemy in Level.Instance.AllEnemies)
+        if(aimAtEnemy)
         {
-            if(!enemy.IsAlive)
-                continue;
-
-            Vector3 toTarget = enemy.transform.position - projectilePosition;
-            if(toTarget.magnitude >= aimAssistDistanceMax)
-                continue;
-            float angle = Vector3.Angle(velocity, toTarget);
-            if(angle < degreesAimAssist / 2
-                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
-                && HasLineOfSightTo(projectilePosition, enemy.transform.position, enemyMask, ignoredMasksForLOS))
+            foreach(Enemy enemy in Level.Instance.AllEnemies)
             {
-                bestVelocity = velocity.magnitude * toTarget.normalized;
-                bestAngle = angle;
-                bestToTarget = toTarget;
+                if(!enemy.IsAlive)
+                    continue;
+
+                Vector3 toTarget = enemy.transform.position - projectilePosition;
+                if(toTarget.magnitude >= aimAssistDistanceMax)
+                    continue;
+                float angle = Vector3.Angle(velocity, toTarget);
+                if(angle < degreesAimAssist / 2
+                    && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
+                    && HasLineOfSightTo(projectilePosition, enemy.transform.position, enemyMask, ignoredMasksForLOS))
+                {
+                    bestVelocity = velocity.magnitude * toTarget.normalized;
+                    bestAngle = angle;
+                    bestToTarget = toTarget;
+                }
             }
         }
 
-        foreach(Player player in Level.Instance.players)
+        if(aimAtPlayer)
         {
-            Vector3 toTarget = player.transform.position - projectilePosition;
-            if(toTarget.magnitude >= aimAssistDistanceMax)
-                continue;
-
-            float angle = Vector3.Angle(velocity, toTarget);
-            if(angle < degreesAimAssist / 2
-                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax) 
-                && HasLineOfSightTo(projectilePosition, player.transform.position, playerMask, ignoredMasksForLOS))
+            foreach(Player player in Level.Instance.players)
             {
-                bestVelocity = velocity.magnitude * toTarget.normalized;
-                bestAngle = angle;
-                bestToTarget = toTarget;
+                Vector3 toTarget = player.transform.position - projectilePosition;
+                if(toTarget.magnitude >= aimAssistDistanceMax)
+                    continue;
+
+                float angle = Vector3.Angle(velocity, toTarget);
+                if(angle < degreesAimAssist / 2
+                    && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax) 
+                    && HasLineOfSightTo(projectilePosition, player.transform.position, playerMask, ignoredMasksForLOS))
+                {
+                    bestVelocity = velocity.magnitude * toTarget.normalized;
+                    bestAngle = angle;
+                    bestToTarget = toTarget;
+                }
             }
         }
 
-        // Check if the projectile is towards a bouncy wall
-        foreach(BouncyWall bouncyWall in Level.Instance.AllBouncyWalls)
+        if(aimAtBouncyWall)
         {
-            Vector3 toTarget = bouncyWall.transform.position - projectilePosition;
-            if(toTarget.magnitude >= aimAssistDistanceMax)
-                continue;
-            float angle = Vector3.Angle(velocity, toTarget);
-            if(angle < degreesAimAssist / 2
-                && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
-                && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
+            // Check if the projectile is towards a bouncy wall
+            foreach(BouncyWall bouncyWall in Level.Instance.AllBouncyWalls)
             {
-                bestVelocity = velocity.magnitude * toTarget.normalized;
-                bestToTarget = toTarget;
+                Vector3 toTarget = bouncyWall.transform.position - projectilePosition;
+                if(toTarget.magnitude >= aimAssistDistanceMax)
+                    continue;
+                float angle = Vector3.Angle(velocity, toTarget);
+                if(angle < degreesAimAssist / 2
+                    && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
+                    && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
+                {
+                    bestVelocity = velocity.magnitude * toTarget.normalized;
+                    bestToTarget = toTarget;
+                }
             }
         }
 
@@ -92,14 +101,18 @@ public class AimAssistUtils
             Vector3 lineOfSightRightEdge = projectilePosition + lineOfSightRightEdgeDir * aimAssistDistanceMax;
             Debug.DrawRay(projectilePosition, lineOfSightLeftEdgeDir * aimAssistDistanceMax, Color.magenta, 2.0f);
             Debug.DrawRay(projectilePosition, lineOfSightRightEdgeDir * aimAssistDistanceMax, Color.blue, 2.0f);
-            // Check if an enemy is present in that direction, then check if 
-            if(HasLineOfSightTo(projectilePosition, lineOfSightLeftEdge, enemyMask, ~enemyMask))
+
+            if(aimAtEnemy)
             {
-                bestVelocity = velocity.magnitude * lineOfSightLeftEdgeDir;
-            }
-            else if(HasLineOfSightTo(projectilePosition, lineOfSightRightEdge, enemyMask, ignoredMasksForLOS))
-            {
-                bestVelocity = velocity.magnitude * lineOfSightRightEdgeDir;
+                // Check if an enemy is present in that direction, then check if 
+                if(HasLineOfSightTo(projectilePosition, lineOfSightLeftEdge, enemyMask, ignoredMasksForLOS))
+                {
+                    bestVelocity = velocity.magnitude * lineOfSightLeftEdgeDir;
+                }
+                else if(HasLineOfSightTo(projectilePosition, lineOfSightRightEdge, enemyMask, ignoredMasksForLOS))
+                {
+                    bestVelocity = velocity.magnitude * lineOfSightRightEdgeDir;
+                }
             }
         }
 
