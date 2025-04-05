@@ -89,7 +89,7 @@ public class Zone : MonoBehaviour
             }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Vector3 center = boxCollider.transform.TransformPoint(boxCollider.center);
         switch (type)
