@@ -17,8 +17,8 @@ public class AimAssistUtils
     {
         float distance = Vector3.Distance(origin, targetPosition);
         Ray rayToTarget = new Ray(origin, (targetPosition - origin).normalized);
-        Physics.RaycastNonAlloc(rayToTarget, hitInfo, distance, ~(ignoredMasks.value), QueryTriggerInteraction.Ignore);
-        return hitInfo[0].collider != null && 1 << hitInfo[0].collider.gameObject.layer == targetLayer;
+        Physics.Raycast(rayToTarget, out RaycastHit hitInfo, distance, ~(ignoredMasks), QueryTriggerInteraction.Ignore);
+        return hitInfo.collider != null && 1 << hitInfo.collider.gameObject.layer == targetLayer;
     }
 
     public static Vector3 GetAutoAimVelocity(Vector3 projectilePosition, Vector3 velocity, 
@@ -78,6 +78,28 @@ public class AimAssistUtils
             {
                 bestVelocity = velocity.magnitude * toTarget.normalized;
                 bestToTarget = toTarget;
+            }
+        }
+
+        // No target found, check if a target is partly in the angle
+        if(bestAngle == float.MaxValue)
+        {
+            // Check if a target is partly in the angle
+            Vector3 lineOfSightLeftEdgeDir = Quaternion.AngleAxis(-degreesAimAssist / 2, Vector3.up) * velocity.normalized;
+            Vector3 lineOfSightRightEdgeDir = Quaternion.AngleAxis(degreesAimAssist / 2, Vector3.up) * velocity.normalized;
+
+            Vector3 lineOfSightLeftEdge = projectilePosition + lineOfSightLeftEdgeDir * aimAssistDistanceMax;
+            Vector3 lineOfSightRightEdge = projectilePosition + lineOfSightRightEdgeDir * aimAssistDistanceMax;
+            Debug.DrawRay(projectilePosition, lineOfSightLeftEdgeDir * aimAssistDistanceMax, Color.magenta, 2.0f);
+            Debug.DrawRay(projectilePosition, lineOfSightRightEdgeDir * aimAssistDistanceMax, Color.blue, 2.0f);
+            // Check if an enemy is present in that direction, then check if 
+            if(HasLineOfSightTo(projectilePosition, lineOfSightLeftEdge, enemyMask, ~enemyMask))
+            {
+                bestVelocity = velocity.magnitude * lineOfSightLeftEdgeDir;
+            }
+            else if(HasLineOfSightTo(projectilePosition, lineOfSightRightEdge, enemyMask, ignoredMasksForLOS))
+            {
+                bestVelocity = velocity.magnitude * lineOfSightRightEdgeDir;
             }
         }
 
