@@ -2346,7 +2346,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 237321278036615345, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 80.3
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 237321278036615345, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2387,6 +2387,18 @@ PrefabInstance:
     - target: {fileID: 576727785212738059, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_Name
       value: SM_BillBoard (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515818664842203832, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: m_Size.x
+      value: 8.453604
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515818664842203832, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: m_Center.x
+      value: -0.6868024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515818664842203832, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: m_Center.z
+      value: 2.6546233e-15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18689,7 +18701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 237321278036615345, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.69
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 237321278036615345, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18722,6 +18734,14 @@ PrefabInstance:
     - target: {fileID: 576727785212738059, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
       propertyPath: m_Name
       value: SM_BillBoard (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515818664842203832, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: m_Size.x
+      value: 8.338691
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515818664842203832, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: m_Center.x
+      value: 0.6293454
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
