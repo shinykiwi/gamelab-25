@@ -16,6 +16,6 @@ MonoBehaviour:
   ProjectileInPortal: {fileID: 8300000, guid: 7b5aaf981b326b44eaa602024605b6fa, type: 3}
   ProjectileHitPlayer: {fileID: 8300000, guid: bdccaaebc279fd245a044feec3a16e89, type: 3}
   ProjectileHitEnemy: {fileID: 8300000, guid: bdccaaebc279fd245a044feec3a16e89, type: 3}
-  EnemyDie: {fileID: 0}
+  EnemyDie: {fileID: 8300000, guid: b28749711ed69674cb8762cb8e00914f, type: 3}
   LevelComplete: {fileID: 0}
   group: {fileID: -2453334429263396558, guid: 6802edadd5f1c4dcf8a2428a6d22da3d, type: 2}

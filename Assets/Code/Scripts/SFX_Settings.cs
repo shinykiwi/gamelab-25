@@ -21,6 +21,8 @@ public class SFX_Settings : ScriptableObject
 
     public static void PlayAudioClip(AudioClip clip, Vector3 position, AudioMixerGroup group, float volume = 1.0f)
     {
+        if (clip == null) return;
+
         GameObject gameObject = new GameObject("One shot audio");
         gameObject.transform.position = position;
         AudioSource audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));

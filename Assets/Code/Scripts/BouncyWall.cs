@@ -46,14 +46,6 @@ namespace Code.Scripts
             transform.DOPunchScale(bounceForce * Vector3.one, 0.3f);
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Bounce();
-            }
-        }
-
         private void OnCollisionEnter(Collision other)
         {
             // Play bounce effect
