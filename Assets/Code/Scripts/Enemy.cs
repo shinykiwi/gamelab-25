@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 namespace Code.Scripts
 {
@@ -32,6 +33,9 @@ namespace Code.Scripts
 
         [SerializeField]
         Animator animator;
+
+        [SerializeField]
+        SFX_Settings sfx;
 
         public Enemy EnemyCollidedWithThisFrame { get; private set; }
         public Vector3 PrevVelocity { get; private set; } // Previous physics iteration velocity
@@ -157,6 +161,7 @@ namespace Code.Scripts
             base.Death();
             NewCameraController.Instance.ResetTargetsToPlayers();
             Level.Instance.EnemyHasBeenDefeated(this);
+            SFX_Settings.PlayAudioClip(sfx.EnemyDie, transform.position, sfx.group);
             Destroy(this.gameObject);
         }
 

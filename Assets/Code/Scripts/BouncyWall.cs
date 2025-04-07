@@ -1,3 +1,6 @@
+using System;
+using System.Security.Cryptography;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -31,8 +34,23 @@ namespace Code.Scripts
         [SerializeField, Range(0f, 360.0f)]
         float degreesAimAssist = 30.0f;
 
+        [SerializeField]
+        SFX_Settings sfx;
+
+        
+        private float bounceForce = 0.001f;
+
+
+        private void Bounce()
+        {
+            transform.DOPunchScale(bounceForce * Vector3.one, 0.3f);
+        }
+
         private void OnCollisionEnter(Collision other)
         {
+            // Play bounce effect
+            Bounce();
+            
             // If it's a projectile that hits the wall
             if(other.gameObject.GetComponent<Projectile>() is { } projectile)
             {
@@ -62,6 +80,8 @@ namespace Code.Scripts
                 }
 
                 projectileRb.linearVelocity = newVelocity;
+                SFX_Settings.PlayAudioClip(sfx.BouncyWall, transform.position, sfx.group);
+
 
                 // Draw Debug Rays for the velocity
                 Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);

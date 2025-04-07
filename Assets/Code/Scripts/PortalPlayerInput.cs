@@ -7,6 +7,7 @@ public class PortalPlayerInput : MonoBehaviour
 {
 
     public Transform portal; // portal (child of the player)
+    public Transform player_indicator; //The UI indicator at the feet
     public Transform character; // Character (child of the player)
     public float orbitRadius = 2f; // How far the shield orbits from the character
     public float rotationSpeed = 5f; // Speed of rotation around the character
@@ -39,6 +40,16 @@ public class PortalPlayerInput : MonoBehaviour
     {
         CalculatePortalAngle();
         RotatePortal();
+        RotatePlayerIndicator();
+    }
+
+    private void RotatePlayerIndicator()
+    {
+        if (player_indicator != null)
+        {
+            Vector3 direction = portal.position - character.position;
+            player_indicator.rotation = Quaternion.LookRotation(direction);
+        }
     }
 
     private void CalculatePortalAngle()
