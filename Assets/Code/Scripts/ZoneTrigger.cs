@@ -1,5 +1,6 @@
 using Code.Scripts;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ZoneTrigger : MonoBehaviour
@@ -32,6 +33,7 @@ public class ZoneTrigger : MonoBehaviour
 
         if(playersInZone.Count == Level.Instance.players.Count)
         {
+            NewCameraController.Instance.AddZoneToCameraTargets(cornersOfZone.Select(c => c.transform).ToArray());
             AddZoneToCameraTarget();
         }
     }
