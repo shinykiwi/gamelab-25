@@ -693,6 +693,7 @@ MonoBehaviour:
   distanceTravelledHitByProjectile: 5
   durationTimeHitByProjectile: 0.3
   animator: {fileID: 4432184461605341457}
+  sfx: {fileID: 11400000, guid: 35cf73325b5b06b44a137b8e27e6a297, type: 2}
 --- !u!54 &4006989525825297054
 Rigidbody:
   m_ObjectHideFlags: 0
