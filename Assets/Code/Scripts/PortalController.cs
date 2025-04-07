@@ -39,6 +39,10 @@ public class PortalController : MonoBehaviour
     [SerializeField, Min(0.001f)]
     private float portalScaleSpeed = 2.0f;
 
+    [SerializeField]
+    SFX_Settings sfx;
+
+
     Material portal_material;
 
     // Keep track of incoming objects to not re-teleport an object coming from the other portal
@@ -46,6 +50,8 @@ public class PortalController : MonoBehaviour
 
     private void Start()
     {
+        //audio_source = gameObject.AddComponent<AudioSource>();
+
         // Find and assign the exit portal
         PortalController[] portals = FindObjectsByType<PortalController>(FindObjectsSortMode.None);
         foreach (var portal in portals)
@@ -105,6 +111,7 @@ public class PortalController : MonoBehaviour
     /// <param name="projectile"></param>
     private void TeleportProjectile(Projectile projectile)
     {
+        SFX_Settings.PlayAudioClip(sfx.ProjectileInPortal, transform.position, sfx.group);
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
         
         projectile.BeginPortalTravel();

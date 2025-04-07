@@ -19,6 +19,15 @@ namespace Code.Scripts
         private Vector3 worldSpawnPos;
         private float maxRangeFromSpawnPos = float.MaxValue;
 
+
+        [SerializeField]
+        SFX_Settings sfx;
+
+        private void Awake()
+        {
+
+        }
+
         private void Update()
         {
             if(Vector3.Distance(worldSpawnPos, transform.position) >= maxRangeFromSpawnPos)
@@ -65,11 +74,14 @@ namespace Code.Scripts
             direction = (new Vector3(direction.x, 0.0f, direction.z)).normalized;
             if(other.gameObject.GetComponent<PlayerController>() is { } playerController)
             {
+                SFX_Settings.PlayAudioClip(sfx.ProjectileHitPlayer, transform.position, sfx.group);
+
                 playerController.GetHitByProjectile(direction);
                 Kill();
             }
             else if(other.gameObject.GetComponent<Enemy>() is { } enemy)
             {
+                SFX_Settings.PlayAudioClip(sfx.ProjectileHitEnemy, transform.position, sfx.group);
                 enemy.GetHitByProjectile(direction);
                 Kill();
             }

@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -31,6 +32,12 @@ namespace Code.Scripts
         [SerializeField, Range(0f, 360.0f)]
         float degreesAimAssist = 30.0f;
 
+        [SerializeField]
+        SFX_Settings sfx;
+
+
+
+
         private void OnCollisionEnter(Collision other)
         {
             // If it's a projectile that hits the wall
@@ -62,6 +69,8 @@ namespace Code.Scripts
                 }
 
                 projectileRb.linearVelocity = newVelocity;
+                SFX_Settings.PlayAudioClip(sfx.BouncyWall, transform.position, sfx.group);
+
 
                 // Draw Debug Rays for the velocity
                 Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);
