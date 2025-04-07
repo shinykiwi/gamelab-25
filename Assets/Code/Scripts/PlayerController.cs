@@ -3,6 +3,7 @@ using System.Collections;
 using Code.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
     bool isInvincibleToProjectiles = false;
     bool isBeingHit = false;
+    bool isGrounded = true;
+
+    RaycastHit[] hit = new RaycastHit[1];
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +61,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        ProcessIsGrounded();
+        if(isBeingHit)
+            playerInput.DeactivateInput();
+
+        if(isGrounded && !isBeingHit && !playerInput.inputIsActive)
+        {
+            playerInput.ActivateInput();
+        }
+
         if(!isBeingHit)
         {
             Vector2 moveInputValue = moveAction.ReadValue<Vector2>();
@@ -114,7 +127,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DoProjectileHit(Vector3 direction, float distance, float duration)
     {
         // TODO add animation
-        playerInput.DeactivateInput();
         isBeingHit = true;
         rb.useGravity = false;
         coll.excludeLayers += fenceMask;
@@ -126,6 +138,13 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = true;
         coll.excludeLayers -= fenceMask;
         isBeingHit = false;
-        playerInput.ActivateInput();
+    }
+
+    private void ProcessIsGrounded()
+    {
+        Vector3 bottomOfCharacterPos = new Vector3(coll.bounds.center.x, coll.bounds.min.y, coll.bounds.center.z);
+        Ray ray = new Ray(bottomOfCharacterPos, Vector3.down);
+        int nbHits = Physics.RaycastNonAlloc(ray, hit, 0.1f, ~0, QueryTriggerInteraction.Ignore);
+        isGrounded = nbHits > 0;
     }
 }
