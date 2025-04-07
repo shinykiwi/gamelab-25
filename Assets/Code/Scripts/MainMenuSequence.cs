@@ -27,23 +27,13 @@ public class MainMenuSequence : MonoBehaviour
         
         fadeToBlack.DoFadeIn();
         
-        SceneManager.LoadScene("CharacterSelection");
-        
-        // fadeToBlack.Toggle();
-        //
-        // float seconds = fadeToBlack.PlayVideo();
-        //
-        // yield return new WaitForSeconds(seconds);
-        //
-        // fadeToBlack.Toggle();
-        //
-        
+        ShowIntroduction();
         
     }
 
-    private void ShowCharacterSelection()
+    private void ShowIntroduction()
     {
-        
+        Debug.Log("Introduction goes here");
     }
     
     
