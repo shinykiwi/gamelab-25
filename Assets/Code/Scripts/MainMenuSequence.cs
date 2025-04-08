@@ -23,9 +23,7 @@ public class MainMenuSequence : MonoBehaviour
      
         fadeToBlack.DoFadeIn(2f);
         
-        yield return new WaitForSeconds(1f);
-        
-        fadeToBlack.DoFadeIn();
+        yield return new WaitForSeconds(2f);
         
         ShowIntroduction();
         
@@ -33,7 +31,10 @@ public class MainMenuSequence : MonoBehaviour
 
     private void ShowIntroduction()
     {
-        Debug.Log("Introduction goes here");
+        //Debug.Log("Introduction goes here");
+        // For now, just load the level for the demo
+
+        SceneManager.LoadScene("Level_1");
     }
     
     
