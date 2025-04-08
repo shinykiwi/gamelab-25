@@ -114,7 +114,7 @@ namespace Code.Scripts
 
         Vector3 DoRightAngleCorrection(Vector3 oldVelocity, Vector3 newVelocity, Vector3 wallNormal)
         {
-            float signOfAngle = Mathf.Sign(Vector3.Cross(oldVelocity, newVelocity).y);
+            float signOfAngle = Mathf.Sign(Vector3.Cross(wallNormal, newVelocity).y);
             return newVelocity.magnitude * (Quaternion.AngleAxis(signOfAngle * 45.0f, Vector3.up) * wallNormal.normalized);
         }
 
