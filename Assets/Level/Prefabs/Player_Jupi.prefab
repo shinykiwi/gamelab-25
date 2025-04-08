@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 9141375413778489274}
-  player_indicator: {fileID: 0}
+  player_indicator: {fileID: 6563385030777417929}
   character: {fileID: 7820327116674828617}
   orbitRadius: 0.3
   rotationSpeed: 5

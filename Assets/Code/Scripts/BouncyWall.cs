@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography;
 using DG.Tweening;
 using UnityEngine;
 
@@ -48,9 +47,6 @@ namespace Code.Scripts
 
         private void OnCollisionEnter(Collision other)
         {
-            // Play bounce effect
-            Bounce();
-            
             // If it's a projectile that hits the wall
             if(other.gameObject.GetComponent<Projectile>() is { } projectile)
             {
@@ -65,12 +61,10 @@ namespace Code.Scripts
                 }
 
                 // If the projectile will bounce in a close to 90 degree angle, make sure it is a right angle
-                bool isProjectileDirRightAngle = Mathf.Abs(90f - Mathf.Abs(Vector3.Angle(oldVelocity, newVelocity))) < maxRightAngleDegreeDeviation;
-
+                bool isProjectileDirRightAngle = IsDirRightAngle(oldVelocity, newVelocity);
                 if(isProjectileDirRightAngle)
                 {
-                    float signOfAngle = Mathf.Sign(Vector3.Cross(wallNormal, oldVelocity).y);
-                    newVelocity = newVelocity.magnitude * (Quaternion.AngleAxis(signOfAngle * 45.0f, Vector3.up) * wallNormal.normalized);
+                    newVelocity = DoRightAngleCorrection(oldVelocity, newVelocity, wallNormal);
                 }
                 else // Try to aim assist only if there projectile is not bouncing in a right angle
                 {
@@ -80,8 +74,10 @@ namespace Code.Scripts
                 }
 
                 projectileRb.linearVelocity = newVelocity;
-                SFX_Settings.PlayAudioClip(sfx.BouncyWall, transform.position, sfx.group);
 
+                // Play bounce effects
+                SFX_Settings.PlayAudioClip(sfx.BouncyWall, transform.position, sfx.group);
+                Bounce();
 
                 // Draw Debug Rays for the velocity
                 Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);
@@ -97,9 +93,34 @@ namespace Code.Scripts
             else if(other.gameObject.GetComponent<Enemy>() is { } enemy)
             {
                 Vector3 wallNormal = -other.contacts[0].normal;
-                Vector3 velocity = wallNormal * Mathf.Max(other.relativeVelocity.magnitude, minSpeedEnemyOnExit);
-                enemy.GetHitByBouncyWall(velocity);
+                Vector3 oldVelocity = other.relativeVelocity;
+                Vector3 newVelocity = Vector3.Reflect(oldVelocity, wallNormal);
+                newVelocity = newVelocity.normalized * Mathf.Max(newVelocity.magnitude, minSpeedEnemyOnExit);
+                
+                // If the enemy will bounce in a close to 90 degree angle, make sure it is a right angle
+                bool isDirRightAngle = IsDirRightAngle(oldVelocity, newVelocity);
+                if(isDirRightAngle)
+                {
+                    newVelocity = DoRightAngleCorrection(oldVelocity, newVelocity, wallNormal);
+                }
+
+                enemy.GetHitByBouncyWall(newVelocity);
+
+                // Play effects
+                SFX_Settings.PlayAudioClip(sfx.BouncyWall, transform.position, sfx.group);
+                Bounce();
             }
+        }
+
+        Vector3 DoRightAngleCorrection(Vector3 oldVelocity, Vector3 newVelocity, Vector3 wallNormal)
+        {
+            float signOfAngle = Mathf.Sign(Vector3.Cross(oldVelocity, newVelocity).y);
+            return newVelocity.magnitude * (Quaternion.AngleAxis(signOfAngle * 45.0f, Vector3.up) * wallNormal.normalized);
+        }
+
+        bool IsDirRightAngle(Vector3 oldVelocity, Vector3 newVelocity)
+        {
+            return Mathf.Abs(90f - Mathf.Abs(Vector3.Angle(oldVelocity, newVelocity))) < maxRightAngleDegreeDeviation;
         }
     }
 }
