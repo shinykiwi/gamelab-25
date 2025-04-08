@@ -50,7 +50,6 @@ namespace Code.Scripts
             if (!IsAlive)
                 return;
 
-            Debug.Log(this.name + " has died.");
             health = 0f;
 
             // Disable collisions while dead
@@ -134,6 +133,9 @@ namespace Code.Scripts
         /// </summary>
         private void ToggleVisibility()
         {
+            if(!characterRenderer)
+                return;
+
             bool visibility = !characterRenderer.enabled;
             characterRenderer.enabled = visibility;
 

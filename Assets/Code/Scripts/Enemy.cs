@@ -4,8 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Unity.VisualScripting;
 
 namespace Code.Scripts
 {
@@ -92,11 +90,6 @@ namespace Code.Scripts
         private void FixedUpdate()
         {
             PrevVelocity = rb.linearVelocity;
-        }
-
-        private void OnDestroy()
-        {
-            rotationTween.Kill();
         }
 
         protected override void OnCollisionEnter(Collision collision)
