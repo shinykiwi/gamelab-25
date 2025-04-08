@@ -34,7 +34,7 @@ public class MainMenuSequence : MonoBehaviour
         //Debug.Log("Introduction goes here");
         // For now, just load the level for the demo
 
-        SceneManager.LoadScene("Level_1");
+        LevelManager.Instance.LoadNextLevel();
     }
     
     
