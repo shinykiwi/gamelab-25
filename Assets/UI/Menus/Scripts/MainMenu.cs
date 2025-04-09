@@ -49,8 +49,8 @@ public class MainMenu : MonoBehaviour
         menuAudio = GetComponentInChildren<MenuAudio>();
         
         // Hide the credits menu and the options menu to start with
-        credits.SetActive(false);
-        options.SetActive(false);
+        //credits.SetActive(false);
+        //options.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(playButton.gameObject);
 

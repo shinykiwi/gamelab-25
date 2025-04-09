@@ -36,7 +36,7 @@ namespace Code.Scripts
         [SerializeField]
         SFX_Settings sfx;
 
-        
+        [SerializeField]
         private float bounceForce = 0.001f;
 
 
