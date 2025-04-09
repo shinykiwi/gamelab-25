@@ -85,6 +85,7 @@ public class AimAssistUtils
                     && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
                 {
                     bestVelocity = velocity.magnitude * toTarget.normalized;
+                    bestAngle = angle;
                     bestToTarget = toTarget;
                 }
             }
