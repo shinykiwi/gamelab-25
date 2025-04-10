@@ -6528,14 +6528,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
-      propertyPath: 'm_Materials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     - target: {fileID: 576727785212738059, guid: 22ae0696bcd07cd46a4783f4b546dbbb, type: 3}
       propertyPath: m_Name
       value: SM_BillBoardSignleScreen (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9599,14 +9599,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
-      propertyPath: 'm_Materials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     - target: {fileID: 576727785212738059, guid: 22ae0696bcd07cd46a4783f4b546dbbb, type: 3}
       propertyPath: m_Name
       value: SM_BillBoardSignleScreen (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5713813871887015731, guid: 22ae0696bcd07cd46a4783f4b546dbbb, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
+    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13236,14 +13240,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
-      propertyPath: 'm_Materials.Array.data[2]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     - target: {fileID: 576727785212738059, guid: 22ae0696bcd07cd46a4783f4b546dbbb, type: 3}
       propertyPath: m_Name
       value: SM_BillBoardSignleScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 426006576109755706, guid: e821fee78b6ef6d4b85015ca8fcd6d99, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7aae9a76d077bfa469ab7f1a4e8ab475, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
