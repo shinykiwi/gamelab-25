@@ -1,3 +1,5 @@
+using Code.Scripts;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
@@ -16,13 +18,19 @@ public class LevelTrigger : MonoBehaviour
 
         // Hide the object at first
         Hide();
+        Show();
+        canUse = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!canUse) return;
-        canUse = false;
-        LevelManager.Instance.LoadNextLevel();
+        if(other.GetComponent<Player>() is { } player)
+        {
+            canUse = false;
+            player.ToggleVisibility(); // Hide player
+            StartCoroutine(DoFadeLoad());
+        }
     }
 
     private void Update()
@@ -46,9 +54,19 @@ public class LevelTrigger : MonoBehaviour
         canUse = false;
     }
 
+    private IEnumerator DoFadeLoad()
+    {
+        float fadeTime = 1.0f;
+        var fade = FindAnyObjectByType<FadeToBlack>();
+        if(fade)
+            fade.DoFadeIn(fadeTime);
+        yield return new WaitForSeconds(fadeTime + 0.5f);
+        LevelManager.Instance.LoadNextLevel();
+    }
+
+
     private void ShowAnim()
     {
-
         meshRenderer.enabled = true;
         // Open portal slowly
         if (meshRenderer.gameObject.transform.localScale.x < portalOpenScale)

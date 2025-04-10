@@ -77,6 +77,39 @@ namespace Code.Scripts
             sequence.Play();
         }
 
+        /// <summary>
+        /// Either shows or hides self and children.
+        /// </summary>
+        public void ToggleVisibility()
+        {
+            if(!characterRenderer)
+                return;
+
+            bool visibility = !characterRenderer.enabled;
+            characterRenderer.enabled = visibility;
+
+            MeshRenderer[] renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach(var r in renderers)
+            {
+                r.enabled = visibility;
+            }
+
+            ParticleSystem[] particles = gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach(var p in particles)
+            {
+                if(visibility)
+                    p.Play();
+                else
+                    p.Stop();
+            }
+
+            SpriteRenderer[] spriteRenderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
+            foreach(var sr in spriteRenderers)
+            {
+                sr.enabled = visibility;
+            }
+        }
+
         protected virtual void Respawn()
         {
             health = 100f;
@@ -128,22 +161,6 @@ namespace Code.Scripts
             Spawn(location);
         }
 
-        /// <summary>
-        /// Either shows or hides self and children.
-        /// </summary>
-        private void ToggleVisibility()
-        {
-            if(!characterRenderer)
-                return;
 
-            bool visibility = !characterRenderer.enabled;
-            characterRenderer.enabled = visibility;
-
-            MeshRenderer[] renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
-            foreach (var r in renderers)
-            {
-                r.enabled = visibility;
-            }
-        }
     }
 }

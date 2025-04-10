@@ -74,8 +74,6 @@ public class LevelManager : MonoBehaviour
         
         Debug.Log("Loading " + sceneName + "...");
         
-        fadeToBlack.DoFadeIn();
-        
         try
         {
             SceneManager.LoadScene(sceneName);

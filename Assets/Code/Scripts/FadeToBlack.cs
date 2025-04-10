@@ -51,12 +51,4 @@ public class FadeToBlack : MonoBehaviour
 
         return (float) videoPlayer.clip.length;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            videoPlayer.Play();
-        }
-    }
 }
