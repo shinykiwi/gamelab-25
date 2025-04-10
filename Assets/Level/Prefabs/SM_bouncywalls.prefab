@@ -87,6 +87,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5337281517905755893}
   m_SourcePrefab: {fileID: 100100000, guid: c17912924c198524985be7a2304c9dd5, type: 3}
+--- !u!4 &997203073799414082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1151388028547126963, guid: c17912924c198524985be7a2304c9dd5, type: 3}
+  m_PrefabInstance: {fileID: 156583264705689585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075553783368420000 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c17912924c198524985be7a2304c9dd5, type: 3}
@@ -134,4 +139,5 @@ MonoBehaviour:
   aimAssistDistanceMax: 50
   degreesAimAssist: 30
   sfx: {fileID: 11400000, guid: 35cf73325b5b06b44a137b8e27e6a297, type: 2}
-  bounceForce: 0.003
+  bounceForce: 0.15
+  modelTransform: {fileID: 997203073799414082}

@@ -39,10 +39,12 @@ namespace Code.Scripts
         [SerializeField]
         private float bounceForce = 0.001f;
 
+        [SerializeField]
+        private Transform modelTransform;
 
         private void Bounce()
         {
-            transform.DOPunchScale(bounceForce * Vector3.one, 0.3f);
+            modelTransform.DOPunchScale(bounceForce * Vector3.one, 0.3f);
         }
 
         private void OnCollisionEnter(Collision other)

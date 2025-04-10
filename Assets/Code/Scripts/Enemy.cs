@@ -92,6 +92,12 @@ namespace Code.Scripts
             PrevVelocity = rb.linearVelocity;
         }
 
+        private void OnDestroy()
+        {
+            rotationTween.Kill();
+        }
+
+
         protected override void OnCollisionEnter(Collision collision)
         {
             base.OnCollisionEnter(collision);
