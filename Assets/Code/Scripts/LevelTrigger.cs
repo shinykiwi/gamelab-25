@@ -18,8 +18,6 @@ public class LevelTrigger : MonoBehaviour
 
         // Hide the object at first
         Hide();
-        Show();
-        canUse = true;
     }
 
     private void OnTriggerEnter(Collider other)
