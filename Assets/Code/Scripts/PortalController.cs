@@ -124,16 +124,17 @@ public class PortalController : MonoBehaviour
         Debug.DrawLine(exitPortal.transform.position, exitPortal.transform.position + exitPortal.transform.forward * 10, Color.cyan, 5);
         
         // Draw Debug Rays for the velocity
-        Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 1);
+        Debug.DrawRay(projectile.transform.position, newVelocity, Color.red, 2f);
         Quaternion rotateRight = Quaternion.Euler(0, degreesAimAssist / 2, 0);
-        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateRight * newVelocity.normalized), Color.green, 1);
+        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateRight * newVelocity.normalized), Color.green, 2f);
         Quaternion rotateLeft = Quaternion.Euler(0, -degreesAimAssist / 2, 0);
-        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateLeft * newVelocity.normalized), Color.green, 1);
+        Debug.DrawRay(projectile.transform.position, aimAssistDistanceMax * (rotateLeft * newVelocity.normalized), Color.green, 2f);
 
         if(isAimAssistEnabled)
         {
             newVelocity = AimAssistUtils.GetAutoAimVelocity(projectile.transform.position, newVelocity, aimAssistDistanceMax, 
                 degreesAimAssist, AimAssistUtils.ignoredMaskForLOS);
+            Debug.DrawRay(projectile.transform.position, newVelocity, Color.yellow, 2f);
         }
         projectileRigidbody.linearVelocity = newVelocity;
 

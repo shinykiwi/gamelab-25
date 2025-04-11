@@ -73,20 +73,33 @@ public class AimAssistUtils
 
         if(aimAtBouncyWall)
         {
-            // Check if the projectile is towards a bouncy wall
-            foreach(BouncyWall bouncyWall in Level.Instance.AllBouncyWalls)
+            // Check if already looking at a bouncy wall
+            bool hasLineOfSightOnWall = HasLineOfSightTo(projectilePosition, aimAssistDistanceMax * velocity.normalized, bouncyWallMask, ignoredMasksForLOS);
+
+            // If the projectile is already aiming at a bouncy wall and no other better targets were found, keep the velocity
+            if(hasLineOfSightOnWall && bestAngle > 999f)
             {
-                Vector3 toTarget = bouncyWall.transform.position - projectilePosition;
-                if(toTarget.magnitude >= aimAssistDistanceMax)
-                    continue;
-                float angle = Vector3.Angle(velocity, toTarget);
-                if(angle < degreesAimAssist / 2
-                    && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
-                    && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
+                bestVelocity = velocity;
+                bestAngle = 0.0f;
+                bestToTarget = Vector3.zero;
+            }
+            else // check if the projectile is towards a bouncy wall
+            {
+                // Check if the projectile is towards a bouncy wall
+                foreach(BouncyWall bouncyWall in Level.Instance.AllBouncyWalls)
                 {
-                    bestVelocity = velocity.magnitude * toTarget.normalized;
-                    bestAngle = angle;
-                    bestToTarget = toTarget;
+                    Vector3 toTarget = bouncyWall.transform.position - projectilePosition;
+                    if(toTarget.magnitude >= aimAssistDistanceMax)
+                        continue;
+                    float angle = Vector3.Angle(velocity, toTarget);
+                    if(angle < degreesAimAssist / 2
+                        && IsTargetBetter(angle, toTarget, bestAngle, bestToTarget, aimAssistDistanceMax)
+                        && HasLineOfSightTo(projectilePosition, bouncyWall.transform.position, bouncyWallMask, ignoredMasksForLOS))
+                    {
+                        bestVelocity = velocity.magnitude * toTarget.normalized;
+                        bestAngle = angle;
+                        bestToTarget = toTarget;
+                    }
                 }
             }
         }

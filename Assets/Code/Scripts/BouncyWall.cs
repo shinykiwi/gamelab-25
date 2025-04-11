@@ -67,6 +67,11 @@ namespace Code.Scripts
                 if(isProjectileDirRightAngle)
                 {
                     newVelocity = DoRightAngleCorrection(oldVelocity, newVelocity, wallNormal);
+
+                    // Do Aim Assist for enemies only
+                    newVelocity = AimAssistUtils.GetAutoAimVelocity(projectile.transform.position, newVelocity,
+                        aimAssistDistanceMax, maxRightAngleDegreeDeviation, AimAssistUtils.ignoredMaskForLOS,
+                        aimAssistOnEnemy, false, false);
                 }
                 else // Try to aim assist only if there projectile is not bouncing in a right angle
                 {
