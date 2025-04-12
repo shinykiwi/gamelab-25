@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32de3086499e5487097c69c4e9efd2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPointP1: {fileID: 0}
-  spawnPointP2: {fileID: 0}
   respawnDelay: 1
-  endLevelCanvas: {fileID: 0}
+  levelSections: []
+  sFX_Settings: {fileID: 11400000, guid: 35cf73325b5b06b44a137b8e27e6a297, type: 2}

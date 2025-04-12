@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Code.Scripts
 
         [SerializeField, Tooltip("Sections are to be completed in order of this array.")]
         LevelSection[] levelSections;
+
+        [SerializeField]
+        SFX_Settings sFX_Settings;
 
         public static LevelSection CurrentSection => Instance?.currentSection;
         public static Transform SpawnPointP1 => CurrentSection?.spawnPointP1;
@@ -103,6 +107,16 @@ namespace Code.Scripts
         {
             // Reveals the level trigger
             FindFirstObjectByType<LevelTrigger>().Show();
+
+            // Start coroutine to delay the sound
+            StartCoroutine(PlayLevelCompleteSoundDelayed());
         }
+
+        IEnumerator PlayLevelCompleteSoundDelayed()
+        {
+            yield return new WaitForSeconds(1f); // Delay for 1 second (adjust as needed)
+            SFX_Settings.PlayAudioClip(sFX_Settings.LevelComplete, transform.position, sFX_Settings.group);
+        }
+
     }
 }
