@@ -108,7 +108,7 @@ public class PauseMenu : MonoBehaviour
     public void OnQuitButtonClick()
     {
         menuAudio.PlayBackSound();
-        Application.Quit();
+        LevelManager.Instance.LoadDefault();
     }
 
     private void Update()

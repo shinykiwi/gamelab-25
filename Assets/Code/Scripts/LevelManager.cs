@@ -92,14 +92,22 @@ public class LevelManager : MonoBehaviour
 
     public void Pause()
     {
-        Level.Instance?.players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("UI"));
+        Level.Instance?.players.ForEach(player =>
+        {
+            if(player != null)
+                player?.GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");
+        });
 
         Time.timeScale = 0;
     }
 
     public void Resume()
     {
-        Level.Instance?.players.ForEach(player => player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player"));
+        Level.Instance?.players.ForEach(player =>
+        {
+            if(player != null)
+                player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
+        });
 
         Time.timeScale = 1;
     }
