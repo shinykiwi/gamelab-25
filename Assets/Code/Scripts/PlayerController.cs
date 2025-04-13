@@ -142,7 +142,8 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessIsGrounded()
     {
-        Vector3 bottomOfCharacterPos = new Vector3(coll.bounds.center.x, coll.bounds.min.y, coll.bounds.center.z);
+        const float groundMargin = 0.05f;
+        Vector3 bottomOfCharacterPos = new Vector3(coll.bounds.center.x, coll.bounds.min.y + groundMargin, coll.bounds.center.z);
         Ray ray = new Ray(bottomOfCharacterPos, Vector3.down);
         int nbHits = Physics.RaycastNonAlloc(ray, hit, 0.1f, ~0, QueryTriggerInteraction.Ignore);
         isGrounded = nbHits > 0;
