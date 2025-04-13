@@ -7321,7 +7321,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 33.685986, y: 12.040593}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: NaN, w: 1e-45}
@@ -11016,7 +11016,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 8.246194, y: 17.133755}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: NaN, w: 1e-45}
@@ -11483,7 +11483,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 12.602217, y: 12.347231}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 6.61e-43, y: 1.849672e+31, z: 2.0022223e-19, w: 3.0854143e+32}
@@ -14448,7 +14448,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: NaN, w: 1e-45}
@@ -15115,7 +15115,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 31.131298, y: 31.368614}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 6.61e-43, y: 1e-45, z: 1.8697846e+31, w: 0}
@@ -18195,7 +18195,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 33.685986, y: 10.900358}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: NaN, w: 1e-45}
@@ -18316,7 +18316,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 19.265968, y: 26.031776}
-  m_BounceIntensity: 0.8
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 1.08e-43, z: NaN, w: -390652670}

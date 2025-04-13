@@ -56,6 +56,12 @@ public class MainMenu : MonoBehaviour
 
         var playerInputs = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None).ToList();
         cancelActions = playerInputs.ConvertAll(playerInput => playerInput.actions["Cancel"]).ToArray();
+
+        if (FindAnyObjectByType<GoToCreditsTag>() is { }  creditsTag)
+        {
+            Destroy(creditsTag.gameObject);
+            ShowCredits();
+        }
     }
 
     private void Update()
@@ -110,10 +116,15 @@ public class MainMenu : MonoBehaviour
     public void OnCreditsButton()
     {
         menuAudio.PlayClickSound();
-        
+
+        ShowCredits();
+    }
+
+    public void ShowCredits()
+    {
         // Show the credits menu
         credits.SetActive(true);
-        
+
         // Hide the options and credits menu
         options.SetActive(false);
         menu.SetActive(false);
