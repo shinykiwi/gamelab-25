@@ -2,12 +2,17 @@ using UnityEngine;
 [RequireComponent (typeof(AudioSource))]
 public class MusicManager : MonoBehaviour
 {
-
     [SerializeField]
     AudioSource musicSource;
 
     private void Awake()
     {
+        var musicManagers = FindObjectsByType<MusicManager>(FindObjectsSortMode.None);
+        if(musicManagers.Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
