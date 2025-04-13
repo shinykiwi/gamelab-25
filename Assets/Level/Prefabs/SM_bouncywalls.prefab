@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeedProjectileOnExit: 2
   minSpeedEnemyOnExit: 2
-  maxRightAngleDegreeDeviation: 16
+  maxRightAngleDegreeDeviation: 20
   aimAssistOnEnemy: 1
   aimAssistOnBouncyWall: 1
   aimAssistOnPlayer: 1

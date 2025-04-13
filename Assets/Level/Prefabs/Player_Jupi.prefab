@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d20498113329e42b2df25c969bfeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
+  moveSpeed: 7.8
   walkingParticles: {fileID: 8355490989694600470}
   distanceTravelledHitByProjectile: 3
   durationTimeHitByProjectile: 0.25
