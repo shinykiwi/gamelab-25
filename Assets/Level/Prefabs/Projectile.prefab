@@ -172,5 +172,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeVFX: {fileID: 8336327620273662853, guid: ee925d3b99ff21c48ab4cafe5bd0a1f7, type: 3}
-  killAfterSeconds: 18
+  killAfterSeconds: 120
   sfx: {fileID: 11400000, guid: 35cf73325b5b06b44a137b8e27e6a297, type: 2}

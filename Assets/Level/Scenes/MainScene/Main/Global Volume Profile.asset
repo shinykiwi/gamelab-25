@@ -15,13 +15,13 @@ MonoBehaviour:
   active: 0
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 9
   intensity:
     m_OverrideState: 1
-    m_Value: 0.269
+    m_Value: 0.797
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 0.852
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -42,26 +42,9 @@ MonoBehaviour:
   - {fileID: 4572840687969595350}
   - {fileID: 4248232531534755170}
   - {fileID: 2410198069677598245}
-  - {fileID: 1638081129863450847}
   - {fileID: 9096903337587591586}
   - {fileID: 4520513601718042933}
   - {fileID: -4342402227627268082}
---- !u!114 &1638081129863450847
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.044
 --- !u!114 &2410198069677598245
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -147,8 +130,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {r: 1, g: 0.8820755, b: 0.91958106, a: 1}
   hueShift:
-    m_OverrideState: 0
-    m_Value: -11
+    m_OverrideState: 1
+    m_Value: 1
   saturation:
     m_OverrideState: 1
     m_Value: 40
@@ -173,7 +156,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.406
+    m_Value: 0.46
   smoothness:
     m_OverrideState: 0
     m_Value: 0.2
@@ -197,11 +180,11 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   threshold:
-    m_OverrideState: 0
-    m_Value: 5.64
+    m_OverrideState: 1
+    m_Value: 1.3
   intensity:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 1
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -239,13 +222,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
   m_Name: LiftGammaGain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   lift:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.9868972, y: 0.9440635, z: 1, w: -0.01765225}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: 0.23952094}
   gain:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.9766316, y: 0.99631447, z: 1, w: 0}

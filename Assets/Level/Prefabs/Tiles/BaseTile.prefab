@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6330808952819700352, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: -1107978820458350540, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1107978820458350540, guid: 9eaaa30751cdca84eb020c69e77ddfb1, type: 3}
       propertyPath: m_RenderingLayerMask
